@@ -10,12 +10,16 @@ import { HelloComponent } from "./hello.component";
 import { InputXhComponent } from "./wizards/input-xh/input-xh.component";
 import { InputOrderComponent } from './wizards/input-order/input-order.component';
 import { ConfirmOrderComponent } from './wizards/confirm-order/confirm-order.component';
+import { DataService } from './data.service';
+
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: "", component: InputXhComponent },
       { path: "input-order", component: InputOrderComponent },
@@ -29,6 +33,7 @@ import { ConfirmOrderComponent } from './wizards/confirm-order/confirm-order.com
     InputOrderComponent,
     ConfirmOrderComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [DataService]
 })
 export class AppModule {}

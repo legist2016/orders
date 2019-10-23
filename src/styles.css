@@ -10,6 +10,7 @@
 
 body {
   margin: 0;
+  font-size: 14px;
 }
 
 .container {
@@ -54,13 +55,13 @@ a:hover {
 /* Input */
 
 input {
-  font-size: 14px;
+  
   border-radius: 2px;
   padding: 8px;  
   border: 1px solid #BDBDBD;
 }
 
-label {
+label1 {
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -137,6 +138,8 @@ app-top-bar h1 {
   background-color: #EEEEEE;
 }
 
+div[table] ul{margin:0;padding:0;list-style:none;display: table-row} 
+div[table] li{display: table-cell;padding: 4px;line-height: 2em;}
 
 /*
 Copyright Google LLC. All Rights Reserved.

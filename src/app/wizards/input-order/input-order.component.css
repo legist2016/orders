@@ -1,10 +1,3 @@
-td{
-  line-height: 2em;
-  height: 2em;
-}
-
-
-
 input1[type=text]{
   border-style: none none solid none ;
   border-color: black;
@@ -17,5 +10,3 @@ div{
   display: table-cell;
 }
 
-ul{margin:0;padding:0;list-style:none;display: table-row} 
-li{display: table-cell;}

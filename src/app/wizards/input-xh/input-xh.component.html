@@ -1,11 +1,24 @@
 <h3>请输入以下信息</h3>
-<table>
-	<tr>
-		<td>学号</td>
-		<td><input type="text" [(ngModel)]="xh"> </td>
-		<td>姓名</td>
-		<td><input type="text" [(ngModel)]="xm"> </td>
-	</tr>
-</table>
-<button (click)="ok()">确定</button>
-<a [routerLink]="['/input-order']">忘记学号</a>
+<div table>
+	<ul>
+		<li>学号</li>
+		<li><input type="text" [(ngModel)]="xh"> </li>
+	</ul>
+	<ul>
+		<li>姓名</li>
+		<li><input type="text" [(ngModel)]="xm"> </li>
+	</ul>
+	<button (click)="ok()">确定</button>
+	<a [routerLink]="['/input-order']">忘记学号</a>
+
+	<div *ngIf="doing">
+		正在查询信息
+	</div>
+	<div *ngIf="student">
+		<p>学号：{{student.xh}}，姓名：{{student.xm}}</p>
+		<p>性别：{{student.xb}}，出生日期：{{student.csrq}}</p>
+		<p>院系：{{student.yx}}，专业：{{student.zy}}</p>
+		<p>入学时间：{{student.rxsj}}，毕业时间：{{student.bysj}}</p>
+		<button>下一步</button>
+	</div>
+</div>
