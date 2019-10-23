@@ -1,15 +1,20 @@
-<form>
+<form #heroForm="ngForm" (submit)="onSubmit()">
+<input type="text" [formControl]="name">
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
 
+  <div *ngIf="name.errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors.forbiddenName">
+    Name cannot be Bob.
+  </div>
+</div>
+<button type="submit"></button>
 </form>
-<p>
-Favorite Color: <input type="text" [formControl]="favoriteColorControl">
-{{favoriteColorControl.value}}
-</p>
-<p>
-Favorite Color: <input type="text" [(ngModel)]="favoriteColor">
-{{favoriteColor}}
-</p>
-<input type="text" [formControl]="power">
 <div class="table">
 	<h2 class="table-caption">花名册：</h2>
 	<div class="table-column-group">

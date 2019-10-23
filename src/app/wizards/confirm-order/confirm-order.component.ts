@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,Validators } from '@angular/forms';
+import { FormControl,Validators,FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-confirm-order',
@@ -7,16 +7,18 @@ import { FormControl,Validators } from '@angular/forms';
   styleUrls: ['./confirm-order.component.css']
 })
 export class ConfirmOrderComponent implements OnInit {
-  favoriteColorControl = new FormControl('');
-  favoriteColor = '';
-  hero = {name:'',power:''}
-  power= new FormControl(this.hero.power, Validators.required)
+heroForm
+hero = {name:''}
   constructor() { }
 
   ngOnInit() {
-    
+  this.heroForm = new FormGroup({
+  
+  'name': new FormControl(this.hero.name, Validators.required)})    
       
 
   }
-
+onSubmit(){
+  window.alert(0)
+}
 }
