@@ -1,0 +1,21 @@
+td{
+  line-height: 2em;
+  height: 2em;
+}
+
+
+
+input1[type=text]{
+  border-style: none none solid none ;
+  border-color: black;
+  border-width:  1px;
+  border-radius: 0;
+  outline-style: none;
+}
+
+div{
+  display: table-cell;
+}
+
+ul{margin:0;padding:0;list-style:none;display: table-row} 
+li{display: table-cell;}

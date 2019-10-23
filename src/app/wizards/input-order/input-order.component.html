@@ -1,0 +1,29 @@
+<h3>请填写完成以下信息</h3>
+<table>
+  <ul>
+<li>学号</li>
+<li>{{xh}}</li>
+  </ul><ul>
+<li>姓名</li>
+<li><input type="text" [(ngModel)]="xh"></li>
+  </ul><ul>
+<li>性别</li>
+<li><input type="radio" [(ngModel)]="xh" value="男">男<input type="radio" [(ngModel)]="xh" value="女">女</li>
+  </ul><ul>
+<li>出生日期</li>
+<li><input type="text" [(ngModel)]="xh"></li>
+  </ul><ul>
+<li>院系</li>
+<li><input type="text" [(ngModel)]="xh" size="40"></li>
+  </ul><ul>
+<li>专业</li>
+<li><input type="text" [(ngModel)]="xh" size="40"></li>
+  </ul><ul>
+<li>联系人</li>
+<li><input type="text" [(ngModel)]="xh"></li>
+  </ul><ul>
+<li>联系电话</li>
+<li><input type="text" [(ngModel)]="xh"></li>
+  </ul>
+</table>
+<button type="submit" (click)="ok()">确定</button><button (click)="return()">返回上一步</button>

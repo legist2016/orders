@@ -1,0 +1,11 @@
+<h3>请输入以下信息</h3>
+<table>
+	<tr>
+		<td>学号</td>
+		<td><input type="text" [(ngModel)]="xh"> </td>
+		<td>姓名</td>
+		<td><input type="text" [(ngModel)]="xm"> </td>
+	</tr>
+</table>
+<button (click)="ok()">确定</button>
+<a [routerLink]="['/input-order']">忘记学号</a>
