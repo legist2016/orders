@@ -1,39 +1,51 @@
-<div class="table">  
-        <h2 class="table-caption">花名册：</h2>  
-        <div class="table-column-group">  
-            <div class="table-column"></div>  
-            <div class="table-column"></div>  
-            <div class="table-column"></div>  
-        </div>  
-        <div class="table-header-group">  
-            <ul class="table-row">  
-                <li class="table-cell">序号</li>  
-                <li class="table-cell">姓名</li>  
-                <li class="table-cell">年龄</li>  
-            </ul>  
-        </div>  
-        <div class="table-row-group">  
-            <ul class="table-row">  
-                <li class="table-cell">1</li>  
-                <li class="table-cell">John</li>  
-                <li class="table-cell">19</li>  
-            </ul>  
-            <ul class="table-row">  
-                <li class="table-cell">2</li>  
-                <li class="table-cell">Mark</li>  
-                <li class="table-cell">21</li>  
-            </ul>  
-            <ul class="table-row">  
-                <li class="table-cell">3</li>  
-                <li class="table-cell">Kate</li>  
-                <li class="table-cell">26</li>  
-            </ul>  
-        </div>  
-        <div class="table-footer-group">  
-            <ul class="table-row">  
-                <li class="table-cell">footer</li>  
-                <li class="table-cell">footer</li>  
-                <li class="table-cell">footer</li>  
-            </ul>  
-        </div>  
-    </div> 
+<form>
+
+</form>
+<p>
+Favorite Color: <input type="text" [formControl]="favoriteColorControl">
+{{favoriteColorControl.value}}
+</p>
+<p>
+Favorite Color: <input type="text" [(ngModel)]="favoriteColor">
+{{favoriteColor}}
+</p>
+<input type="text" [formControl]="power">
+<div class="table">
+	<h2 class="table-caption">花名册：</h2>
+	<div class="table-column-group">
+		<div class="table-column"></div>
+		<div class="table-column"></div>
+		<div class="table-column"></div>
+	</div>
+	<div class="table-header-group">
+		<ul class="table-row">
+			<li class="table-cell">序号</li>
+			<li class="table-cell">姓名</li>
+			<li class="table-cell">年龄</li>
+		</ul>
+	</div>
+	<div class="table-row-group">
+		<ul class="table-row">
+			<li class="table-cell">1</li>
+			<li class="table-cell">John</li>
+			<li class="table-cell">19</li>
+		</ul>
+		<ul class="table-row">
+			<li class="table-cell">2</li>
+			<li class="table-cell">Mark</li>
+			<li class="table-cell">21</li>
+		</ul>
+		<ul class="table-row">
+			<li class="table-cell">3</li>
+			<li class="table-cell">Kate</li>
+			<li class="table-cell">26</li>
+		</ul>
+	</div>
+	<div class="table-footer-group">
+		<ul class="table-row">
+			<li class="table-cell">footer</li>
+			<li class="table-cell">footer</li>
+			<li class="table-cell">footer</li>
+		</ul>
+	</div>
+</div>

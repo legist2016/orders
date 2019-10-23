@@ -9,17 +9,24 @@ import { DataService } from "../../data.service";
   styleUrls: ["./input-xh.component.css"]
 })
 export class InputXhComponent implements OnInit {
+  xh
+  xm
   student;
   doing = false;
+  message
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {}
+  next(){
+    this.router.navigateByUrl('/input-order')
+  }
   ok() {
     this.doing = true;
     this.student = 0;
+    this.message = 0;
     //this.router.navigateByUrl('/input-order')
     this.dataService
-      .getStudentInfo()
+      .getStudentInfo(this.xh,this.xm)
       .toPromise<any>()
       .then(data => {
         this.student = data;
@@ -27,6 +34,8 @@ export class InputXhComponent implements OnInit {
       })
       .catch(err=>{
         this.doing=false;
+        this.message=err.message
+        console.log(err)
       });
   }
 }

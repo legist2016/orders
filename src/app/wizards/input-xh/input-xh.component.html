@@ -2,15 +2,15 @@
 <div table>
 	<ul>
 		<li>学号</li>
-		<li><input type="text" [(ngModel)]="xh"> </li>
+		<li><input type="text" [(ngModel)]="xh" required > </li>
 	</ul>
 	<ul>
 		<li>姓名</li>
-		<li><input type="text" [(ngModel)]="xm"> </li>
+		<li><input type="text" [(ngModel)]="xm" required > </li>
 	</ul>
 	<button (click)="ok()">确定</button>
 	<a [routerLink]="['/input-order']">忘记学号</a>
-
+<div *ngIf="message">{{message}}</div>
 	<div *ngIf="doing">
 		正在查询信息
 	</div>
@@ -19,6 +19,6 @@
 		<p>性别：{{student.xb}}，出生日期：{{student.csrq}}</p>
 		<p>院系：{{student.yx}}，专业：{{student.zy}}</p>
 		<p>入学时间：{{student.rxsj}}，毕业时间：{{student.bysj}}</p>
-		<button>下一步</button>
+		<button (click)="next()">下一步</button>
 	</div>
 </div>
