@@ -16,10 +16,13 @@ body {
 .container {
   display: flex;
   flex-direction: row;
+  width: 400px;
+  margin:auto;
 }
 
 router-outlet + *  {
   padding: 0 16px;
+  
 }
 
 /* Text */
