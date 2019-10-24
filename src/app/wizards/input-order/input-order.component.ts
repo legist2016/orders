@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { DataService } from "../../data.service";
 
 @Component({
   selector: "app-input-order",
@@ -7,10 +8,14 @@ import { Router } from "@angular/router";
   styleUrls: ["./input-order.component.css"]
 })
 export class InputOrderComponent implements OnInit {
-  xh;
-  constructor(private router: Router) {}
+  order;
+  constructor(private router: Router,private dataService: DataService) {
+    this.order = this.dataService.getOrder()
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
   ok() {
     this.router.navigateByUrl("/confirm-order");
   }

@@ -16,6 +16,7 @@ export class InputXhComponent {
   constructor(private router: Router, private dataService: DataService) {}
 
   next(){
+    this.dataService.setOrder(this.student)
     this.router.navigateByUrl('/input-order')
   }
   ok(xh,xm) {
