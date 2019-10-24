@@ -18,7 +18,7 @@ hero = {name:''}
       
 
   }
-onSubmit(){
+ok(){
   window.alert(0)
 }
 }

@@ -13,6 +13,7 @@ import { ConfirmOrderComponent } from './wizards/confirm-order/confirm-order.com
 import { DataService } from './data.service';
 
 import { HttpClientModule } from "@angular/common/http";
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from "@angular/common/http";
     HelloComponent,
     InputXhComponent,
     InputOrderComponent,
-    ConfirmOrderComponent
+    ConfirmOrderComponent,
+    HeroFormComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService]

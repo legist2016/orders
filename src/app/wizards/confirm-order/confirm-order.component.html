@@ -1,5 +1,8 @@
-<form #heroForm="ngForm" (submit)="onSubmit()">
-<input type="text" [formControl]="name">
+
+<input id="name" name="name" class="form-control"
+      required minlength="4" 
+      [(ngModel)]="hero.name" #name="ngModel" >
+
 <div *ngIf="name.invalid && (name.dirty || name.touched)"
     class="alert alert-danger">
 
@@ -12,9 +15,19 @@
   <div *ngIf="name.errors.forbiddenName">
     Name cannot be Bob.
   </div>
+
 </div>
-<button type="submit"></button>
-</form>
+<button (click)="ok()" [disabled]="name.invalid">OK</button>
+
+
+
+
+
+
+
+
+
+
 <div class="table">
 	<h2 class="table-caption">花名册：</h2>
 	<div class="table-column-group">

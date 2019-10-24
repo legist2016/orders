@@ -141,6 +141,10 @@ app-top-bar h1 {
 div[table] ul{margin:0;padding:0;list-style:none;display: table-row} 
 div[table] li{display: table-cell;padding: 4px;line-height: 2em;}
 
+
+[hidden]{
+  display: none;
+}
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
