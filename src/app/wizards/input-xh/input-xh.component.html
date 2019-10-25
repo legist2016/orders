@@ -1,5 +1,5 @@
 <h3>请输入以下信息</h3>
-<form (ngSubmit)="ok(model.xh,model.xm)" #form="ngForm">
+<form (ngSubmit)="ok(model.xh,model.xm)" #form="ngForm" >
 	<div table>
 		<ul>
 			<li>学号</li>
@@ -12,7 +12,7 @@
 			<span [hidden]="xm.valid || xm.pristine">请输入姓名</span></li>
 		</ul>
 		<button type="submit" [disabled]="!form.form.valid">确定</button>
-		<a [routerLink]="['/input-order']">忘记学号</a>
+		<a [routerLink]="['/input-order']" (click)="forget()">忘记学号</a>
 		<div *ngIf="message">{{message}}</div>
 		<div *ngIf="doing">
 			正在查询信息

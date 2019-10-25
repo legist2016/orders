@@ -9,36 +9,45 @@ import { DataService } from "../../data.service";
   styleUrls: ["./input-xh.component.css"]
 })
 export class InputXhComponent {
-  model = {xh:'',xm:''}
-  student;
+  model = this.dataService.getStudentQueryModel();
+  student = this.dataService.getStudent();
   doing = false;
-  message
+  message;
   constructor(private router: Router, private dataService: DataService) {}
 
-  next(){
-    this.dataService.setOrder(this.student)
-    this.router.navigateByUrl('/input-order')
+  get diagnostic() {
+    return JSON.stringify(this.model);
   }
-  ok(xh,xm) {
+
+  forget(){
+    this.dataService.setOrder(null);
+  }
+
+  next() {
+    this.dataService.setOrder(this.student);
+    this.router.navigateByUrl("/input-order");
+  }
+  ok(xh, xm) {
     this.doing = true;
     this.student = 0;
     this.message = 0;
     //this.router.navigateByUrl('/input-order')
     this.dataService
-      .getStudentInfo(xh,xm)
+      .getStudentInfo(xh, xm)
       .toPromise<any>()
       .then(data => {
-        this.doing=false;
-        if(data.xm && data.xm==xm){
-        this.student = data;
-        }else{
+        this.doing = false;
+        if (data.xm && data.xm == xm) {
+          this.student = data;
+          this.dataService.setStudent(this.student);
+        } else {
           this.message = "填写的信息无效。";
         }
       })
-      .catch(err=>{
-        this.doing=false;
-        this.message=err.message
-        console.log(err)
+      .catch(err => {
+        this.doing = false;
+        this.message = err.message;
+        console.log(err);
       });
   }
 }
