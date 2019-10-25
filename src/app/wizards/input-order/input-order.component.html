@@ -1,36 +1,46 @@
 <h3>请填写完成以下信息</h3>
 <div table>
-  <ul>
-<li>学号</li>
-<li>{{xh}}</li>
-  </ul><ul>
-<li>姓名</li>
-<li><input type="text" [(ngModel)]="order.xm"></li>
-  </ul><ul>
-<li>性别</li>
-<li><input type="radio" [(ngModel)]="xb" id="xb1" value="男"><label for="xb1">男</label><input type="radio" [(ngModel)]="xb" id="xb2" value="女"><label for="xb2">女</label></li>
-  </ul><ul>
-<li>出生日期</li>
-<li><input type="text" [(ngModel)]="csrq"></li>
-  </ul><ul>
-<li>院系</li>
-<li><input type="text" [(ngModel)]="yx" size="auto"></li>
-  </ul><ul>
-<li>专业</li>
-<li><input type="text" [(ngModel)]="zy" size="auto"></li>
-  </ul><ul>
-<li>入学时间</li>
-<li><input type="text" [(ngModel)]="rxrq"></li>
-  </ul><ul>
-<li>毕业时间</li>
-<li><input type="text" [(ngModel)]="byrq"></li>
-  </ul><ul>
-<li>联系人</li>
-<li><input type="text" [(ngModel)]="lxr"></li>
-  </ul><ul>
-<li>联系电话</li>
-<li><input type="text" [(ngModel)]="lxdh"></li>
-  </ul>
-<button (click)="return()"><< 返回上一步</button>
-<button type="submit" (click)="ok()">确定</button>
+	<ul>
+		<li>学号</li>
+		<li>{{order.xh}}</li>
+	</ul>
+	<ul>
+		<li>姓名</li>
+		<li><input type="text" [(ngModel)]="order.xm"></li>
+	</ul>
+	<ul>
+		<li>性别</li>
+		<li><input type="radio" [(ngModel)]="order.xb" id="xb1" value="男"><label for="xb1">男</label><input type="radio" [(ngModel)]="order.xb" id="xb2" value="女"><label for="xb2">女</label>
+		</li>
+	</ul>
+	<ul>
+		<li>出生日期</li>
+		<li><input type="text" [(ngModel)]="order.csrq"></li>
+	</ul>
+	<ul>
+		<li>院系</li>
+		<li><input type="text" [(ngModel)]="order.yx" size="auto"></li>
+	</ul>
+	<ul>
+		<li>专业</li>
+		<li><input type="text" [(ngModel)]="order.zy" size="auto"></li>
+	</ul>
+	<ul>
+		<li>入学时间</li>
+		<li><input type="text" [(ngModel)]="order.rxsj"></li>
+	</ul>
+	<ul>
+		<li>毕业时间</li>
+		<li><input type="text" [(ngModel)]="order.bysj"></li>
+	</ul>
+	<ul>
+		<li>联系人</li>
+		<li><input type="text" [(ngModel)]="order.lxr"></li>
+	</ul>
+	<ul>
+		<li>联系电话</li>
+		<li><input type="text" [(ngModel)]="order.lxdh"></li>
+	</ul>
+	<button (click)="return()"><< 返回上一步</button>
+	<button type="submit" (click)="ok()">确定</button>
 </div>

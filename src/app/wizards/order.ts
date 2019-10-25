@@ -7,8 +7,8 @@ export class Order {
     public csrq: string,
     public yx: string,
     public zy: string,
-    public rxrq: string,
-    public byrq: string,
+    public rxsj: string,
+    public bysj: string,
     public lxr: string,
     public lxrq: string,
   ) {}
