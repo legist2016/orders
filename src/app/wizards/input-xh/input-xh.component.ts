@@ -9,37 +9,39 @@ import { DataService } from "../../data.service";
   styleUrls: ["./input-xh.component.css"]
 })
 export class InputXhComponent {
-  model = this.dataService.getStudentQueryModel();
-  student = this.dataService.getStudent();
+  model = this.ds.getStudentQueryModel();
+  student = this.ds.getStudent();
   doing = false;
   message;
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private router: Router, private ds: DataService) {}
 
   get diagnostic() {
     return JSON.stringify(this.model);
   }
 
   forget(){
-    this.dataService.setOrder(null);
+    this.ds.setOrder(null);
   }
 
   next() {
-    this.dataService.setOrder(this.student);
+    this.ds.setOrder(this.ds.Student);
     this.router.navigateByUrl("/input-order");
   }
   ok(xh, xm) {
     this.doing = true;
-    this.student = 0;
+    this.ds.Student = null;
     this.message = 0;
     //this.router.navigateByUrl('/input-order')
-    this.dataService
+    this.ds
       .getStudentInfo(xh, xm)
       .toPromise<any>()
       .then(data => {
         this.doing = false;
+        this.ds.Student = data;
+        return
         if (data.xm && data.xm == xm) {
-          this.student = data;
-          this.dataService.setStudent(this.student);
+          this.ds.Student = data;
+          //this.ds.setStudent(this.student);
         } else {
           this.message = "填写的信息无效。";
         }

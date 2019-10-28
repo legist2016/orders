@@ -1,28 +1,43 @@
 <h3>请输入以下信息</h3>
-<form (ngSubmit)="ok(model.xh,model.xm)" #form="ngForm" >
+<form (ngSubmit)="ok(model.xh,model.xm)" #form="ngForm">
 	<div table>
 		<ul>
 			<li>学号</li>
-			<li><input type="text"  required [(ngModel)]="model.xh" #xh="ngModel" id="xh" name="xh"> 
-			<!--span [hidden]="xh.valid || xh.pristine">请输入学号</span--></li>
+			<li><input type="text"  required1 [(ngModel)]="ds.StudentModel.xh"  name="xh">
+				<!--span [hidden]="xh.valid || xh.pristine" #xh="ngModel" id="xh">请输入学号</span-->
+			</li>
 		</ul>
 		<ul>
 			<li>姓名</li>
-			<li><input type="text"  required  [(ngModel)]="model.xm" #xm="ngModel" id="xm" name="xm"> 
-			<!--span [hidden]="xm.valid || xm.pristine">请输入姓名</span--></li>
+			<li><input type="text"  required1  [(ngModel)]="ds.StudentModel.xm" name="xm">
+				<!--span [hidden]="xm.valid || xm.pristine" #xm="ngModel" id="xm">请输入姓名</span-->
+			</li>
 		</ul>
 		<button type="submit" [disabled]="!form.form.valid">确定</button>
 		<a [routerLink]="['/input-order']" (click)="forget()">忘记学号</a>
 		<div *ngIf="message">{{message}}</div>
 		<div *ngIf="doing">
-			正在查询信息
+			<h3>正在查询信息...</h3>
 		</div>
-		<div *ngIf="student">
-			<p>学号：{{student.xh}}，姓名：{{student.xm}}</p>
-			<p>性别：{{student.xb}}，出生日期：{{student.csrq}}</p>
-			<p>院系：{{student.yx}}，专业：{{student.zy}}</p>
-			<p>入学时间：{{student.rxsj}}，毕业时间：{{student.bysj}}</p>
-			<button (click)="next()">下一步</button>
-		</div>
+	</div>
+	<div *ngIf="ds.Student" table>
+		<ul>
+			<li caption>学号：</li><li>{{ds.Student.xh}}</li>
+			<li caption>姓名：</li><li>{{ds.Student.xm}}</li>
+		</ul>
+		<ul>
+			<li caption>性别：</li><li>{{ds.Student.xb}}</li>
+			<li caption>出生日期：</li><li>{{ds.Student.csrq}}</li>
+		</ul>
+		<ul>
+			<li caption>院系：</li><li>{{ds.Student.yx}}</li>
+			<li caption>专业：</li><li>{{ds.Student.zy}}</li>
+		</ul>
+		<ul>
+			<li caption>入学时间：</li><li>{{ds.Student.rxsj}}</li>
+			<li caption>毕业时间：</li><li>{{ds.Student.bysj}}</li>
+		</ul>
+
+		<button (click)="next()">下一步</button>
 	</div>
 </form>
