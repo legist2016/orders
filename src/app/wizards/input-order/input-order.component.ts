@@ -19,7 +19,5 @@ export class InputOrderComponent implements OnInit {
   ok() {
     this.router.navigateByUrl("/confirm-order");
   }
-  return() {
-    this.router.navigateByUrl("/");
-  }
+
 }

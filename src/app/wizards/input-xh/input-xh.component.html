@@ -4,12 +4,12 @@
 		<ul>
 			<li>学号</li>
 			<li><input type="text"  required [(ngModel)]="model.xh" #xh="ngModel" id="xh" name="xh"> 
-			<span [hidden]="xh.valid || xh.pristine">请输入学号</span></li>
+			<!--span [hidden]="xh.valid || xh.pristine">请输入学号</span--></li>
 		</ul>
 		<ul>
 			<li>姓名</li>
 			<li><input type="text"  required  [(ngModel)]="model.xm" #xm="ngModel" id="xm" name="xm"> 
-			<span [hidden]="xm.valid || xm.pristine">请输入姓名</span></li>
+			<!--span [hidden]="xm.valid || xm.pristine">请输入姓名</span--></li>
 		</ul>
 		<button type="submit" [disabled]="!form.form.valid">确定</button>
 		<a [routerLink]="['/input-order']" (click)="forget()">忘记学号</a>
