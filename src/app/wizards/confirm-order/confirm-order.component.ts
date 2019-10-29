@@ -7,7 +7,7 @@ import { DataService } from "../../data.service";
   styleUrls: ["./confirm-order.component.css"]
 })
 export class ConfirmOrderComponent implements OnInit {
-  constructor(private ds: DataService) {}
+  constructor(public ds: DataService) {}
 
   ngOnInit() {}
   get diagnostic() {

@@ -7,7 +7,7 @@ import { DataService } from "../../data.service";
   styleUrls: ["./input-xh.component.css"]
 })
 export class InputXhComponent {
-  constructor(private ds: DataService) {}
+  constructor(public ds: DataService) {}
 
   get diagnostic() {
     return JSON.stringify(this.ds.model);

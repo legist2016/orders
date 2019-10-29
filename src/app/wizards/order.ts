@@ -27,7 +27,7 @@ export class Student {
 }
 
 export class Product{
-  public id:Number
+  public id:any
   public name:String
   public descript:String
   public price:Number

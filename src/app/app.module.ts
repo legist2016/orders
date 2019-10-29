@@ -23,6 +23,7 @@ import { SelectItemComponent } from './wizards/select-item/select-item.component
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: "", component: InputXhComponent },
       { path: "step1", component: InputXhComponent },
       { path: "step2", component: InputOrderComponent },
       { path: "step3", component: SelectItemComponent },

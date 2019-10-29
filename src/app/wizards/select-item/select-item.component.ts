@@ -7,7 +7,7 @@ import { DataService } from "../../data.service";
   styleUrls: ["./select-item.component.css"]
 })
 export class SelectItemComponent implements OnInit {
-  constructor(private ds: DataService) {}
+  constructor(public ds: DataService) {}
 
   ngOnInit() {}
   get diagnostic() {

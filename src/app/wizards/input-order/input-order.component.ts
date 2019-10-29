@@ -10,7 +10,7 @@ import { DataService } from "../../data.service";
 export class InputOrderComponent implements OnInit {
   order;
   constructor(
-    private ds: DataService
+    public ds: DataService
   ) {
   }
 

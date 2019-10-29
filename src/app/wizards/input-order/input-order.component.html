@@ -42,7 +42,7 @@
 			<li>联系电话</li>
 			<li><input type="text" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required></li>
 		</ul>
-		<button routerLink="/"><< 返回上一步</button>
-		<button type="submit" [disabled]="!form.form.valid" routerLink="/confirm-order">下一步</button>
+		<button routerLink="/step1"><< 返回上一步</button>
+		<button type="submit" [disabled]="!form.form.valid" routerLink="/step3">下一步</button>
 	</div>
 </form>

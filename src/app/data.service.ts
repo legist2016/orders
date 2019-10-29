@@ -12,13 +12,28 @@ export class DataService {
     query: Student;
     querying: boolean;
     message: string;
-    itemsCount:{}
-    itemsSelected:{}
+    itemsCount: {}
+    itemsSelected: {}
   };
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
     this.init();
     this.LoadProductList();
+  }
+
+  get cost() {
+    let cost = 0;
+
+    if (this.products) {
+      for (let product of this.products) {
+        //console.log(1111112)
+        if (this.model.itemsSelected[product.id]) {
+          //console.log(1111113)
+          cost += this.model.itemsCount[product.id] * product.price
+        }
+      }
+    }
+    return cost
   }
 
   getStudentInfo(xh, xm) {
@@ -33,7 +48,7 @@ export class DataService {
         .then(data => {
           this.products = data;
         })
-        .catch(err => {});
+        .catch(err => { });
     }
   }
 
@@ -44,8 +59,8 @@ export class DataService {
       query: new Student(),
       querying: false,
       message: null,
-      itemsCount:{},
-      itemsSelected:{}
+      itemsCount: {},
+      itemsSelected: {},
     };
   }
 

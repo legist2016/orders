@@ -39,11 +39,12 @@
       <span *ngIf="ds.model.itemsSelected[i]">份数：<span number>{{ds.model.itemsCount[i]}}</span>
       <button [disabled]="ds.model.itemsCount[i]<=1" number (click)="ds.model.itemsCount[i]=ds.model.itemsCount[i]-1">-</button>
       <button number (click)="ds.model.itemsCount[i]=ds.model.itemsCount[i]+1">+</button>
-      金额：<span number>{{product.price * ds.model.itemsCount[i]}}</span></span>
+      金额：<span number>{{product.price * ds.model.itemsCount[i]}}元</span></span>
     </h3>
 			<p>{{product.descript}}</p>
 
 	</div>
+	<h3>总金额：{{ds.cost }}元</h3>
 </div>
-<button routerLink="/input-order"><< 返回上一步</button>
-<button type="submit" disabled="!form.form.valid">下一步</button>
+<button routerLink="/step2">返回上一步</button>
+<button routerLink="/step4" [disabled]="ds.cost==0">下一步</button>

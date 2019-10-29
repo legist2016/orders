@@ -14,8 +14,8 @@
 			</li>
 		</ul>
 		<button type="submit" [disabled]="!form.form.valid">确定</button>
-		<a [routerLink]="['/input-order']" (click)="ds.order(true)">忘记学号</a>
-		<div *ngIf="ds.model.message">{{message}}</div>
+		<a [routerLink]="['/step2']" (click)="ds.order(true)">忘记学号</a>
+		<div *ngIf="ds.model.message">{{ds.model.message}}</div>
 		<div *ngIf="ds.model.querying">
 			<h3>正在查询信息...</h3>
 		</div>
@@ -38,6 +38,6 @@
 			<li caption>毕业时间：</li><li>{{ds.model.student.bysj}}</li>
 		</ul>
 
-		<button (click)="ds.order()" [routerLink]="['/input-order']">下一步</button>
+		<button (click)="ds.order()" [routerLink]="['/step2']">下一步</button>
 	</div>
 </form>
