@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../data.service";
 
 @Component({
-  selector: "app-confirm-order",
-  templateUrl: "./confirm-order.component.html",
-  styleUrls: ["./confirm-order.component.css"]
+  selector: "app-select-item",
+  templateUrl: "./select-item.component.html",
+  styleUrls: ["./select-item.component.css"]
 })
-export class ConfirmOrderComponent implements OnInit {
+export class SelectItemComponent implements OnInit {
   constructor(private ds: DataService) {}
 
   ngOnInit() {}
@@ -15,3 +15,4 @@ export class ConfirmOrderComponent implements OnInit {
   }
 }
 
+ 
