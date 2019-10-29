@@ -14,7 +14,13 @@ td {
 td input {
   width: 100%;
   height: 50px;
-  border: none
+}
+
+input.ng-valid{
+  border: none;
+}input.ng-invalid{
+  border: none;
+  /*border-left: solid 2px red;*/
 }
 
 td[caption]{
@@ -29,8 +35,4 @@ td[value]{
 
 td[input]{
   padding: 0;
-}
-
-input[type=text]{
-  background-color: #FCFCFF
 }
