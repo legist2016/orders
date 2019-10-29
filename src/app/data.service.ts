@@ -12,10 +12,13 @@ export class DataService {
     query: Student;
     querying: boolean;
     message: string;
+    itemsCount:{}
+    itemsSelected:{}
   };
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
     this.init();
+    this.LoadProductList();
   }
 
   getStudentInfo(xh, xm) {
@@ -40,7 +43,9 @@ export class DataService {
       student: null,
       query: new Student(),
       querying: false,
-      message: null
+      message: null,
+      itemsCount:{},
+      itemsSelected:{}
     };
   }
 

@@ -1,4 +1,5 @@
-<h3>基本信息</h3>
+{{diagnostic}}
+<h2>基本信息</h2>
 <div table>
 	<ul>
 		<li>学号</li>
@@ -31,6 +32,19 @@
 		<li>{{ds.model.order.lxdh}}</li>
 	</ul>
 </div>
-<h3>选择需要翻译制作的文件材料</h3>
+<h2>选择需要翻译制作的文件材料</h2>
+<div *ngIf="ds.products">
+	<div *ngFor="let product of ds.products; index as i">
+		<h3>
+      <input type="checkbox" [(ngModel)]="ds.model.itemsSelected[i]" (click)="ds.model.itemsCount[i]=1">{{product.name}} 
+      <span *ngIf="ds.model.itemsSelected[i]">份数：<span number>{{ds.model.itemsCount[i]}}</span>
+      <button [disabled]="ds.model.itemsCount[i]<=1" number (click)="ds.model.itemsCount[i]=ds.model.itemsCount[i]-1">-</button>
+      <button number (click)="ds.model.itemsCount[i]=ds.model.itemsCount[i]+1">+</button>
+      金额：<span number>{{product.price * ds.model.itemsCount[i]}}</span></span>
+    </h3>
+			<p>{{product.descript}}</p>
+
+	</div>
+</div>
 <button routerLink="/input-order"><< 返回上一步</button>
 <button type="submit" disabled="!form.form.valid">下一步</button>
