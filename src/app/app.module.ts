@@ -15,6 +15,7 @@ import { DataService } from './data.service';
 import { HttpClientModule } from "@angular/common/http";
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { SelectItemComponent } from './wizards/select-item/select-item.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { SelectItemComponent } from './wizards/select-item/select-item.component
     InputOrderComponent,
     ConfirmOrderComponent,
     HeroFormComponent,
-    SelectItemComponent
+    SelectItemComponent,
+    HomeComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService]
