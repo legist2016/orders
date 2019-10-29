@@ -3,13 +3,13 @@
 	<div table>
 		<ul>
 			<li>学号</li>
-			<li><input type="text"  required1 [(ngModel)]="ds.model.query.xh"  name="xh">
+			<li><input type="text" autocomplete="off" required1 [(ngModel)]="ds.model.query.xh"  name="xh">
 				<!--span [hidden]="xh.valid || xh.pristine" #xh="ngModel" id="xh">请输入学号</span-->
 			</li>
 		</ul>
 		<ul>
 			<li>姓名</li>
-			<li><input type="text"  required1  [(ngModel)]="ds.model.query.xm" name="xm">
+			<li><input type="text" autocomplete="off" required1  [(ngModel)]="ds.model.query.xm" name="xm">
 				<!--span [hidden]="xm.valid || xm.pristine" #xm="ngModel" id="xm">请输入姓名</span-->
 			</li>
 		</ul>

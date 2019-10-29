@@ -7,11 +7,11 @@
 		</ul>
 		<ul>
 			<li>姓名</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.xm" required name="xm"></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.xm" required name="xm"></li>
 		</ul>
 		<ul>
 			<li>英文名</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.xm_e" name="xm_e"></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.xm_e" name="xm_e"></li>
 		</ul>
 		<ul>
 			<li>性别</li>
@@ -20,31 +20,31 @@
 		</ul>
 		<ul>
 			<li>出生日期</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.csrq" name="csrq" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.csrq" name="csrq" required></li>
 		</ul>
 		<ul>
 			<li>院系</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.yx"  name="yx"></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.yx"  name="yx"></li>
 		</ul>
 		<ul>
 			<li>专业</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.zy"  name="zy" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.zy"  name="zy" required></li>
 		</ul>
 		<ul>
 			<li>入学时间</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.rxsj" name="rxsj" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.rxsj" name="rxsj" required></li>
 		</ul>
 		<ul>
 			<li>毕业时间</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.bysj" name="bysj" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.bysj" name="bysj" required></li>
 		</ul>
 		<ul>
 			<li>联系人</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.lxr" name="lxr" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.lxr" name="lxr" required></li>
 		</ul>
 		<ul>
 			<li>联系电话</li>
-			<li><input type="text" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required></li>
+			<li><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required></li>
 		</ul>
 		<button type="button" routerLink="/step1">返回上一步</button>
 		<button type="submit" [disabled]="!form.form.valid" routerLink="/step3">下一步</button>
