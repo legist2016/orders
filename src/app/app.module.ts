@@ -24,7 +24,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: "", component: InputXhComponent },
+      { path: "", component: HomeComponent },
       { path: "step1", component: InputXhComponent },
       { path: "step2", component: InputOrderComponent },
       { path: "step3", component: SelectItemComponent },

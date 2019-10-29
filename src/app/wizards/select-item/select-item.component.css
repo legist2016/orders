@@ -3,10 +3,6 @@ button[number]{
   width:30px;
   height:30px;
 }
-button[up]{
-}
-button[down]{
-}
 
 span[number]{
   padding:4px 10px;

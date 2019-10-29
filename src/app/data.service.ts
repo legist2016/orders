@@ -14,6 +14,7 @@ export class DataService {
     message: string;
     itemsCount: {}
     itemsSelected: {}
+    items: Array<Item>
   };
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
@@ -24,13 +25,11 @@ export class DataService {
   get cost() {
     let cost = 0;
 
-    if (this.products) {
-      for (let product of this.products) {
-        //console.log(1111112)
-        if (this.model.itemsSelected[product.id]) {
-          //console.log(1111113)
-          cost += this.model.itemsCount[product.id] * product.price
-        }
+    for (let item of this.model.items) {
+      //console.log(1111112)
+      if (item.selected) {
+        //console.log(1111113)
+        cost += (item.count) * (item.product.price);
       }
     }
     return cost
@@ -46,7 +45,11 @@ export class DataService {
         .get("/assets/products.json")
         .toPromise<any>()
         .then(data => {
+          console.log(data)
           this.products = data;
+          for (let product of this.products) {
+            this.model.items.push(new Item(product))
+          };
         })
         .catch(err => { });
     }
@@ -61,7 +64,13 @@ export class DataService {
       message: null,
       itemsCount: {},
       itemsSelected: {},
+      items: new Array<Item>()
     };
+    if (this.products) {
+      for (let product of this.products) {
+        this.model.items.push(new Item(product))
+      };
+    }
   }
 
   order(neworder: boolean) {

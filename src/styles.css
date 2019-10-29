@@ -62,6 +62,10 @@ input {
   border: 1px solid #BDBDBD;
 }
 
+input.ng-invalid{
+  border-color: red;
+}
+
 label1 {
   font-size: 12px;
   font-weight: bold;

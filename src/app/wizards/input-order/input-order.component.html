@@ -10,6 +10,10 @@
 			<li><input type="text" [(ngModel)]="ds.model.order.xm" required name="xm"></li>
 		</ul>
 		<ul>
+			<li>英文名</li>
+			<li><input type="text" [(ngModel)]="ds.model.order.xm_e" name="xm_e"></li>
+		</ul>
+		<ul>
 			<li>性别</li>
 			<li><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb1" value="男" name="xb" required><label for="xb1">男</label><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb2" value="女" name="xb" required><label for="xb2">女</label>
 			</li>
@@ -42,7 +46,7 @@
 			<li>联系电话</li>
 			<li><input type="text" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required></li>
 		</ul>
-		<button routerLink="/step1"><< 返回上一步</button>
+		<button type="button" routerLink="/step1">返回上一步</button>
 		<button type="submit" [disabled]="!form.form.valid" routerLink="/step3">下一步</button>
 	</div>
 </form>
