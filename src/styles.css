@@ -151,6 +151,10 @@ div[table] li[caption]{text-align: right ;font-weight: bolder; margin-left: 10px
 [hidden]{
   display: none;
 }
+
+[table-cell]{
+  display: table-cell;
+}
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
