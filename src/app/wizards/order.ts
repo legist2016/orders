@@ -25,3 +25,15 @@ export class Student {
   public xm: string=''
 ) {}
 }
+
+export class Product{
+  public id:Number
+  public name:String
+  public descript:String
+  public price:Number
+}
+
+export class Item{
+  public product:Product
+  public count:Number
+}

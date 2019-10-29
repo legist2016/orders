@@ -1,42 +1,36 @@
-<div class="table">
-	<h2 class="table-caption">花名册：</h2>
-	<div class="table-column-group">
-		<div class="table-column"></div>
-		<div class="table-column"></div>
-		<div class="table-column"></div>
-	</div>
-	<div class="table-header-group">
-		<ul class="table-row">
-			<li class="table-cell">序号</li>
-			<li class="table-cell">姓名</li>
-			<li class="table-cell">年龄</li>
-		</ul>
-	</div>
-	<div class="table-row-group">
-		<ul class="table-row">
-			<li class="table-cell">1</li>
-			<li class="table-cell">John</li>
-			<li class="table-cell">19</li>
-		</ul>
-		<ul class="table-row">
-			<li class="table-cell">2</li>
-			<li class="table-cell">Mark</li>
-			<li class="table-cell">21</li>
-		</ul>
-		<ul class="table-row">
-			<li class="table-cell">3</li>
-			<li class="table-cell">Kate</li>
-			<li class="table-cell">26</li>
-		</ul>
-	</div>
-	<div class="table-footer-group">
-		<ul class="table-row">
-			<li class="table-cell">footer</li>
-			<li class="table-cell">footer</li>
-			<li class="table-cell">footer</li>
-		</ul>
-	</div>
+<h3>基本信息</h3>
+<div table>
+	<ul>
+		<li>学号</li>
+		<li>{{ds.model.order.xh}}</li>
+		<li>姓名</li>
+		<li>{{ds.model.order.xm}}</li>
+	</ul>
+	<ul>
+		<li>性别</li>
+		<li>{{ds.model.order.xb}}</li>
+		<li>出生日期</li>
+		<li>{{ds.model.order.csrq}}</li>
+	</ul>
+	<ul>
+		<li>院系</li>
+		<li>{{ds.model.order.yx}}</li>
+		<li>专业</li>
+		<li>{{ds.model.order.zy}}</li>
+	</ul>
+	<ul>
+		<li>入学时间</li>
+		<li>{{ds.model.order.rxsj}}</li>
+		<li>毕业时间</li>
+		<li>{{ds.model.order.bysj}}</li>
+	</ul>
+	<ul>
+		<li>联系人</li>
+		<li>{{ds.model.order.lxr}}</li>
+		<li>联系电话</li>
+		<li>{{ds.model.order.lxdh}}</li>
+	</ul>
 </div>
-
+<h3>选择需要翻译制作的文件材料</h3>
 <button routerLink="/input-order"><< 返回上一步</button>
 <button type="submit" disabled="!form.form.valid">下一步</button>

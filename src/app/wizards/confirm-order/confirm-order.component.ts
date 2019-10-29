@@ -1,24 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl,Validators,FormGroup } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../../data.service";
 
 @Component({
-  selector: 'app-confirm-order',
-  templateUrl: './confirm-order.component.html',
-  styleUrls: ['./confirm-order.component.css']
+  selector: "app-confirm-order",
+  templateUrl: "./confirm-order.component.html",
+  styleUrls: ["./confirm-order.component.css"]
 })
 export class ConfirmOrderComponent implements OnInit {
-heroForm
-hero = {name:''}
-  constructor() { }
+  constructor(private ds:DataService) {}
 
-  ngOnInit() {
-  this.heroForm = new FormGroup({
-  
-  'name': new FormControl(this.hero.name, Validators.required)})    
-      
-
-  }
-ok(){
-  window.alert(0)
-}
+  ngOnInit() {}
 }

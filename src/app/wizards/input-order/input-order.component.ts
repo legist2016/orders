@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+//import { Router } from "@angular/router";
 import { DataService } from "../../data.service";
 
 @Component({
@@ -9,15 +9,10 @@ import { DataService } from "../../data.service";
 })
 export class InputOrderComponent implements OnInit {
   order;
-  constructor(private router: Router,private dataService: DataService) {
-    this.order = this.dataService.getOrder()
+  constructor(
+    private ds: DataService
+  ) {
   }
 
-  ngOnInit() {
-    
-  }
-  ok() {
-    this.router.navigateByUrl("/confirm-order");
-  }
-
+  ngOnInit() {}
 }

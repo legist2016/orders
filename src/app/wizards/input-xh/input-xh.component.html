@@ -1,43 +1,43 @@
 <h3>请输入以下信息</h3>
-<form (ngSubmit)="ok(model.xh,model.xm)" #form="ngForm">
+<form (ngSubmit)="ds.queryStudent()" #form="ngForm">
 	<div table>
 		<ul>
 			<li>学号</li>
-			<li><input type="text"  required1 [(ngModel)]="ds.StudentModel.xh"  name="xh">
+			<li><input type="text"  required1 [(ngModel)]="ds.model.query.xh"  name="xh">
 				<!--span [hidden]="xh.valid || xh.pristine" #xh="ngModel" id="xh">请输入学号</span-->
 			</li>
 		</ul>
 		<ul>
 			<li>姓名</li>
-			<li><input type="text"  required1  [(ngModel)]="ds.StudentModel.xm" name="xm">
+			<li><input type="text"  required1  [(ngModel)]="ds.model.query.xm" name="xm">
 				<!--span [hidden]="xm.valid || xm.pristine" #xm="ngModel" id="xm">请输入姓名</span-->
 			</li>
 		</ul>
 		<button type="submit" [disabled]="!form.form.valid">确定</button>
-		<a [routerLink]="['/input-order']" (click)="forget()">忘记学号</a>
-		<div *ngIf="message">{{message}}</div>
-		<div *ngIf="doing">
+		<a [routerLink]="['/input-order']" (click)="ds.order(true)">忘记学号</a>
+		<div *ngIf="ds.model.message">{{message}}</div>
+		<div *ngIf="ds.model.querying">
 			<h3>正在查询信息...</h3>
 		</div>
 	</div>
-	<div *ngIf="ds.Student" table>
+	<div *ngIf="ds.model.student" table>
 		<ul>
-			<li caption>学号：</li><li>{{ds.Student.xh}}</li>
-			<li caption>姓名：</li><li>{{ds.Student.xm}}</li>
+			<li caption>学号：</li><li>{{ds.model.student.xh}}</li>
+			<li caption>姓名：</li><li>{{ds.model.student.xm}}</li>
 		</ul>
 		<ul>
-			<li caption>性别：</li><li>{{ds.Student.xb}}</li>
-			<li caption>出生日期：</li><li>{{ds.Student.csrq}}</li>
+			<li caption>性别：</li><li>{{ds.model.student.xb}}</li>
+			<li caption>出生日期：</li><li>{{ds.model.student.csrq}}</li>
 		</ul>
 		<ul>
-			<li caption>院系：</li><li>{{ds.Student.yx}}</li>
-			<li caption>专业：</li><li>{{ds.Student.zy}}</li>
+			<li caption>院系：</li><li>{{ds.model.student.yx}}</li>
+			<li caption>专业：</li><li>{{ds.model.student.zy}}</li>
 		</ul>
 		<ul>
-			<li caption>入学时间：</li><li>{{ds.Student.rxsj}}</li>
-			<li caption>毕业时间：</li><li>{{ds.Student.bysj}}</li>
+			<li caption>入学时间：</li><li>{{ds.model.student.rxsj}}</li>
+			<li caption>毕业时间：</li><li>{{ds.model.student.bysj}}</li>
 		</ul>
 
-		<button (click)="next()">下一步</button>
+		<button (click)="ds.order()" [routerLink]="['/input-order']">下一步</button>
 	</div>
 </form>

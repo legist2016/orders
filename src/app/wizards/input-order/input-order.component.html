@@ -1,46 +1,46 @@
 <h3>请填写完成以下信息</h3>
-<form (ngSubmit)="ok()" #form="ngForm">
+<form #form="ngForm">
 	<div table>
 		<ul>
 			<li>学号</li>
-			<li>{{order.xh}}</li>
+			<li>{{ds.model.order.xh}}</li>
 		</ul>
 		<ul>
 			<li>姓名</li>
-			<li><input type="text" [(ngModel)]="order.xm" required name="xm"></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.xm" required name="xm"></li>
 		</ul>
 		<ul>
 			<li>性别</li>
-			<li><input type="radio" [(ngModel)]="order.xb" id="xb1" value="男" name="xb" required><label for="xb1">男</label><input type="radio" [(ngModel)]="order.xb" id="xb2" value="女" name="xb" required><label for="xb2">女</label>
+			<li><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb1" value="男" name="xb" required><label for="xb1">男</label><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb2" value="女" name="xb" required><label for="xb2">女</label>
 			</li>
 		</ul>
 		<ul>
 			<li>出生日期</li>
-			<li><input type="text" [(ngModel)]="order.csrq" name="csrq" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.csrq" name="csrq" required></li>
 		</ul>
 		<ul>
 			<li>院系</li>
-			<li><input type="text" [(ngModel)]="order.yx"  name="yx"></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.yx"  name="yx"></li>
 		</ul>
 		<ul>
 			<li>专业</li>
-			<li><input type="text" [(ngModel)]="order.zy"  name="zy" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.zy"  name="zy" required></li>
 		</ul>
 		<ul>
 			<li>入学时间</li>
-			<li><input type="text" [(ngModel)]="order.rxsj" name="rxsj" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.rxsj" name="rxsj" required></li>
 		</ul>
 		<ul>
 			<li>毕业时间</li>
-			<li><input type="text" [(ngModel)]="order.bysj" name="bysj" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.bysj" name="bysj" required></li>
 		</ul>
 		<ul>
 			<li>联系人</li>
-			<li><input type="text" [(ngModel)]="order.lxr" name="lxr" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.lxr" name="lxr" required></li>
 		</ul>
 		<ul>
 			<li>联系电话</li>
-			<li><input type="text" [(ngModel)]="order.lxdh" name="lxdh" required></li>
+			<li><input type="text" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required></li>
 		</ul>
 		<button routerLink="/"><< 返回上一步</button>
 		<button type="submit" [disabled]="!form.form.valid" routerLink="/confirm-order">下一步</button>

@@ -16,8 +16,6 @@ body {
 .container {
   display: flex;
   flex-direction: row;
-  width: 400px;
-  margin:auto;
 }
 
 router-outlet + *  {
