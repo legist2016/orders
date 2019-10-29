@@ -14,6 +14,7 @@ import { DataService } from './data.service';
 
 import { HttpClientModule } from "@angular/common/http";
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { SelectItemComponent } from './wizards/select-item/select-item.component';
 
 @NgModule({
   imports: [
@@ -22,9 +23,10 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: "", component: InputXhComponent },
-      { path: "input-order", component: InputOrderComponent },
-      { path: "confirm-order", component: ConfirmOrderComponent },
+      { path: "step1", component: InputXhComponent },
+      { path: "step2", component: InputOrderComponent },
+      { path: "step3", component: SelectItemComponent },
+      { path: "step4", component: ConfirmOrderComponent },
     ])
   ],
   declarations: [
@@ -33,7 +35,8 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     InputXhComponent,
     InputOrderComponent,
     ConfirmOrderComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    SelectItemComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService]
