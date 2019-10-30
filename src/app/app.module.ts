@@ -16,6 +16,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { SelectItemComponent } from './wizards/select-item/select-item.component';
 import { HomeComponent } from './home/home.component';
+import { OrderComplatedComponent } from './wizards/order-complated/order-complated.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { HomeComponent } from './home/home.component';
     ConfirmOrderComponent,
     HeroFormComponent,
     SelectItemComponent,
-    HomeComponent
+    HomeComponent,
+    OrderComplatedComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService]
