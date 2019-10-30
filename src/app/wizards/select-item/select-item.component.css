@@ -4,9 +4,22 @@ button[number]{
   height:30px;
 }
 
-span[number]{
-  padding:4px 10px;
-  margin:0 5px;
+span[number]{  
+  margin:0 5px;    
+}
+
+input[type=checkbox], input[type=checkbox]+label{
+  line-height: 20px;
+  font-size: 20px;
+  margin:10px 0 0 10px;
   
-  border-radius: 2px;
+}
+
+td[product]{
+  text-align: left;
+}
+
+td[product] div:nth-child(2){
+  font-size: 15px;
+  margin: 10px;
 }

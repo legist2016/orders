@@ -1,56 +1,66 @@
-<h3>请输入以下信息</h3>
 <form (ngSubmit)="ds.queryStudent()" #form="ngForm">
 	<table>
 		<tr>
+			<td colspan=4>
+				<h2>请输入以下信息</h2>
+			</td>
+		</tr>
+		<tr>
 			<td caption>学号</td>
-			<td input><input type="text" autocomplete="off" required [(ngModel)]="ds.model.query.xh" name="xh">
+			<td input><input type="text" autocomplete="off" required [(ngModel)]="ds.model.query.xh" name="xh"
+					placeholder="请输入学号">
 				<!--span [hidden]="xh.valid || xh.pristine" #xh="ngModel" id="xh">请输入学号</span-->
 			</td>
 		</tr>
 		<tr>
 			<td caption>姓名</td>
-			<td input><input type="text" autocomplete="off" required [(ngModel)]="ds.model.query.xm" name="xm">
+			<td input><input type="text" autocomplete="off" required [(ngModel)]="ds.model.query.xm" name="xm"
+					placeholder="请输入姓名">
 				<!--span [hidden]="xm.valid || xm.pristine" #xm="ngModel" id="xm">请输入姓名</span-->
 			</td>
 		</tr>
 
 	</table>
 	<button type="submit" [disabled]="!form.form.valid">确定</button>
-	<a [routerLink]="['/step2']" (click)="ds.order(true)">忘记学号</a>
-	<div *ngIf="ds.model.message">{{ds.model.message}}</div>
-	<div *ngIf="ds.model.querying">
-		<h3>正在查询信息...</h3>
-	</div>
-	<div *ngIf="ds.model.student">
-		<table>
-			<caption>学生信息</caption>
-			<tr>
-				<td caption>学号：</td>
-				<td value>{{ds.model.student.xh}}</td>
-				<td caption>姓名：</td>
-				<td value>{{ds.model.student.xm}}</td>
-			</tr>
-			<tr>
-				<td caption>性别：</td>
-				<td>{{ds.model.student.xb}}</td>
-				<td caption>出生日期：</td>
-				<td>{{ds.model.student.csrq}}</td>
-			</tr>
-			<tr>
-				<td caption>院系：</td>
-				<td>{{ds.model.student.yx}}</td>
-				<td caption>专业：</td>
-				<td>{{ds.model.student.zy}}</td>
-			</tr>
-			<tr>
-				<td caption>入学时间：</td>
-				<td>{{ds.model.student.rxsj}}</td>
-				<td caption>毕业时间：</td>
-				<td>{{ds.model.student.bysj}}</td>
-			</tr>
-
-
-		</table>
-		<button (click)="ds.order()" [routerLink]="['/step2']">下一步</button>
-	</div>
+	<a [routerLink]="['/step2']" (click)="ds.order(true)">忘记学号，直接填写信息</a>
 </form>
+<div *ngIf="ds.model.message">{{ds.model.message}}</div>
+<div *ngIf="ds.model.querying">
+	<h3>正在查询信息...</h3>
+</div>
+<div *ngIf="ds.model.student">
+	<table>
+		<tr>
+			<td colspan=4>
+				<h2>学生信息</h2>
+			</td>
+		</tr>
+		<tr>
+			<td caption>学号</td>
+			<td value>{{ds.model.student.xh}}</td>
+			<td caption>姓名</td>
+			<td value>{{ds.model.student.xm}}</td>
+		</tr>
+		<tr>
+			<td caption>性别</td>
+			<td>{{ds.model.student.xb}}</td>
+			<td caption>出生日期</td>
+			<td>{{ds.model.student.csrq}}</td>
+		</tr>
+		<tr>
+			<td caption>院系</td>
+			<td>{{ds.model.student.yx}}</td>
+			<td caption>专业</td>
+			<td>{{ds.model.student.zy}}</td>
+		</tr>
+		<tr>
+			<td caption>入学时间</td>
+			<td>{{ds.model.student.rxsj}}</td>
+			<td caption>毕业时间</td>
+			<td>{{ds.model.student.bysj}}</td>
+		</tr>
+
+
+	</table>
+	<button (click)="ds.order()" [routerLink]="['/step2']">下一步</button>
+</div>

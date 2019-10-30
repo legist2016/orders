@@ -1,3 +1,4 @@
+/*
 input1[type=text]{
   border-style: none none solid none ;
   border-color: black;
@@ -9,4 +10,8 @@ input1[type=text]{
 div{
   display: table-cell;
 }
+*/
 
+label+input{
+  margin-left: 30px;
+}
