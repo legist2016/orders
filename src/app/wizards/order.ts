@@ -11,7 +11,7 @@ export class Order {
   public bysj: string;
   public lxr: string;
   public lxdh: string;
-
+  public key: string;
   constructor(public xb: string = "男") { }
 }
 

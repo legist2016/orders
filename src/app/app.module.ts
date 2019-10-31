@@ -21,6 +21,7 @@ import { OrderComplatedComponent } from './wizards/order-complated/order-complat
 
 import { QRCodeModule } from 'angular2-qrcode';
 import { NewOrderComponent } from './new-order/new-order.component';
+import { FindOrderComponent } from './wizards/find-order/find-order.component';
 
 @NgModule({
   imports: [
@@ -31,11 +32,7 @@ import { NewOrderComponent } from './new-order/new-order.component';
     RouterModule.forRoot([
       { path: "", component: HomeComponent },
       { path: "new", component: NewOrderComponent },
-      { path: "step1", component: InputXhComponent },
-      { path: "step2", component: InputOrderComponent },
-      { path: "step3", component: SelectItemComponent },
-      { path: "step4", component: ConfirmOrderComponent },
-      { path: "step5", component: OrderComplatedComponent },
+      { path: "find", component: FindOrderComponent },
     ]),
     QRCodeModule
   ],
@@ -49,7 +46,8 @@ import { NewOrderComponent } from './new-order/new-order.component';
     SelectItemComponent,
     HomeComponent,
     OrderComplatedComponent,
-    NewOrderComponent
+    NewOrderComponent,
+    FindOrderComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService,{provide: APP_BASE_HREF, useValue: '/'}]
