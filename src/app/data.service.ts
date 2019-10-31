@@ -15,6 +15,7 @@ export class DataService {
     itemsCount: {}
     itemsSelected: {}
     items: Array<Item>
+    step:number
   };
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
@@ -64,7 +65,9 @@ export class DataService {
       message: null,
       itemsCount: {},
       itemsSelected: {},
-      items: new Array<Item>()
+      items: new Array<Item>(),
+      step:1
+
     };
     if (this.products) {
       for (let product of this.products) {
@@ -109,6 +112,10 @@ export class DataService {
   }
 
   submitOrder(){
+    
+  }
+
+  next(){
     
   }
 }

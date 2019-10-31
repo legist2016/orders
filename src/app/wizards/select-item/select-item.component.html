@@ -69,5 +69,6 @@
 		</tr>
 	</tbody>
 </table>
-<button routerLink="/step2">返回上一步</button>
-<button routerLink="/step4" [disabled]="ds.cost==0">下一步</button>
+<div>
+<button (click)="Do('prev')">返回上一步</button>
+<button (click)="Do('next')" [disabled]="ds.cost==0">下一步</button></div>

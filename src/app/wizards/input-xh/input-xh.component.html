@@ -21,8 +21,9 @@
 		</tr>
 
 	</table>
-	<button type="submit" [disabled]="!form.form.valid">确定</button>
-	<a [routerLink]="['/step2']" (click)="ds.order(true)">忘记学号，直接填写信息</a>
+	<div>
+		<button type="submit" [disabled]="!form.form.valid">确定</button>
+		<a (click)="ds.order(true);do.emit('next')">忘记学号，直接填写信息</a></div>
 </form>
 <div *ngIf="ds.model.message">{{ds.model.message}}</div>
 <div *ngIf="ds.model.querying">
@@ -62,5 +63,7 @@
 
 
 	</table>
-	<button (click)="ds.order()" [routerLink]="['/step2']">下一步</button>
+	<div>
+		<button (click)="ds.order();Do('next')">下一步</button>
+	</div>
 </div>

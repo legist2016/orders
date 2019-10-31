@@ -62,6 +62,8 @@
 					placeholder="输入联系人电话"></td>
 		</tr>
 	</table>
+	<div>
+		<button type="button" (click)="Do('prev')">返回上一步</button>
+		<button [disabled]="!form.form.valid" (click)="Do('next')">下一步</button>
+	</div>
 </form>
-<button type="button" routerLink="/step1">返回上一步</button>
-<button [disabled]="!form.form.valid" routerLink="/step3">下一步</button>

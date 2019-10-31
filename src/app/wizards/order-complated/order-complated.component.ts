@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Wizard } from "../wizard";
 
 @Component({
   selector: 'app-order-complated',
   templateUrl: './order-complated.component.html',
   styleUrls: ['./order-complated.component.css'],
 })
-export class OrderComplatedComponent implements OnInit {
+export class OrderComplatedComponent extends Wizard implements OnInit {
 
-  constructor() { }
+  constructor() { super()}
 
   ngOnInit() {
   }

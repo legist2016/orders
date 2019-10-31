@@ -1,18 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { DataService } from "../../data.service";
-
+//import { DataService } from "../../data.service";
+import { Wizard } from "../wizard";
 @Component({
   selector: "app-select-item",
   templateUrl: "./select-item.component.html",
   styleUrls: ["./select-item.component.css"]
 })
-export class SelectItemComponent implements OnInit {
-  constructor(public ds: DataService) {}
-
-  ngOnInit() {}
-  get diagnostic() {
-    return JSON.stringify(this.ds.model);
+export class SelectItemComponent extends Wizard implements OnInit {
+  constructor(
+    //public ds: DataService
+  ) {
+    super()
   }
+
+  ngOnInit() { }
+
 }
 
- 

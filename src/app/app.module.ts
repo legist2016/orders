@@ -30,6 +30,7 @@ import { NewOrderComponent } from './new-order/new-order.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent },
+      { path: "new", component: NewOrderComponent },
       { path: "step1", component: InputXhComponent },
       { path: "step2", component: InputOrderComponent },
       { path: "step3", component: SelectItemComponent },

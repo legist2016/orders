@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-new-order',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewOrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public ds: DataService) { }
 
   ngOnInit() {
+    this.ds.init()
   }
+  do(event) {
+    switch (event) {
+      case 'next':
+        this.ds.model.step += 1
+        break;
+      case 'prev':
+        if(this.ds.model.step>1)this.ds.model.step -= 1
+        break;
+      default:
+        window.alert(event)
+    }
 
+  }
 }
