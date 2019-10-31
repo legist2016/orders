@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { OrderComplatedComponent } from './wizards/order-complated/order-complated.component';
 
 import { QRCodeModule } from 'angular2-qrcode';
+import { NewOrderComponent } from './new-order/new-order.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { QRCodeModule } from 'angular2-qrcode';
     HeroFormComponent,
     SelectItemComponent,
     HomeComponent,
-    OrderComplatedComponent
+    OrderComplatedComponent,
+    NewOrderComponent
   ],
   bootstrap: [AppComponent],
   providers: [DataService,{provide: APP_BASE_HREF, useValue: '/'}]
