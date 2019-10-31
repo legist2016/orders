@@ -55,4 +55,4 @@
 </table>
 <div>
 	<button (click)="Do('prev')">返回上一步</button>
-	<button [disabled]="ds.cost<=0" (click)="ds.submitOrder();Do('next')">提交申请</button></div>
+	<button [disabled]="ds.cost<=0" (click)="ds.submitOrder('next').then(Do);">提交申请</button></div>

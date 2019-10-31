@@ -12,4 +12,8 @@ export class Wizard {
     Do(event) {
         this.do.emit(event)
     }
+
+    get doemit(){
+        return this.Do.bind(this)
+    }
 }

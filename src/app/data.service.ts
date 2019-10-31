@@ -12,10 +12,8 @@ export class DataService {
     query: Student;
     querying: boolean;
     message: string;
-    itemsCount: {}
-    itemsSelected: {}
     items: Array<Item>
-    step:number
+    step: number
   };
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
@@ -58,15 +56,13 @@ export class DataService {
 
   init() {
     this.model = {
-      order: new Order(),
+      order: null,
       student: null,
       query: new Student(),
       querying: false,
       message: null,
-      itemsCount: {},
-      itemsSelected: {},
       items: new Array<Item>(),
-      step:1
+      step: 1
 
     };
     if (this.products) {
@@ -111,11 +107,17 @@ export class DataService {
       });
   }
 
-  submitOrder(){
-    this.model.order.key="242424564abcdef8989abcdef"
+  submitOrder(action, arg) {
+    //this.model.order.key=""    
+    return this.http.get("/assets/addorder.json").toPromise<any>()
+      .then(data => {
+        this.model.order.key = data.key
+      }).catch( err => {
+        window.alert(err.message)
+      })
   }
 
-  next(){
-    
+  findOrder(key) {
+
   }
 }
