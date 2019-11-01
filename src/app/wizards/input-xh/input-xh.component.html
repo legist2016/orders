@@ -22,7 +22,7 @@
 
 	</table>
 	<div>
-		<button type="submit" [disabled]="!form.form.valid">确定</button>
+		<button type="submit" [disabled]="!form.form.valid||ds.model.querying">确定</button>
 		<a (click)="ds.order(true);do.emit('next')">忘记学号，直接填写信息</a></div>
 </form>
 <div *ngIf="ds.model.message">{{ds.model.message}}</div>
@@ -64,6 +64,6 @@
 
 	</table>
 	<div>
-		<button (click)="ds.order();Do('next')">下一步</button>
+		<button (click)="ds.order();Do('next');">下一步</button>
 	</div>
 </div>

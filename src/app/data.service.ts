@@ -26,22 +26,22 @@ export class DataService {
 
     for (let item of this.model.items) {
       //console.log(1111112)
-      if (item.selected) {
+      //if (item.selected) {
         //console.log(1111113)
         cost += (item.count) * (item.product.price);
-      }
+      //}
     }
     return cost
   }
 
   getStudentInfo(xh, xm) {
-    return this.http.get("/assets/student.json");
+    return this.http.get("assets/student.json");
   }
 
   LoadProductList() {
     if (!this.products) {
       this.http
-        .get("/assets/products.json")
+        .get("assets/products.json")
         .toPromise<any>()
         .then(data => {
           console.log(data)
@@ -65,6 +65,7 @@ export class DataService {
       step: 1
 
     };
+
     if (this.products) {
       for (let product of this.products) {
         this.model.items.push(new Item(product))
@@ -72,12 +73,13 @@ export class DataService {
     }
   }
 
-  order(neworder: boolean) {
+  order(neworder?: boolean) {
     if (neworder) {
       this.model.order = new Order();
     } else {
       this.model.order = this.model.student;
     }
+    console.log(this.model)
   }
 
   queryStudent() {
@@ -102,22 +104,39 @@ export class DataService {
       })
       .catch(err => {
         this.model.querying = false;
-        this.model.message = err.message;
+        window.alert(err.message)
         console.log(err);
       });
   }
 
-  submitOrder(action, arg) {
-    //this.model.order.key=""    
-    return this.http.get("/assets/addorder.json").toPromise<any>()
+  submitOrder(action, caller, arg) {
+    this.model.querying = true;
+    return this.http.get("assets/addorder.json").toPromise<any>()
       .then(data => {
         this.model.order.key = data.key
-      }).catch( err => {
+        action.call(caller, arg)
+        this.model.querying = false;
+      }).catch(err => {
         window.alert(err.message)
+        this.model.querying = false;
       })
   }
 
   findOrder(key) {
+    this.http.get("assets/order.json").toPromise<any>()
+      .then(
+        (data) => {
+          for(let item of data.items){
+            item.product = this.products.find((product)=>{
+              return product.id == item.product
+            })
+          }
+          this.model.order = data.order
+          this.model.items = data.items
+        },
+        (err) => {
+          window.alert(err.message)
+        });
 
   }
 }

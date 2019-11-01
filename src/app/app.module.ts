@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
-import {APP_BASE_HREF} from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from "./app.component";
 import { HelloComponent } from "./hello.component";
@@ -22,6 +22,7 @@ import { OrderComplatedComponent } from './wizards/order-complated/order-complat
 import { QRCodeModule } from 'angular2-qrcode';
 import { NewOrderComponent } from './new-order/new-order.component';
 import { FindOrderComponent } from './wizards/find-order/find-order.component';
+import { EditOrderComponent } from './edit-order/edit-order.component';
 
 @NgModule({
   imports: [
@@ -47,9 +48,13 @@ import { FindOrderComponent } from './wizards/find-order/find-order.component';
     HomeComponent,
     OrderComplatedComponent,
     NewOrderComponent,
-    FindOrderComponent
+    FindOrderComponent,
+    EditOrderComponent
   ],
   bootstrap: [AppComponent],
-  providers: [DataService,{provide: APP_BASE_HREF, useValue: '/'}]
+  providers: [
+    DataService,
+    { provide: APP_BASE_HREF, useValue: '/' }
+  ]
 })
-export class AppModule {}
+export class AppModule { }

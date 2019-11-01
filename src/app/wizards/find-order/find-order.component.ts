@@ -7,17 +7,23 @@ import { EventManager } from '@angular/platform-browser';
   templateUrl: './find-order.component.html',
   styleUrls: ['./find-order.component.css']
 })
-export class FindOrderComponent extends Wizard implements OnInit {
+export class FindOrderComponent extends Wizard implements OnInit , OnDestroy {
   inputText = ''
   orderKey = ''
+  removeEventListener
 
   constructor(private eventManager: EventManager) {
     super();
+    
+  }
 
+  ngOnDestroy(){
+    this.removeEventListener()
   }
 
   ngOnInit() {
-    this.eventManager.addGlobalEventListener('window','keypress',(event)=>{
+    console.log(this.ds)
+    this.removeEventListener = this.eventManager.addGlobalEventListener('window','keypress',(event)=>{
       if(event.key == "Enter"){
         let res = /order:\/\/([a-f0-9]+)$/.exec(this.inputText)        
         console.log(this.inputText)
@@ -25,6 +31,7 @@ export class FindOrderComponent extends Wizard implements OnInit {
         if(res){
           console.log('findOrder("',res[1],'")')
           this.orderKey = res[1]
+          this.ds.findOrder(res[1])
         }
       }else{
         this.inputText +=  event.key

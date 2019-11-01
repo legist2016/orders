@@ -24,6 +24,10 @@
         {
             "product": 2,
             "count": 3
+        },
+        {
+            "product": 3,
+            "count": 0
         }
     ]
 }

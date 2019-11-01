@@ -37,8 +37,8 @@ export class Product {
 export class Item {
   constructor(
     public product: Product,
-    public count: number = 1,
-    public selected: boolean = false
+    public count: number = 0,
+    //public selected: boolean = false
   ) { }
   get cost() {
     return this.count * this.product.price;

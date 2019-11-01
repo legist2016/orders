@@ -47,13 +47,13 @@
 		<tr *ngFor="let item of ds.model.items">
 			<td colspan="3" product>
 				<div>
-					<input type="checkbox" [(ngModel)]="item.selected" (click)="item.count=1"
+					<input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1"
 						[id]="'product'+item.product.id">
 					<label [attr.for]="'product'+item.product.id">{{item.product.name}}</label></div>
 				<div>{{item.product.descript}}</div>
 			</td>
 			<td>
-				<span *ngIf="item.selected">x<span number>{{item.count}}</span>
+				<span *ngIf="item.count">x<span number>{{item.count}}</span>
 					<button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
 					<button number (click)="item.count=item.count+1;">+</button>
 					金额<span number>{{item.cost}}元</span></span>

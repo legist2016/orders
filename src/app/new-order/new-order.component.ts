@@ -24,6 +24,7 @@ export class NewOrderComponent implements OnInit {
       default:
         window.alert(event)
     }
+    console.log(event)
 
   }
 }

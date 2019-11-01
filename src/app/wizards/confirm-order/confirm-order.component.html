@@ -40,7 +40,7 @@
 		</td>
 	</tr>
 	<tbody *ngFor="let item of ds.model.items">
-		<tr *ngIf="item.selected">
+		<tr *ngIf="item.count>0">
 			<td colspan=4>
 				<h3>{{item.product.name}} x {{item.count}}</h3>
 
@@ -55,4 +55,4 @@
 </table>
 <div>
 	<button (click)="Do('prev')">返回上一步</button>
-	<button [disabled]="ds.cost<=0" (click)="ds.submitOrder('next').then(Do);">提交申请</button></div>
+	<button [disabled]="ds.cost<=0||ds.model.querying" (click)="ds.submitOrder(Do,this,'next')">提交申请</button></div>
