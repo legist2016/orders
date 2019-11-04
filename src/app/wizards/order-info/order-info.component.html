@@ -44,7 +44,7 @@
                 <h2>制作内容</h2>
             </td>
         </tr>
-        <tr *ngFor="let item of order.items" [hidden]="!item.count>0">
+        <tr *ngFor="let item of order.items" [hidden]="item.count<=0">
             <td colspan=4>
                 <h3>{{item.product.name}} x {{item.count}}</h3>
 

@@ -14,6 +14,7 @@ export class ControlOrderInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
