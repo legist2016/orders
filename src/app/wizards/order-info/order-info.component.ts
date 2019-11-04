@@ -3,9 +3,9 @@ import { Order } from '../order';
 
 
 @Component({
-  selector: 'app-control-order-info',
-  templateUrl: './control-order-info.component.html',
-  styleUrls: ['./control-order-info.component.css']
+  selector: 'app-order-info',
+  templateUrl: './order-info.component.html',
+  styleUrls: ['./order-info.component.css']
 })
 export class ControlOrderInfoComponent implements OnInit {
   @Input() order:Order

@@ -23,7 +23,8 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { NewOrderComponent } from './new-order/new-order.component';
 import { FindOrderComponent } from './wizards/find-order/find-order.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
-import { ControlOrderInfoComponent } from './wizards/control-order-info/control-order-info.component';
+import { ControlOrderInfoComponent } from './wizards/order-info/order-info.component';
+import { ScanCodeComponent } from './wizards/scan-code/scan-code.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { ControlOrderInfoComponent } from './wizards/control-order-info/control-
     NewOrderComponent,
     FindOrderComponent,
     EditOrderComponent,
-    ControlOrderInfoComponent
+    ControlOrderInfoComponent,
+    ScanCodeComponent
   ],
   bootstrap: [AppComponent],
   providers: [

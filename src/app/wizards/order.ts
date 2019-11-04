@@ -32,19 +32,26 @@ export class Order {
   }
 
   init(products:Array<Product>){
+    for(let index in this.items){
+      this.items[index] = Object.assign(new Item(null), this.items[index])
+    }
     products.forEach(product=>{
       let item = this.items.find(e=>{
         return e.productId == product.id
       })
-      if(item){
+      
+      if(item){                
         item.product = product
       }else{
         this.items.push(new Item(product))
       }
     })
-    this.items.sort((a,b)=>{
+    console.log(this.items)
+    this.items = this.items.sort((a,b)=>{
       return a.productId - b.productId
     })
+    console.log(this.items)
+
 }
 
 }

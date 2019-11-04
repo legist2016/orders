@@ -15,6 +15,17 @@ export class EditOrderComponent implements OnInit {
   }
 
   do(event){
+    switch (event) {
+      case 'next':
+        this.ds.model.step += 1
+        break;
+      case 'prev':
+        if(this.ds.model.step>1)this.ds.model.step -= 1
+        break;
+      default:
+        window.alert(event)
+    }
+    console.log(event)
 
   }
 }

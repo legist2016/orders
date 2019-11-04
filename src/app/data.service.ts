@@ -127,13 +127,15 @@ export class DataService {
     this.http.get("assets/order.json").toPromise<any>()
       .then(
         (data) => {
-          for(let item of data.items){
+          /*for(let item of data.orditems){
             item.product = this.products.find((product)=>{
               return product.id == item.product
             })
-          }
-          this.model.order = data.order
+          }*/
+          this.model.order = Object.assign(new Order(), data.order)
           //this.model.order.items = data.items
+          this.model.order.init(this.products)
+          console.log(this.model.order)
         },
         (err) => {
           window.alert(err.message)

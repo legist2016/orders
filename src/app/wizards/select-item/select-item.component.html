@@ -1,6 +1,6 @@
-<app-control-order-info [order]="ds.model.order" mode="select"></app-control-order-info>
+<app-order-info [order]="ds.model.order" mode="select"></app-order-info>
+<!--
 <table>
-	<!--
 	<tr>
 		<td colspan=4>
 			<h2>基本信息</h2>
@@ -40,7 +40,6 @@
 		<td>联系电话</td>
 		<td>{{ds.model.order.lxdh}}</td>
 	</tr>
-	-->
 	<tbody *ngIf="ds.products">
 		<tr><td></td><td></td><td></td><td></td></tr>
 		<tr>
@@ -73,6 +72,8 @@
 		</tr>
 	</tbody>
 </table>
+	-->
+<table></table>
 <div>
-<button (click)="Do('prev')">返回上一步</button>
-<button (click)="Do('next')" [disabled]="ds.model.order.cost==0">下一步</button></div>
+	<button (click)="Do('prev')">返回上一步</button>
+	<button (click)="Do('next')" [disabled]="ds.model.order.cost==0">下一步</button></div>

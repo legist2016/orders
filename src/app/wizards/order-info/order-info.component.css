@@ -1,0 +1,8 @@
+td[product]{
+    text-align: left;
+  }
+  
+  td[product] div:nth-child(2){
+    font-size: 15px;
+    margin: 10px;
+  }
