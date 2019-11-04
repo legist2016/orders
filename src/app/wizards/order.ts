@@ -43,7 +43,9 @@ export class Order {
       if(item){                
         item.product = product
       }else{
-        this.items.push(new Item(product))
+        item = new Item(product)
+        item.productId = product.id
+        this.items.push(item)
       }
     })
     console.log(this.items)
