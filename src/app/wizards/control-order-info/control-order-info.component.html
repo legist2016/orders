@@ -1,0 +1,92 @@
+<table>
+    <tr>
+        <td colspan=4>
+            <h2>基本信息</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>学号</td>
+        <td colspan=3>{{order.xh}}</td>
+    </tr>
+    <tr>
+        <td>姓名</td>
+        <td>{{order.xm}}</td>
+        <td>英文名</td>
+        <td>{{order.xm_e}}</td>
+    </tr>
+    <tr>
+        <td>性别</td>
+        <td>{{order.xb}}</td>
+        <td>出生日期</td>
+        <td>{{order.csrq}}</td>
+    </tr>
+    <tr>
+        <td>院系</td>
+        <td>{{order.yx}}</td>
+        <td>专业</td>
+        <td>{{order.zy}}</td>
+    </tr>
+    <tr>
+        <td>入学时间</td>
+        <td>{{order.rxsj}}</td>
+        <td>毕业时间</td>
+        <td>{{order.bysj}}</td>
+    </tr>
+    <tr>
+        <td>联系人</td>
+        <td>{{order.lxr}}</td>
+        <td>联系电话</td>
+        <td>{{order.lxdh}}</td>
+    </tr>
+    <div *ngIf="mode=='show'">
+        <tr>
+            <td colspan=4>
+                <h2>制作内容</h2>
+            </td>
+        </tr>
+        <tbody *ngFor="let item of order.items">
+            <tr *ngIf="item.count>0">
+                <td colspan=4>
+                    <h3>{{item.product.name}} x {{item.count}}</h3>
+
+                </td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan=4>
+                <h2>总金额：{{order.cost }}元</h2>
+            </td>
+        </tr>
+    </div>
+
+    <tbody *ngIf="mode=='select'">
+        <tr>
+            <td colspan="4">
+                <h2>选择需要翻译制作的文件材料</h2>
+            </td>
+        </tr>
+        <tr *ngFor="let item of order.items">
+            <td colspan="3" product>
+                <div>
+                    <input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1"
+                        [id]="'product'+item.product.id">
+                    <label [attr.for]="'product'+item.product.id">{{item.product.name}}</label></div>
+                <div>{{item.product.descript}}</div>
+            </td>
+            <td>
+                <span *ngIf="item.count">x<span number>{{item.count}}</span>
+                    <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
+                    <button number (click)="item.count=item.count+1;">+</button>
+                    金额<span number>{{item.cost}}元</span></span>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td>
+
+                <h3>总金额：{{order.cost}}元</h3>
+            </td>
+        </tr>
+    </tbody>
+</table>

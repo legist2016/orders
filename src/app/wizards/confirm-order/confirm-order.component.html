@@ -1,3 +1,5 @@
+<app-control-order-info [order]="ds.model.order"></app-control-order-info>
+<!--
 <table>
 	<tr>
 		<td colspan=4>
@@ -39,7 +41,7 @@
 			<h2>制作内容</h2>
 		</td>
 	</tr>
-	<tbody *ngFor="let item of ds.model.items">
+	<tbody *ngFor="let item of ds.model.order.items">
 		<tr *ngIf="item.count>0">
 			<td colspan=4>
 				<h3>{{item.product.name}} x {{item.count}}</h3>
@@ -53,6 +55,7 @@
 		</td>
 	</tr>
 </table>
+-->
 <div>
 	<button (click)="Do('prev')">返回上一步</button>
-	<button [disabled]="ds.cost<=0||ds.model.querying" (click)="ds.submitOrder(Do,this,'next')">提交申请</button></div>
+	<button [disabled]="ds.model.order.cost<=0||ds.model.querying" (click)="ds.submitOrder(Do,this,'next')">提交申请</button></div>

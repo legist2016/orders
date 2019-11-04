@@ -1,4 +1,6 @@
+<app-control-order-info [order]="ds.model.order" mode="select"></app-control-order-info>
 <table>
+	<!--
 	<tr>
 		<td colspan=4>
 			<h2>基本信息</h2>
@@ -38,13 +40,15 @@
 		<td>联系电话</td>
 		<td>{{ds.model.order.lxdh}}</td>
 	</tr>
+	-->
 	<tbody *ngIf="ds.products">
+		<tr><td></td><td></td><td></td><td></td></tr>
 		<tr>
 			<td colspan="4">
 				<h2>选择需要翻译制作的文件材料</h2>
 			</td>
 		</tr>
-		<tr *ngFor="let item of ds.model.items">
+		<tr *ngFor="let item of ds.model.order.items">
 			<td colspan="3" product>
 				<div>
 					<input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1"
@@ -64,11 +68,11 @@
 			<td colspan="3"></td>
 			<td>
 
-				<h3>总金额：{{ds.cost }}元</h3>
+				<h3>总金额：{{ds.model.order.cost}}元</h3>
 			</td>
 		</tr>
 	</tbody>
 </table>
 <div>
 <button (click)="Do('prev')">返回上一步</button>
-<button (click)="Do('next')" [disabled]="ds.cost==0">下一步</button></div>
+<button (click)="Do('next')" [disabled]="ds.model.order.cost==0">下一步</button></div>

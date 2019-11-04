@@ -10,24 +10,25 @@
         "bysj": "2012-7",
         "lxr": "张大力",
         "lxdh": "13943216789",
-        "key": "242424564abcdef8989abcdef"
-    },
-    "items": [
-        {
-            "product":0,
-            "count": 3
-        },
-        {
-            "product": 1,
-            "count": 3
-        },
-        {
-            "product": 2,
-            "count": 3
-        },
-        {
-            "product": 3,
-            "count": 0
-        }
-    ]
+        "key": "242424564abcdef8989abcdef",
+        "state":1, 
+        "tjsj":"2019-11-11 14:31:27",
+        "xgsj":"",
+        "shsj":"2019-11-12 14:31:27",
+        "jfsj":"",
+        "items": [
+            {
+                "product": 0,
+                "count": 3
+            },
+            {
+                "product": 1,
+                "count": 3
+            },
+            {
+                "product": 2,
+                "count": 3
+            }
+        ]
+    }
 }

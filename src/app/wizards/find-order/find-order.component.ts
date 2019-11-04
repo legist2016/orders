@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Wizard } from "../wizard";
 import { EventManager } from '@angular/platform-browser';
 
@@ -11,6 +11,7 @@ export class FindOrderComponent extends Wizard implements OnInit , OnDestroy {
   inputText = ''
   orderKey = ''
   removeEventListener
+  @Input() ds
 
   constructor(private eventManager: EventManager) {
     super();

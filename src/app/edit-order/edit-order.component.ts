@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
+
 
 @Component({
   selector: 'app-edit-order',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditOrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public ds: DataService) { }
 
   ngOnInit() {
   }
 
+  do(event){
+
+  }
 }

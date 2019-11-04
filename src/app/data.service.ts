@@ -12,7 +12,7 @@ export class DataService {
     query: Student;
     querying: boolean;
     message: string;
-    items: Array<Item>
+    //items: Array<Item>
     step: number
   };
   products: Array<Product> = null;
@@ -24,7 +24,7 @@ export class DataService {
   get cost() {
     let cost = 0;
 
-    for (let item of this.model.items) {
+    for (let item of this.model.order.items) {
       //console.log(1111112)
       //if (item.selected) {
         //console.log(1111113)
@@ -47,7 +47,7 @@ export class DataService {
           console.log(data)
           this.products = data;
           for (let product of this.products) {
-            this.model.items.push(new Item(product))
+            this.model.order.items.push(new Item(product))
           };
         })
         .catch(err => { });
@@ -61,14 +61,14 @@ export class DataService {
       query: new Student(),
       querying: false,
       message: null,
-      items: new Array<Item>(),
+      //items: new Array<Item>(),
       step: 1
 
     };
 
     if (this.products) {
       for (let product of this.products) {
-        this.model.items.push(new Item(product))
+        this.model.order.items.push(new Item(product))
       };
     }
   }
@@ -77,9 +77,10 @@ export class DataService {
     if (neworder) {
       this.model.order = new Order();
     } else {
-      this.model.order = this.model.student;
+      this.model.order = Object.assign(new Order(), this.model.student);
     }
-    console.log(this.model)
+    //console.log(this.model)
+    this.model.order.init(this.products)
   }
 
   queryStudent() {
@@ -132,7 +133,7 @@ export class DataService {
             })
           }
           this.model.order = data.order
-          this.model.items = data.items
+          //this.model.order.items = data.items
         },
         (err) => {
           window.alert(err.message)

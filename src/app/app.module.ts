@@ -23,6 +23,7 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { NewOrderComponent } from './new-order/new-order.component';
 import { FindOrderComponent } from './wizards/find-order/find-order.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
+import { ControlOrderInfoComponent } from './wizards/control-order-info/control-order-info.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,7 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
     RouterModule.forRoot([
       { path: "", component: HomeComponent },
       { path: "new", component: NewOrderComponent },
-      { path: "find", component: FindOrderComponent },
+      { path: "edit", component: EditOrderComponent },
     ]),
     QRCodeModule
   ],
@@ -49,7 +50,8 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
     OrderComplatedComponent,
     NewOrderComponent,
     FindOrderComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    ControlOrderInfoComponent
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -12,7 +12,41 @@ export class Order {
   public lxr: string;
   public lxdh: string;
   public key: string;
-  constructor(public xb: string = "男") { }
+  constructor(public xb: string = "男",
+    public items: Array<Item> = new Array<Item>(),
+    public state:OrderState =0
+  ) { }
+
+  tjsj: string
+  xgsj: string
+  shsj: string
+  jfsj: string
+
+
+  get cost(): number {
+    let cost: number = 0
+    this.items.forEach(item => {
+      cost += item.cost
+    })
+    return cost;
+  }
+
+  init(products:Array<Product>){
+    products.forEach(product=>{
+      let item = this.items.find(e=>{
+        return e.productId == product.id
+      })
+      if(item){
+        item.product = product
+      }else{
+        this.items.push(new Item(product))
+      }
+    })
+    this.items.sort((a,b)=>{
+      return a.productId - b.productId
+    })
+}
+
 }
 
 export class Student {
@@ -37,10 +71,19 @@ export class Product {
 export class Item {
   constructor(
     public product: Product,
+    public productId: number = 0,
     public count: number = 0,
     //public selected: boolean = false
   ) { }
   get cost() {
     return this.count * this.product.price;
   }
+}
+
+export enum OrderState{
+  New=1,
+  Submited,
+  Modified,
+  Reviewed,
+  Paid
 }
