@@ -12,15 +12,21 @@ export class EditOrderComponent implements OnInit {
   constructor(public ds: DataService) { }
 
   ngOnInit() {
+    this.ds.init()
   }
 
-  do(event){
+  do(event) {
     switch (event) {
       case 'next':
         this.ds.model.step += 1
         break;
       case 'prev':
-        if(this.ds.model.step>1)this.ds.model.step -= 1
+        if (this.ds.model.step > 1) this.ds.model.step -= 1
+        break;
+      case 'submit':
+        this.ds.updateOrder().then(() => {
+          this.do('next')
+        })
         break;
       default:
         window.alert(event)

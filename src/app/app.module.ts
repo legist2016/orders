@@ -25,6 +25,7 @@ import { FindOrderComponent } from './wizards/find-order/find-order.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ControlOrderInfoComponent } from './wizards/order-info/order-info.component';
 import { ScanCodeComponent } from './wizards/scan-code/scan-code.component';
+import { ConverComponent } from './wizards/conver/conver.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { ScanCodeComponent } from './wizards/scan-code/scan-code.component';
     FindOrderComponent,
     EditOrderComponent,
     ControlOrderInfoComponent,
-    ScanCodeComponent
+    ScanCodeComponent,
+    ConverComponent
   ],
   bootstrap: [AppComponent],
   providers: [

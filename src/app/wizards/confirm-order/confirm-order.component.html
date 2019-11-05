@@ -1,61 +1,7 @@
 <app-order-info [order]="ds.model.order"></app-order-info>
-<!--
 <table>
-	<tr>
-		<td colspan=4>
-			<h2>基本信息</h2>
-		</td>
-	</tr>
-	<tr>
-		<td>学号</td>
-		<td>{{ds.model.order.xh}}</td>
-		<td>姓名</td>
-		<td>{{ds.model.order.xm}}</td>
-	</tr>
-	<tr>
-		<td>性别</td>
-		<td>{{ds.model.order.xb}}</td>
-		<td>出生日期</td>
-		<td>{{ds.model.order.csrq}}</td>
-	</tr>
-	<tr>
-		<td>院系</td>
-		<td>{{ds.model.order.yx}}</td>
-		<td>专业</td>
-		<td>{{ds.model.order.zy}}</td>
-	</tr>
-	<tr>
-		<td>入学时间</td>
-		<td>{{ds.model.order.rxsj}}</td>
-		<td>毕业时间</td>
-		<td>{{ds.model.order.bysj}}</td>
-	</tr>
-	<tr>
-		<td>联系人</td>
-		<td>{{ds.model.order.lxr}}</td>
-		<td>联系电话</td>
-		<td>{{ds.model.order.lxdh}}</td>
-	</tr>
-	<tr>
-		<td colspan=4>
-			<h2>制作内容</h2>
-		</td>
-	</tr>
-	<tbody *ngFor="let item of ds.model.order.items">
-		<tr *ngIf="item.count>0">
-			<td colspan=4>
-				<h3>{{item.product.name}} x {{item.count}}</h3>
-
-			</td>
-		</tr>
-	</tbody>
-	<tr>
-		<td colspan=4>
-			<h2>总金额：{{ds.cost }}元</h2>
-		</td>
-	</tr>
 </table>
--->
 <div>
-	<button (click)="Do('prev')">返回上一步</button>
-	<button [disabled]="ds.model.order.cost<=0||ds.model.querying" (click)="ds.submitOrder(Do,this,'next')">提交申请</button></div>
+    <button (click)="Do('prev')">返回上一步</button>
+    <button [disabled]="ds.model.order.cost<=0||ds.model.querying" (click)="Do('submit')">提交申请</button>
+</div>

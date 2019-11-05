@@ -66,11 +66,11 @@ export class DataService {
 
     };
 
-    if (this.products) {
+    /*if (this.products) {
       for (let product of this.products) {
         this.model.order.items.push(new Item(product))
       };
-    }
+    }*/
   }
 
   order(neworder?: boolean) {
@@ -110,12 +110,23 @@ export class DataService {
       });
   }
 
-  submitOrder(action, caller, arg) {
+  insertOrder() {
     this.model.querying = true;
     return this.http.get("assets/addorder.json").toPromise<any>()
       .then(data => {
         this.model.order.key = data.key
-        action.call(caller, arg)
+        this.model.querying = false;
+      }).catch(err => {
+        window.alert(err.message)
+        this.model.querying = false;
+      })
+  }
+
+  updateOrder() {
+    this.model.querying = true;
+    return this.http.get("assets/addorder.json").toPromise<any>()
+      .then(data => {
+        this.model.order.key = data.key
         this.model.querying = false;
       }).catch(err => {
         window.alert(err.message)
@@ -124,21 +135,18 @@ export class DataService {
   }
 
   findOrder(key) {
+    this.model.querying=true;
     this.http.get("assets/order.json").toPromise<any>()
       .then(
         (data) => {
-          /*for(let item of data.orditems){
-            item.product = this.products.find((product)=>{
-              return product.id == item.product
-            })
-          }*/
           this.model.order = Object.assign(new Order(), data.order)
-          //this.model.order.items = data.items
           this.model.order.init(this.products)
           console.log(this.model.order)
+          this.model.querying=false;
         },
         (err) => {
           window.alert(err.message)
+          this.model.querying=false;
         });
 
   }

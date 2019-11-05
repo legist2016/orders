@@ -38,6 +38,10 @@
         <td>联系电话</td>
         <td>{{order.lxdh}}</td>
     </tr>
+    <tr *ngIf="state=='show'">
+        <td>申请表状态</td>
+        <td colspan=3>{{order.stateText()}}</td>
+    </tr>
     <tbody *ngIf="mode=='show'">
         <tr>
             <td colspan=4>
@@ -66,16 +70,15 @@
         <tr *ngFor="let item of order.items">
             <td colspan="3" product>
                 <div>
-                    <input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1"
-                        [id]="'product'+item.product.id">
+                    <input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1" [id]="'product'+item.product.id">
                     <label [attr.for]="'product'+item.product.id">{{item.product.name}}</label></div>
                 <div>{{item.product.descript}}</div>
             </td>
             <td>
                 <span *ngIf="item.count">x<span number>{{item.count}}</span>
-                    <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
-                    <button number (click)="item.count=item.count+1;">+</button>
-                    金额<span number>{{item.cost}}元</span></span>
+                <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
+                <button number (click)="item.count=item.count+1;">+</button> 金额
+                <span number>{{item.cost}}元</span></span>
 
             </td>
         </tr>

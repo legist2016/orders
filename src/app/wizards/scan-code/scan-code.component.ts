@@ -11,6 +11,7 @@ export class ScanCodeComponent implements OnInit, OnDestroy {
   orderKey = ''
   removeEventListener
   @Output() scan = new EventEmitter()
+  @Input() message
 
 
   ngOnDestroy(): void {

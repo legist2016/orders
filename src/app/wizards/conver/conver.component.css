@@ -1,0 +1,20 @@
+div {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+div.conver {
+    background-color: white;
+    opacity: 50%;
+}
+
+div.conver-content {
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+}

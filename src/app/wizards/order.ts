@@ -14,7 +14,7 @@ export class Order {
   public key: string;
   constructor(public xb: string = "男",
     public items: Array<Item> = new Array<Item>(),
-    public state:OrderState =0
+    public state: OrderState = 0
   ) { }
 
   tjsj: string
@@ -31,30 +31,41 @@ export class Order {
     return cost;
   }
 
-  init(products:Array<Product>){
-    for(let index in this.items){
+  stateText(){
+    switch(this.state){
+      case 1: return "新建"
+      case 2: return "已提交"
+      case 3: return "已修改"
+      case 4: return "已审核"
+      case 5: return "已缴费"
+      default: return "";
+    }
+  }
+
+  init(products: Array<Product>) {
+    for (let index in this.items) {
       this.items[index] = Object.assign(new Item(null), this.items[index])
     }
-    products.forEach(product=>{
-      let item = this.items.find(e=>{
+    products.forEach(product => {
+      let item = this.items.find(e => {
         return e.productId == product.id
       })
-      
-      if(item){                
+
+      if (item) {
         item.product = product
-      }else{
+      } else {
         item = new Item(product)
         item.productId = product.id
         this.items.push(item)
       }
     })
     console.log(this.items)
-    this.items = this.items.sort((a,b)=>{
+    this.items = this.items.sort((a, b) => {
       return a.productId - b.productId
     })
     console.log(this.items)
 
-}
+  }
 
 }
 
@@ -89,8 +100,8 @@ export class Item {
   }
 }
 
-export enum OrderState{
-  New=1,
+export enum OrderState {
+  New = 1,
   Submited,
   Modified,
   Reviewed,

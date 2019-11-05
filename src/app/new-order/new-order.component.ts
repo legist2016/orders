@@ -21,6 +21,11 @@ export class NewOrderComponent implements OnInit {
       case 'prev':
         if(this.ds.model.step>1)this.ds.model.step -= 1
         break;
+      case 'submit':
+        this.ds.insertOrder().then(()=>{
+          this.do('next')
+        })
+        break;
       default:
         window.alert(event)
     }
