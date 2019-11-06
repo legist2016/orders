@@ -3,4 +3,4 @@
 <app-select-item (do)="do($event)" *ngIf="ds.model.step==3" [ds]="ds"></app-select-item>
 <app-confirm-order (do)="do($event)" *ngIf="ds.model.step==4" [ds]="ds"></app-confirm-order>
 <app-order-complated (do)="do($event)" *ngIf="ds.model.step==5" [ds]="ds"></app-order-complated>
-<app-conver message="查询中。。。" *ngIf="ds.model.querying"></app-conver>
+<app-conver *ngIf="ds.model.querying"></app-conver>
