@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./conver.component.css']
 })
 export class ConverComponent implements OnInit {
-  @Input() message
+  @Input() message = "请稍候..."
   constructor() { }
 
   ngOnInit() {
