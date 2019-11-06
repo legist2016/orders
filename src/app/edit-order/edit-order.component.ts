@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../data.service";
+import { ApplyDataService } from "../data.service";
 
 
 @Component({
@@ -9,7 +9,7 @@ import { DataService } from "../data.service";
 })
 export class EditOrderComponent implements OnInit {
 
-  constructor(public ds: DataService) { }
+  constructor(public ds: ApplyDataService) { }
 
   ngOnInit() {
     this.ds.init()

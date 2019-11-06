@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../data.service";
+import { ApplyDataService } from "../data.service";
 
 @Component({
   selector: 'app-new-order',
@@ -8,7 +8,7 @@ import { DataService } from "../data.service";
 })
 export class NewOrderComponent implements OnInit {
 
-  constructor(public ds: DataService) { }
+  constructor(public ds: ApplyDataService) { }
 
   ngOnInit() {
     this.ds.init()

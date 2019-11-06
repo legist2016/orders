@@ -5,7 +5,7 @@ import { Order, Student, Product, Item } from "./wizards/order";
 @Injectable({
   providedIn: "root"
 })
-export class DataService {
+export class ApplyDataService {
   model: {
     order: Order;
     student: Order;
@@ -27,8 +27,8 @@ export class DataService {
     for (let item of this.model.order.items) {
       //console.log(1111112)
       //if (item.selected) {
-        //console.log(1111113)
-        cost += (item.count) * (item.product.price);
+      //console.log(1111113)
+      cost += (item.count) * (item.product.price);
       //}
     }
     return cost
@@ -65,12 +65,6 @@ export class DataService {
       step: 1
 
     };
-
-    /*if (this.products) {
-      for (let product of this.products) {
-        this.model.order.items.push(new Item(product))
-      };
-    }*/
   }
 
   order(neworder?: boolean) {
@@ -135,19 +129,25 @@ export class DataService {
   }
 
   findOrder(key) {
-    this.model.querying=true;
+    this.model.querying = true;
     this.http.get("assets/order.json").toPromise<any>()
       .then(
         (data) => {
           this.model.order = Object.assign(new Order(), data.order)
           this.model.order.init(this.products)
           console.log(this.model.order)
-          this.model.querying=false;
+          this.model.querying = false;
         },
         (err) => {
           window.alert(err.message)
-          this.model.querying=false;
+          this.model.querying = false;
         });
 
   }
+}
+
+@Injectable({
+  providedIn: "root"
+})
+export class ManagerDataService {
 }

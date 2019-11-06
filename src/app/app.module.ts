@@ -11,7 +11,7 @@ import { HelloComponent } from "./hello.component";
 import { InputXhComponent } from "./wizards/input-xh/input-xh.component";
 import { InputOrderComponent } from './wizards/input-order/input-order.component';
 import { ConfirmOrderComponent } from './wizards/confirm-order/confirm-order.component';
-import { DataService } from './data.service';
+import { ApplyDataService } from './data.service';
 
 import { HttpClientModule } from "@angular/common/http";
 import { HeroFormComponent } from './hero-form/hero-form.component';
@@ -26,6 +26,9 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
 import { ControlOrderInfoComponent } from './wizards/order-info/order-info.component';
 import { ScanCodeComponent } from './wizards/scan-code/scan-code.component';
 import { ConverComponent } from './wizards/conver/conver.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ApplyComponent } from './apply/apply.component';
 
 @NgModule({
   imports: [
@@ -35,6 +38,8 @@ import { ConverComponent } from './wizards/conver/conver.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent },
+      { path: "manager", component: ManagerComponent },
+      { path: "apply", component: ApplyComponent },
       { path: "new", component: NewOrderComponent },
       { path: "edit", component: EditOrderComponent },
     ]),
@@ -55,11 +60,14 @@ import { ConverComponent } from './wizards/conver/conver.component';
     EditOrderComponent,
     ControlOrderInfoComponent,
     ScanCodeComponent,
-    ConverComponent
+    ConverComponent,
+    OrderListComponent,
+    ManagerComponent,
+    ApplyComponent
   ],
   bootstrap: [AppComponent],
   providers: [
-    DataService,
+    ApplyDataService,
     { provide: APP_BASE_HREF, useValue: '/' }
   ]
 })

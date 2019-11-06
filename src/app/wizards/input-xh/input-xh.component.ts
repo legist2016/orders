@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-//import { DataService } from "../../data.service";
+//import { ApplyDataService } from "../../data.service";
 import { Wizard } from "../wizard";
 
 @Component({
@@ -9,7 +9,7 @@ import { Wizard } from "../wizard";
 })
 export class InputXhComponent extends Wizard {
   constructor(
-    //public ds: DataService
+    //public ds: ApplyDataService
     ) {
     super();
   }
