@@ -1,1 +1,13 @@
 <p>manager works!</p>
+<button (click)="ds.loadOrderList()">查询</button>
+<table *ngIf="ds.model.orderList" grid>
+    <tr >
+        <td></td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let order of ds.model.orderList.orders">
+        <td>{{order.xh}}</td>
+        <td>{{order.xm}}</td>
+    </tr>
+</table>
+上一页，第几页，共几页，下一页

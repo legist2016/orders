@@ -20,8 +20,7 @@
 
     </table>
     <div>
-        <button type="submit" [disabled]="!form.form.valid||ds.model.querying">确定</button>
-        <button routerLink=''>关闭</button>
+        <button type="submit" [disabled]="!form.form.valid||ds.model.querying">确定</button>        
         <a (click)="ds.order(true);do.emit('next')">忘记学号，直接填写信息</a></div>
 </form>
 <div *ngIf="ds.model.message">{{ds.model.message}}</div>

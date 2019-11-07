@@ -1,7 +1,6 @@
 <div *ngIf="!ds.model.order">
     <app-scan-code (scan)="onScan($event)" *ngIf="!ds.model.querying" message="请使用扫码器扫描申请表二维码"></app-scan-code>
     <div>
-        <button routerLink=''>关闭</button>
     </div>
 </div>
 <div *ngIf="ds.model.order">
@@ -10,6 +9,6 @@
     <div>
         <button (click)="ds.model.order=null">查找其他</button>
         <button [disabled]="ds.model.order.state>3" (click)="Do('next')">修改</button>
-        <button routerLink=''>关闭</button>
+
     </div>
 </div>

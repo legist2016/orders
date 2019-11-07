@@ -150,4 +150,26 @@ export class ApplyDataService {
   providedIn: "root"
 })
 export class ManagerDataService {
+  model:{
+    orderList;
+    querying: boolean ;
+  };
+  constructor(private http: HttpClient){
+    this.model = {
+      orderList:null,
+      querying:false
+    }
+  }
+  loadOrderList(state){
+    this.model.querying = true
+    this.http.get("assets/orderlist.json").toPromise()
+    .then(data=>{
+      this.model.querying = false
+      this.model.orderList = data
+    })
+    .catch(err=>{
+      this.model.querying = false
+    })
+    
+  }
 }
