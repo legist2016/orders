@@ -13,8 +13,18 @@ export class ManagerComponent implements OnInit {
   ngOnInit() {
   }
 
-  getOrderList(){    
+  title = 'app';
 
-  }
+  columnDefs = [
+      {headerName: '姓名', field: 'xm' },
+      {headerName: '学号', field: 'xh' },
+      {headerName: '出生日期', field: 'csrq'}
+  ];
+
+  rowData = [
+      { make: 'Toyota', model: 'Celica', price: 35000 },
+      { make: 'Ford', model: 'Mondeo', price: 32000 },
+      { make: 'Porsche', model: 'Boxter', price: 72000 }
+  ];
 
 }

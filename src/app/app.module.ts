@@ -30,6 +30,8 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ApplyComponent } from './apply/apply.component';
 
+import { AgGridModule } from 'ag-grid-angular';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { ApplyComponent } from './apply/apply.component';
       { path: "new", component: NewOrderComponent },
       { path: "edit", component: EditOrderComponent },
     ]),
-    QRCodeModule
+    QRCodeModule,
+    AgGridModule.withComponents([])
   ],
   declarations: [
     AppComponent,
@@ -68,7 +71,12 @@ import { ApplyComponent } from './apply/apply.component';
   bootstrap: [AppComponent],
   providers: [
     ApplyDataService,
-    { provide: APP_BASE_HREF, useValue: '/' }
+    { 
+      provide: APP_BASE_HREF,
+      useValue: '/' 
+      //useValue: environment.publicBase //'/ap'       
+      //useFactory: () => getBaseUrl()
+    }
   ]
 })
 export class AppModule { }
