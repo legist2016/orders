@@ -22,16 +22,7 @@ export class ManagerComponent implements OnInit {
   }
 
   stateText(params){
-    console.log(params)
-    switch(params.value){
-      case 1: return "新建"
-      case 2: return "已提交"
-      //case 2: return "已修改"
-      case 3: return "已审核"
-      case 4: return "已缴费"
-      case 5: return "已完成"
-      default: return "";
-    }
+    return params.data.stateText()
   }
 
   title = 'app';
@@ -104,10 +95,10 @@ export class ManagerComponent implements OnInit {
     valueColumnsEmptyMessage: 'la drag cols to aggregate',
     pivotColumnsEmptyMessage: 'la drag here to pivot',
     toolPanelButton: 'la tool panel',
- 
+ */
     // other
-    noRowsToShow: 'la no rows',
- 
+    noRowsToShow: '无数据可显示',
+ /*
     // enterprise menu
     pinColumn: 'laPin Column',
     valueAggregation: 'laValue Agg',
@@ -250,6 +241,10 @@ export class ManagerComponent implements OnInit {
     bubbleTooltip: 'laBubble',
     noDataToChart: 'laNo data available to be charted.',
     pivotChartRequiresPivotMode: 'laPivot Chart requires Pivot Mode enabled.'*/
+  }
+
+  openrow(event){
+    console.log(event)
   }
 
 }

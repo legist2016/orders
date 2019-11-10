@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Order, Student, Product, Item } from "./wizards/order";
+import { Order, Student, Product, OrderItem } from "./wizards/order";
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +12,7 @@ export class ApplyDataService {
     query: Student;
     querying: boolean;
     message: string;
-    //items: Array<Item>
+    //items: Array<OrderItem>
     step: number
   };
   products: Array<Product> = null;
@@ -47,7 +47,7 @@ export class ApplyDataService {
           console.log(data)
           this.products = data;
           for (let product of this.products) {
-            this.model.order.items.push(new Item(product))
+            this.model.order.items.push(new OrderItem(product))
           };
         })
         .catch(err => { });
@@ -61,7 +61,7 @@ export class ApplyDataService {
       query: new Student(),
       querying: false,
       message: null,
-      //items: new Array<Item>(),
+      //items: new Array<OrderItem>(),
       step: 1
 
     };
@@ -169,10 +169,27 @@ export class ManagerDataService {
       /*if(comp&&comp[prop]){
         comp[prop] = data['orders']
       }*/
+      praseArray(Order, data['orders'], order=>{
+        praseArray(OrderItem, order['items'])
+      })
     })
     .catch(err=>{
       this.model.querying = false
     })
     
   }
+
 }
+
+function praseArray<T>(type: (new () => T), array,callback?:any){
+    for(let index in array ){
+      let item = array[index]
+      let newItem = new type()
+      console.log(index)
+      newItem = Object.assign(newItem, item)
+      array[index] = newItem
+      callback || callback(newItem)
+    }
+  }
+
+

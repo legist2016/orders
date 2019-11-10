@@ -13,7 +13,7 @@ export class Order {
   public lxdh: string;
   public key: string;
   constructor(public xb: string = "男",
-    public items: Array<Item> = new Array<Item>(),
+    public items: Array<OrderItem> = new Array<OrderItem>(),
     public state: OrderState = 0
   ) { }
 
@@ -35,17 +35,17 @@ export class Order {
     switch(this.state){
       case 1: return "新建"
       case 2: return "已提交"
-      //case 2: return "已修改"
-      case 3: return "已审核"
-      case 4: return "已缴费"
-      case 5: return "已完成"
+      case 3: return "审核未通过"
+      case 4: return "已审核"
+      case 5: return "已缴费"
+      case 6: return "已完成"
       default: return "";
     }
   }
 
   init(products: Array<Product>) {
     for (let index in this.items) {
-      this.items[index] = Object.assign(new Item(null), this.items[index])
+      this.items[index] = Object.assign(new OrderItem(null), this.items[index])
     }
     products.forEach(product => {
       let item = this.items.find(e => {
@@ -55,7 +55,7 @@ export class Order {
       if (item) {
         item.product = product
       } else {
-        item = new Item(product)
+        item = new OrderItem(product)
         item.productId = product.id
         this.items.push(item)
       }
@@ -89,13 +89,15 @@ export class Product {
   public price: number
 }
 
-export class Item {
+export class OrderItem {
   constructor(
-    public product: Product,
+    public product: Product = null,
     public productId: number = 0,
     public count: number = 0,
     //public selected: boolean = false
-  ) { }
+  ) { 
+    this.productId = (this.product && this.product.id) || 0;
+  }
   get cost() {
     return this.count * this.product.price;
   }

@@ -1,4 +1,4 @@
 <p>manager works!</p>
 <button (click)="loadData()">查询</button>
-<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [localeText]="localeText" [autoGroupColumnDef]="autoGroupColumnDef">
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="openrow($event)">
 </ag-grid-angular>
