@@ -162,10 +162,13 @@ export class ManagerDataService {
   }
   loadOrderList(state){
     this.model.querying = true
-    this.http.get("assets/orderlist.json").toPromise()
+    return this.http.get("assets/orderlist.json").toPromise()
     .then(data=>{
       this.model.querying = false
       this.model.orderList = data
+      /*if(comp&&comp[prop]){
+        comp[prop] = data['orders']
+      }*/
     })
     .catch(err=>{
       this.model.querying = false

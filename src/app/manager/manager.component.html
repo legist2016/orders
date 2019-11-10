@@ -1,10 +1,4 @@
 <p>manager works!</p>
-<button (click)="ds.loadOrderList(null)">查询</button>
-<ag-grid-angular *ngIf="ds.model.orderList"
-    style="width: 500px; height: 500px;" 
-    class="ag-theme-balham"
-    [rowData]="ds.model.orderList.orders" 
-    [columnDefs]="columnDefs"
-    [localeText]="localeText"    
-    >
+<button (click)="loadData()">查询</button>
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [localeText]="localeText" [autoGroupColumnDef]="autoGroupColumnDef">
 </ag-grid-angular>

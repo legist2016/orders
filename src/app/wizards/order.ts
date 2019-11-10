@@ -35,9 +35,10 @@ export class Order {
     switch(this.state){
       case 1: return "新建"
       case 2: return "已提交"
-      case 3: return "已修改"
-      case 4: return "已审核"
-      case 5: return "已缴费"
+      //case 2: return "已修改"
+      case 3: return "已审核"
+      case 4: return "已缴费"
+      case 5: return "已完成"
       default: return "";
     }
   }
@@ -103,7 +104,7 @@ export class Item {
 export enum OrderState {
   New = 1,
   Submited,
-  Modified,
   Reviewed,
-  Paid
+  Paid,
+  Complated
 }
