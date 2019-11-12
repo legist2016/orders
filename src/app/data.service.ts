@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
+import { resolve } from 'url';
 
 @Injectable({
   providedIn: "root"
@@ -150,46 +151,65 @@ export class ApplyDataService {
   providedIn: "root"
 })
 export class ManagerDataService {
-  model:{
+  model: {
     orderList;
-    querying: boolean ;
+    querying: boolean;
   };
-  constructor(private http: HttpClient){
+  products: Array<Product> = null;
+  constructor(private http: HttpClient) {
     this.model = {
-      orderList:null,
-      querying:false
+      orderList: null,
+      querying: false
     }
   }
-  loadOrderList(state){
+  LoadProductList(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      if (!this.products) {
+        this.http
+          .get("assets/products.json")
+          .toPromise<any>()
+          .then(data => {
+            console.log(data)
+            this.products = data;
+            resolve();
+          })
+          .catch(reject);
+      } else {
+        resolve()
+      }
+    })
+  }
+
+  loadOrderList(state) {
     this.model.querying = true
     return this.http.get("assets/orderlist.json").toPromise()
-    .then(data=>{
-      this.model.querying = false
-      this.model.orderList = data
-      /*if(comp&&comp[prop]){
-        comp[prop] = data['orders']
-      }*/
-      praseArray(Order, data['orders'], order=>{
-        praseArray(OrderItem, order['items'])
+      .then(data => {
+        this.model.querying = false
+        this.model.orderList = data
+        /*if(comp&&comp[prop]){
+          comp[prop] = data['orders']
+        }*/
+        praseArray(Order, data['orders'], order => {
+          praseArray(OrderItem, order['items'])
+        })
       })
-    })
-    .catch(err=>{
-      this.model.querying = false
-    })
-    
+      .catch(err => {
+        this.model.querying = false
+      })
+
   }
 
 }
 
-function praseArray<T>(type: (new () => T), array,callback?:any){
-    for(let index in array ){
-      let item = array[index]
-      let newItem = new type()
-      console.log(index)
-      newItem = Object.assign(newItem, item)
-      array[index] = newItem
-      callback || callback(newItem)
-    }
+function praseArray<T>(type: (new () => T), array, callback?: any) {
+  for (let index in array) {
+    let item = array[index]
+    let newItem = new type()
+    console.log(index)
+    newItem = Object.assign(newItem, item)
+    array[index] = newItem
+    callback || callback(newItem)
   }
+}
 
 
