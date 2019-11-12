@@ -32,15 +32,7 @@ export class Order {
   }
 
   stateText(){
-    switch(this.state){
-      case 1: return "新建"
-      case 2: return "已提交"
-      case 3: return "审核未通过"
-      case 4: return "已审核"
-      case 5: return "已缴费"
-      case 6: return "已完成"
-      default: return "";
-    }
+    return OrderState[this.state]
   }
 
   init(products: Array<Product>) {
@@ -65,7 +57,6 @@ export class Order {
       return a.productId - b.productId
     })
     console.log(this.items)
-
   }
 
 }
@@ -104,9 +95,10 @@ export class OrderItem {
 }
 
 export enum OrderState {
-  New = 1,
-  Submited,
-  Reviewed,
-  Paid,
-  Complated
+  '新建' = 1,
+  "已提交",
+  "审核未通过",
+  "已审核",
+  "已缴费",
+  "已完成",  
 }
