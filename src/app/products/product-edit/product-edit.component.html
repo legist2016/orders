@@ -1,0 +1,4 @@
+<li>名称<input id="name" type="text" autocomplete="off" [(ngModel)]="product.name"></li>
+<li>价格<input id="price" type="number" autocomplete="off" [(ngModel)]="product.price"></li>
+<li>描述<input id="description" type="text" autocomplete="off" [(ngModel)]="product.description"></li>
+<li><button (click)="do(product)">保存</button><button (click)="do(null)">取消</button></li>

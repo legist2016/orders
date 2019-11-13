@@ -31,6 +31,8 @@ import { ManagerComponent } from './manager/manager.component';
 import { ApplyComponent } from './apply/apply.component';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { ProductsComponent } from './products/products.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { AgGridModule } from 'ag-grid-angular';
     ConverComponent,
     OrderListComponent,
     ManagerComponent,
-    ApplyComponent
+    ApplyComponent,
+    ProductsComponent,
+    ProductEditComponent
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -44,7 +44,7 @@ export class ApplyDataService {
     if (!this.products) {
       this.http
         //.get("assets/products.json")
-        .get("http://localhost/cm/api/product")
+        .get("http://localhost:3019/api/product")
         .toPromise<any>()
         .then(data => {
           console.log(data)
@@ -167,16 +167,21 @@ export class ManagerDataService {
       orderList: null,
       querying: false
     }
+    this.LoadProductList()
   }
   LoadProductList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       if (!this.products) {
         this.http
-          .get("assets/products.json")
+          //.get("assets/products.json")
+          .get("http://localhost:3019/api/product")
           .toPromise<any>()
           .then(data => {
-            console.log(data)
-            this.products = data;
+            //console.log(data)
+            this.products = new Array<Product>()
+            for(let item of data){
+              this.products.push(item)
+            }
             resolve();
           })
           .catch(reject);
