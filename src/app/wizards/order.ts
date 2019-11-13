@@ -31,7 +31,7 @@ export class Order {
     return cost;
   }
 
-  stateText(){
+  stateText() {
     return OrderState[this.state]
   }
 
@@ -76,17 +76,18 @@ export class Student {
 export class Product {
   public id: any
   public name: string
-  public descript: String
+  public description: String
   public price: number
 }
 
 export class OrderItem {
-  constructor(
+  public id:number
+  constructor(    
     public product: Product = null,
     public productId: number = 0,
     public count: number = 0,
     //public selected: boolean = false
-  ) { 
+  ) {
     this.productId = (this.product && this.product.id) || 0;
   }
   get cost() {
@@ -95,10 +96,11 @@ export class OrderItem {
 }
 
 export enum OrderState {
-  '新建' = 1,
-  "已提交",
-  "审核未通过",
-  "已审核",
-  "已缴费",
-  "已完成",  
+  "新建" = 1,
+  "已提交" = 2,
+  "审核未通过" = 3,
+  "已审核" = 4,
+  "已缴费" = 5,
+  "已完成" = 6,
+  "取消" = 7,
 }

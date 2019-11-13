@@ -72,7 +72,7 @@
                 <div>
                     <input type="checkbox" [checked]="item.count" (click)="item.count=item.count?0:1" [id]="'product'+item.product.id">
                     <label [attr.for]="'product'+item.product.id">{{item.product.name}}</label></div>
-                <div>{{item.product.descript}}</div>
+                <div>{{item.product.description}}</div>
             </td>
             <td>
                 <span *ngIf="item.count">x<span number>{{item.count}}</span>

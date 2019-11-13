@@ -20,6 +20,7 @@ export class ApplyDataService {
   constructor(private http: HttpClient) {
     this.init();
     this.LoadProductList();
+
   }
 
   get cost() {
@@ -42,11 +43,16 @@ export class ApplyDataService {
   LoadProductList() {
     if (!this.products) {
       this.http
-        .get("assets/products.json")
+        //.get("assets/products.json")
+        .get("http://localhost/cm/api/product")
         .toPromise<any>()
         .then(data => {
           console.log(data)
-          this.products = data;
+          this.products = new Array<Product>()
+          for (let p of data) {
+            this.products.push(p)
+          }
+          //this.products = data;
           for (let product of this.products) {
             this.model.order.items.push(new OrderItem(product))
           };
