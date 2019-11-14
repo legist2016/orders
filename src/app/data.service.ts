@@ -61,6 +61,7 @@ export class ApplyDataService {
     }
   }
 
+
   init() {
     this.model = {
       order: null,
@@ -179,7 +180,7 @@ export class ManagerDataService {
           .then(data => {
             //console.log(data)
             this.products = new Array<Product>()
-            for(let item of data){
+            for (let item of data) {
               this.products.push(item)
             }
             resolve();
@@ -210,6 +211,11 @@ export class ManagerDataService {
 
   }
 
+  postProduct(product){
+    console.log(product)
+    this.http.post("http://localhost:3019/api/product",product).toPromise()
+  }
+
 }
 
 function praseArray<T>(type: (new () => T), array, callback?: any) {
@@ -222,5 +228,6 @@ function praseArray<T>(type: (new () => T), array, callback?: any) {
     callback || callback(newItem)
   }
 }
+
 
 

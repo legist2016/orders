@@ -37,9 +37,12 @@ export class ProductsComponent implements OnInit {
   }
 
   onNewProductSave(data){
+    console.log(data)
+    this.ds.postProduct(data)
     this.newProduct = null
-    this.ds.products.push(Object.assign(new Product(), data))
-    this.gridApi.redrawRows();
+    //this.ds.products.push(Object.assign(new Product(), data))
+    this.gridApi.updateRowData({add:[data]})
+    //this.gridApi.redrawRows();
   }
 
   onRowDbclick(event){
@@ -54,17 +57,22 @@ export class ProductsComponent implements OnInit {
     .then(data=>{
       this.editProduct = null
       
-      event.node.setData(data)
+      event.node.setData(data)      
       //this.gridApi.redrawRows();
-      this.ds.products[event.rowIndex] = Object.assign(new Product(), data)
-      console.log(this.ds.products)
+      //this.ds.products[event.rowIndex] = Object.assign(new Product(), data)
+      
+      //this.gridApi.updateRowData({update:[data]})
     })
     .catch(err=>{
-
+      this.editProduct = null
     })
   }
   onEditProductSave(product){
+    if(product){
     this.resolve && this.resolve(product)
+    }else{
+      this.reject && this.reject(product)
+    }
   }
 
 }
