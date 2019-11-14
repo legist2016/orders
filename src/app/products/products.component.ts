@@ -11,68 +11,66 @@ import { resolve } from 'url';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(public ds:ManagerDataService) { }
+  constructor(public ds: ManagerDataService) { }
 
-  columnDefs=[
+  columnDefs = [
     { headerName: 'ID', field: 'id' },
     { headerName: '名称', field: 'name' },
     { headerName: '价格', field: 'price' },
     { headerName: '描述', field: 'description' },
   ]
 
-  newProduct:Product = null
-  editProduct:Product = null
+  newProduct: Product = null
+  editProduct: Product = null
   gridApi
   resolve
   reject
   ngOnInit() {
   }
 
-  gridReady(param){
-    this.gridApi= param.api
+  gridReady(param) {
+    this.gridApi = param.api
   }
 
-  new(){
-    this.newProduct=new Product()
+  new() {
+    this.newProduct = new Product()
   }
 
-  onNewProductSave(data){
-    console.log(data)
-    this.ds.postProduct(data)
-    this.newProduct = null
-    //this.ds.products.push(Object.assign(new Product(), data))
-    this.gridApi.updateRowData({add:[data]})
-    //this.gridApi.redrawRows();
+  onNewProductSave(product) {
+    console.log(product)
+    this.ds.postProduct(product)
+      .then(data => {
+        this.newProduct = null
+        this.gridApi.updateRowData({ add: [data] })
+      })
+      .catch(err => {
+        window.alert(err.message)
+      })
+
   }
 
-  onRowDbclick(event){
-    console.log(event)
-    let component = this
-    new Promise(((resolve,reject)=>{
-      this.resolve = resolve
-      this.reject = reject
-      this.editProduct = Object.assign({},event.data)
-      //this.editProduct = event.data
-    }).bind(this))
-    .then(data=>{
-      this.editProduct = null
-      
-      event.node.setData(data)      
-      //this.gridApi.redrawRows();
-      //this.ds.products[event.rowIndex] = Object.assign(new Product(), data)
-      
-      //this.gridApi.updateRowData({update:[data]})
-    })
-    .catch(err=>{
-      this.editProduct = null
-    })
+  onRowDbclick(event) {
+
+      this.editProduct = Object.assign({}, event.data)
+      this.resolve = product => {
+        if (product) {
+          this.ds.putProduct(product)
+            .then(data => {
+              event.node.setData(product)
+              this.editProduct = null
+              this.resolve = null
+            })
+            .catch(err => {
+              window.alert(err.message)
+            })
+        } else {
+          this.editProduct = null
+        }
+      }
+
   }
-  onEditProductSave(product){
-    if(product){
+  onEditProductSave(product) {
     this.resolve && this.resolve(product)
-    }else{
-      this.reject && this.reject(product)
-    }
   }
 
 }

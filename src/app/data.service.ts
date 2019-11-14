@@ -3,6 +3,16 @@ import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
 import { resolve } from 'url';
 
+
+function product(params){
+  params.prototype.products1 = new Array<Product>();
+  params.prototype.LoadProductList1 = function () {
+    
+  }  
+}
+
+
+
 @Injectable({
   providedIn: "root"
 })
@@ -162,14 +172,19 @@ export class ManagerDataService {
     orderList;
     querying: boolean;
   };
+  querying: boolean;
+
   products: Array<Product> = null;
   constructor(private http: HttpClient) {
     this.model = {
       orderList: null,
       querying: false
     }
+    
     this.LoadProductList()
   }
+
+
   LoadProductList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       if (!this.products) {
@@ -177,7 +192,7 @@ export class ManagerDataService {
           //.get("assets/products.json")
           .get("http://localhost:3019/api/product")
           .toPromise<any>()
-          .then(data => {
+          .then( data => {
             //console.log(data)
             this.products = new Array<Product>()
             for (let item of data) {
@@ -206,14 +221,19 @@ export class ManagerDataService {
         })
       })
       .catch(err => {
+        window.alert(err.message)
         this.model.querying = false
       })
 
   }
 
   postProduct(product){
-    console.log(product)
-    this.http.post("http://localhost:3019/api/product",product).toPromise()
+    //console.log(product)
+    return this.http.post("http://localhost:3019/api/product",product).toPromise()
+  }
+  putProduct(product){
+    //console.log(product)
+    return this.http.put("http://localhost:3019/api/product/"+product.id,product).toPromise()
   }
 
 }
