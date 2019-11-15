@@ -39,6 +39,32 @@ export class DataService {
       .catch(this.catch)
       .finally(this.finally)
   }
+  postProduct(product) {
+    //console.log(product)
+    return this.http.post("http://localhost:3019/api/product", product).toPromise()
+  }
+  putProduct(product) {
+    //console.log(product)
+    return this.http.put("http://localhost:3019/api/product/" + product.id, product).toPromise()
+  }
+
+  deleteProduct(products) {
+    //console.log(product)
+/*    let promise:Promise<any> = null;
+    for(let product of products){
+      if(promise){
+        promise.then(data=>{
+          promise = this.http.delete("http://localhost:3019/api/product/" + product.id, product).toPromise()
+        })
+      }else{
+        promise = this.http.delete("http://localhost:3019/api/product/" + product.id, product).toPromise().catch(this.catch)
+      }
+    }
+    
+
+    return promise;*/
+    
+  }
 }
 
 
@@ -210,14 +236,6 @@ export class ManagerDataService extends DataService {
 
   }
 
-  postProduct(product) {
-    //console.log(product)
-    return this.http.post("http://localhost:3019/api/product", product).toPromise()
-  }
-  putProduct(product) {
-    //console.log(product)
-    return this.http.put("http://localhost:3019/api/product/" + product.id, product).toPromise()
-  }
 
 }
 

@@ -13,11 +13,12 @@ export class ProductsComponent implements OnInit {
   constructor(public ds: ManagerDataService) { }
 
   columnDefs = [
-    { headerName: 'ID', field: 'id' },
-    { headerName: '名称', field: 'name' },
+    {
+      headerName: 'ID', field: 'id'    },
+    { headerName: '名称', field: 'name' ,checkboxSelection:true},
     { headerName: '价格', field: 'price' },
     { headerName: '描述', field: 'description' },
-    { headerName: '状态', field: 'state', valueFormatter:(params)=>{return ['删除','停用','启用'][params.value]} },
+    { headerName: '状态', field: 'state', valueFormatter: (params) => { return ['删除', '停用', '启用'][params.value] } },
   ]
 
   newProduct: Product = null
@@ -39,16 +40,16 @@ export class ProductsComponent implements OnInit {
 
   onNewProductSave(product) {
     console.log(product)
-    if(product){
-    this.ds.postProduct(product)
-      .then(data => {
-        this.newProduct = null
-        this.gridApi.updateRowData({ add: [data] })
-      })
-      .catch(err => {
-        window.alert(err.message)
-      })
-    }else{
+    if (product) {
+      this.ds.postProduct(product)
+        .then(data => {
+          this.newProduct = null
+          this.gridApi.updateRowData({ add: [data] })
+        })
+        .catch(err => {
+          window.alert(err.message)
+        })
+    } else {
       this.newProduct = null
     }
 
@@ -56,32 +57,32 @@ export class ProductsComponent implements OnInit {
 
   onRowDbclick(event) {
 
-      this.editProduct = Object.assign({}, event.data)
-      this.resolve = product => {
-        if (product) {
-          this.ds.putProduct(product)
-            .then(data => {
-              event.node.setData(product)
-              this.editProduct = null
-              this.resolve = null
-            })
-            .catch(err => {
-              window.alert(err.message)
-            })
-        } else {
-          this.editProduct = null
-        }
+    this.editProduct = Object.assign({}, event.data)
+    this.resolve = product => {
+      if (product) {
+        this.ds.putProduct(product)
+          .then(data => {
+            event.node.setData(product)
+            this.editProduct = null
+            this.resolve = null
+          })
+          .catch(err => {
+            window.alert(err.message)
+          })
+      } else {
+        this.editProduct = null
       }
+    }
 
   }
   onEditProductSave(product) {
     this.resolve && this.resolve(product)
   }
 
-  del(){
-    if(window.confirm("是否删除选中的项目？"))
-    {
-      //this.ds.deleteProduct()
+  del() {
+    if (window.confirm("是否删除选中的项目？")) {
+      let rows = this.gridApi.getSelectedRows()
+      this.ds.deleteProduct(rows)
     }
   }
 }
