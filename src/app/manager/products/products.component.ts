@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ManagerDataService } from '../data.service';
-import { Product } from '../wizards/order';
-import { resolve } from 'url';
-
+import { ManagerDataService } from 'src/app/data.service';
+import { Product } from 'src/app/wizards/order';
+import { localeText } from 'src/app/aggrid.localtext';
 
 @Component({
   selector: 'app-products',
@@ -18,6 +17,7 @@ export class ProductsComponent implements OnInit {
     { headerName: '名称', field: 'name' },
     { headerName: '价格', field: 'price' },
     { headerName: '描述', field: 'description' },
+    { headerName: '状态', field: 'state', valueFormatter:(params)=>{return ['删除','停用','启用'][params.value]} },
   ]
 
   newProduct: Product = null
@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   gridApi
   resolve
   reject
+  localeText = localeText
   ngOnInit() {
   }
 
@@ -38,6 +39,7 @@ export class ProductsComponent implements OnInit {
 
   onNewProductSave(product) {
     console.log(product)
+    if(product){
     this.ds.postProduct(product)
       .then(data => {
         this.newProduct = null
@@ -46,6 +48,9 @@ export class ProductsComponent implements OnInit {
       .catch(err => {
         window.alert(err.message)
       })
+    }else{
+      this.newProduct = null
+    }
 
   }
 
@@ -73,4 +78,10 @@ export class ProductsComponent implements OnInit {
     this.resolve && this.resolve(product)
   }
 
+  del(){
+    if(window.confirm("是否删除选中的项目？"))
+    {
+      //this.ds.deleteProduct()
+    }
+  }
 }

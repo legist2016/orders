@@ -78,6 +78,7 @@ export class Product {
   public name: string
   public description: String
   public price: number
+  public state:number
 }
 
 export class OrderItem {

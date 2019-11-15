@@ -1,5 +1,5 @@
-<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.products" [columnDefs]="columnDefs" (rowDoubleClicked)="onRowDbclick($event)" (gridReady)="gridReady($event)"></ag-grid-angular>
-<button (click)="new()">新建</button>
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [localeText]='localeText' [rowData]="ds.products" [columnDefs]="columnDefs" (rowDoubleClicked)="onRowDbclick($event)" (gridReady)="gridReady($event)"></ag-grid-angular>
+<button (click)="new()">新建</button><button (click)="del()">删除</button>
 <div *ngIf="newProduct">
     <app-conver message=""></app-conver>
     <div class="popup">
@@ -13,3 +13,5 @@
         <app-product-edit (save)="onEditProductSave($event)" [product]="editProduct"></app-product-edit>
     </div>
 </div>
+
+<app-conver *ngIf="ds.querying"></app-conver>

@@ -14,7 +14,6 @@ import { ConfirmOrderComponent } from './wizards/confirm-order/confirm-order.com
 import { ApplyDataService } from './data.service';
 
 import { HttpClientModule } from "@angular/common/http";
-import { HeroFormComponent } from './hero-form/hero-form.component';
 import { SelectItemComponent } from './wizards/select-item/select-item.component';
 import { HomeComponent } from './home/home.component';
 import { OrderComplatedComponent } from './wizards/order-complated/order-complated.component';
@@ -31,8 +30,9 @@ import { ManagerComponent } from './manager/manager.component';
 import { ApplyComponent } from './apply/apply.component';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { ProductsComponent } from './products/products.component';
-import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductsComponent } from './manager/products/products.component';
+import { ProductEditComponent } from './manager/products/product-edit/product-edit.component';
+import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.component';
 
 
 @NgModule({
@@ -57,7 +57,6 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     InputXhComponent,
     InputOrderComponent,
     ConfirmOrderComponent,
-    HeroFormComponent,
     SelectItemComponent,
     HomeComponent,
     OrderComplatedComponent,
@@ -71,7 +70,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     ManagerComponent,
     ApplyComponent,
     ProductsComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ManagerMenuComponent
   ],
   bootstrap: [AppComponent],
   providers: [

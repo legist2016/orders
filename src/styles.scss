@@ -1,15 +1,6 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
-$font-stack: 'Roboto',
-Arial,
-sans-serif;
-$blue:#1976d2;
-$deepgray:#616161;
-$gray:#BDBDBD;
-$white:white;
-$border:solid 1px #CCCCCC;
-$lightred:#FFEEEE;
-$tablewidth:800px;
+@import "config.scss";
 body {
     margin: 0;
     color: $deepgray;

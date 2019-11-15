@@ -1,14 +1,44 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
-import { resolve } from 'url';
+import { Config } from 'src/config'
 
-
-function product(params){
-  params.prototype.products1 = new Array<Product>();
-  params.prototype.LoadProductList1 = function () {
-    
-  }  
+export class DataService {
+  constructor(public http: HttpClient) { }
+  products: Array<Product> = null;
+  querying: boolean = false;
+  catch = ((err) => {
+    window.alert(err.message)
+  }).bind(this)
+  finally = (() => {
+    this.querying = false
+  }).bind(this)
+  LoadProductList(state?:number) {
+    return new Promise<any>((resolve, reject) => {
+      if (!this.products) {
+        let url = Config.apiProductUrl
+        if(state!=undefined){
+          url = url + "/state/"+state
+        }
+        this.querying = true
+        this.http
+          .get(url)
+          .toPromise<any>()
+          .then(data => {
+            this.products = new Array<Product>()
+            for (let item of data) {
+              this.products.push(item)
+            }
+            resolve();
+          })
+          .catch(reject);
+      } else {
+        resolve()
+      }
+    })
+      .catch(this.catch)
+      .finally(this.finally)
+  }
 }
 
 
@@ -16,7 +46,7 @@ function product(params){
 @Injectable({
   providedIn: "root"
 })
-export class ApplyDataService {
+export class ApplyDataService extends DataService {
   model: {
     order: Order;
     student: Order;
@@ -27,9 +57,10 @@ export class ApplyDataService {
     step: number
   };
   products: Array<Product> = null;
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
+    super(http)
     this.init();
-    this.LoadProductList();
+    this.LoadProductList(2);
 
   }
 
@@ -37,11 +68,7 @@ export class ApplyDataService {
     let cost = 0;
 
     for (let item of this.model.order.items) {
-      //console.log(1111112)
-      //if (item.selected) {
-      //console.log(1111113)
       cost += (item.count) * (item.product.price);
-      //}
     }
     return cost
   }
@@ -49,28 +76,6 @@ export class ApplyDataService {
   getStudentInfo(xh, xm) {
     return this.http.get("assets/student.json");
   }
-
-  LoadProductList() {
-    if (!this.products) {
-      this.http
-        //.get("assets/products.json")
-        .get("http://localhost:3019/api/product")
-        .toPromise<any>()
-        .then(data => {
-          console.log(data)
-          this.products = new Array<Product>()
-          for (let p of data) {
-            this.products.push(p)
-          }
-          //this.products = data;
-          for (let product of this.products) {
-            this.model.order.items.push(new OrderItem(product))
-          };
-        })
-        .catch(err => { });
-    }
-  }
-
 
   init() {
     this.model = {
@@ -101,7 +106,6 @@ export class ApplyDataService {
     this.model.querying = true;
     this.model.student = null;
     this.model.message = null;
-    //this.router.navigateByUrl('/input-order')
     this.getStudentInfo(xh, xm)
       .toPromise<any>()
       .then(data => {
@@ -167,45 +171,24 @@ export class ApplyDataService {
 @Injectable({
   providedIn: "root"
 })
-export class ManagerDataService {
-  model: {
-    orderList;
-    querying: boolean;
-  };
-  querying: boolean;
-
-  products: Array<Product> = null;
-  constructor(private http: HttpClient) {
+export class ManagerDataService extends DataService {
+  constructor(
+    http: HttpClient
+  ) {
+    super(http)
     this.model = {
       orderList: null,
       querying: false
     }
-    
+
     this.LoadProductList()
   }
-
-
-  LoadProductList(): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      if (!this.products) {
-        this.http
-          //.get("assets/products.json")
-          .get("http://localhost:3019/api/product")
-          .toPromise<any>()
-          .then( data => {
-            //console.log(data)
-            this.products = new Array<Product>()
-            for (let item of data) {
-              this.products.push(item)
-            }
-            resolve();
-          })
-          .catch(reject);
-      } else {
-        resolve()
-      }
-    })
-  }
+  model: {
+    orderList;
+    querying: boolean;
+  };
+  //querying: boolean;
+  
 
   loadOrderList(state) {
     this.model.querying = true
@@ -227,13 +210,13 @@ export class ManagerDataService {
 
   }
 
-  postProduct(product){
+  postProduct(product) {
     //console.log(product)
-    return this.http.post("http://localhost:3019/api/product",product).toPromise()
+    return this.http.post("http://localhost:3019/api/product", product).toPromise()
   }
-  putProduct(product){
+  putProduct(product) {
     //console.log(product)
-    return this.http.put("http://localhost:3019/api/product/"+product.id,product).toPromise()
+    return this.http.put("http://localhost:3019/api/product/" + product.id, product).toPromise()
   }
 
 }
