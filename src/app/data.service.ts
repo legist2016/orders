@@ -13,12 +13,12 @@ export class DataService {
   finally = (() => {
     this.querying = false
   }).bind(this)
-  LoadProductList(state?:number) {
+  LoadProductList(state?: number) {
     return new Promise<any>((resolve, reject) => {
       if (!this.products) {
         let url = Config.apiProductUrl
-        if(state!=undefined){
-          url = url + "/state/"+state
+        if (state != undefined) {
+          url = url + "/state/" + state
         }
         this.querying = true
         this.http
@@ -42,28 +42,15 @@ export class DataService {
   postProduct(product) {
     //console.log(product)
     return this.http.post("http://localhost:3019/api/product", product).toPromise()
+
   }
   putProduct(product) {
     //console.log(product)
     return this.http.put("http://localhost:3019/api/product/" + product.id, product).toPromise()
   }
 
-  deleteProduct(products) {
-    //console.log(product)
-/*    let promise:Promise<any> = null;
-    for(let product of products){
-      if(promise){
-        promise.then(data=>{
-          promise = this.http.delete("http://localhost:3019/api/product/" + product.id, product).toPromise()
-        })
-      }else{
-        promise = this.http.delete("http://localhost:3019/api/product/" + product.id, product).toPromise().catch(this.catch)
-      }
-    }
-    
-
-    return promise;*/
-    
+  deleteProduct(ids) {
+    return this.http.delete("http://localhost:3019/api/product/delete/" + ids.join(',')).toPromise()
   }
 }
 
@@ -214,7 +201,7 @@ export class ManagerDataService extends DataService {
     querying: boolean;
   };
   //querying: boolean;
-  
+
 
   loadOrderList(state) {
     this.model.querying = true

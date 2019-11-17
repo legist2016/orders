@@ -14,8 +14,8 @@ export class ProductsComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: 'ID', field: 'id'    },
-    { headerName: '名称', field: 'name' ,checkboxSelection:true},
+      headerName: 'ID', field: 'id' ,checkboxSelection:true },
+    { headerName: '名称', field: 'name' },
     { headerName: '价格', field: 'price' },
     { headerName: '描述', field: 'description' },
     { headerName: '状态', field: 'state', valueFormatter: (params) => { return ['删除', '停用', '启用'][params.value] } },
@@ -65,6 +65,7 @@ export class ProductsComponent implements OnInit {
             event.node.setData(product)
             this.editProduct = null
             this.resolve = null
+            console.log(this.gridApi.getModel())
           })
           .catch(err => {
             window.alert(err.message)
@@ -82,7 +83,13 @@ export class ProductsComponent implements OnInit {
   del() {
     if (window.confirm("是否删除选中的项目？")) {
       let rows = this.gridApi.getSelectedRows()
-      this.ds.deleteProduct(rows)
+      let ids = []
+      for(let row of rows){
+          ids.push(row.id)
+      }
+      this.ds.deleteProduct(ids).then(data=>{
+        this.gridApi.updateRowData({ remove: rows })
+      })
     }
   }
 }

@@ -73,12 +73,14 @@ export class Student {
   ) { }
 }
 
+
 export class Product {
   public id: any
   public name: string
   public description: String
-  public price: number
-  public state:number
+  constructor(
+  public price: number=10,
+  public state:number=1){}
 }
 
 export class OrderItem {
