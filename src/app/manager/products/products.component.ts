@@ -13,12 +13,11 @@ export class ProductsComponent implements OnInit {
   constructor(public ds: ManagerDataService) { }
 
   columnDefs = [
-    {
-      headerName: 'ID', field: 'id' ,checkboxSelection:true },
+    { headerName: 'ID', field: 'id', checkboxSelection: true, width: 80 },
+    { headerName: '状态', field: 'state', valueFormatter: (params) => { return ['删除', '停用', '启用'][params.value] }, width: 60 },
     { headerName: '名称', field: 'name' },
-    { headerName: '价格', field: 'price' },
-    { headerName: '描述', field: 'description' },
-    { headerName: '状态', field: 'state', valueFormatter: (params) => { return ['删除', '停用', '启用'][params.value] } },
+    { headerName: '价格', field: 'price', width: 60 },
+    { headerName: '描述', field: 'description', width: 400, resizable: true },
   ]
 
   newProduct: Product = null
@@ -28,6 +27,8 @@ export class ProductsComponent implements OnInit {
   reject
   localeText = localeText
   ngOnInit() {
+    this.ds.products = null
+    this.ds.LoadProductList()
   }
 
   gridReady(param) {
@@ -84,10 +85,10 @@ export class ProductsComponent implements OnInit {
     if (window.confirm("是否删除选中的项目？")) {
       let rows = this.gridApi.getSelectedRows()
       let ids = []
-      for(let row of rows){
-          ids.push(row.id)
+      for (let row of rows) {
+        ids.push(row.id)
       }
-      this.ds.deleteProduct(ids).then(data=>{
+      this.ds.deleteProduct(ids).then(data => {
         this.gridApi.updateRowData({ remove: rows })
       })
     }

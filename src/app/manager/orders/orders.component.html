@@ -1,0 +1,3 @@
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.orders" [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="onRowDbclick($event)">
+</ag-grid-angular>
+<button (click)="refresh()">刷新</button><button (click)="new()">新建</button><button (click)="del()">删除</button>

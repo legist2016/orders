@@ -33,6 +33,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ProductsComponent } from './manager/products/products.component';
 import { ProductEditComponent } from './manager/products/product-edit/product-edit.component';
 import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.component';
+import { OrdersComponent } from './manager/orders/orders.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.compon
     ApplyComponent,
     ProductsComponent,
     ProductEditComponent,
-    ManagerMenuComponent
+    ManagerMenuComponent,
+    OrdersComponent
   ],
   bootstrap: [AppComponent],
   providers: [

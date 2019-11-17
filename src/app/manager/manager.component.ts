@@ -9,8 +9,8 @@ import { localeText } from "../aggrid.localtext"
 })
 export class ManagerComponent implements OnInit {
 
-  content="products"
-  //content="processing orders"
+  //content="products"
+  content="pending orders"
 
   localeText = localeText
 

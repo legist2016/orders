@@ -5,11 +5,12 @@
     <div class="right-side">
         <app-products *ngIf="content=='products'"></app-products>
 
-        <div *ngIf="content=='processing orders'">
+        <!--div *ngIf="content=='pending orders'">
             <button (click)="loadData()">查询</button>
             <ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="rowData"
                 [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="openrow($event)">
             </ag-grid-angular>
-        </div>
+        </div-->
+        <app-orders *ngIf="content=='pending orders'"></app-orders>
     </div>
 </div>

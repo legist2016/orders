@@ -2,13 +2,22 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
 import { Config } from 'src/config'
+import { resolve } from 'url';
 
 export class DataService {
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+
+  }
   products: Array<Product> = null;
   querying: boolean = false;
   catch = ((err) => {
-    window.alert(err.message)
+    console.log(err)
+    if(err.error && err.error.Message){
+      window.alert(err.error.Message)
+    }else{
+      window.alert(err.message)
+    }
+    
   }).bind(this)
   finally = (() => {
     this.querying = false
@@ -41,17 +50,38 @@ export class DataService {
   }
   postProduct(product) {
     //console.log(product)
-    return this.http.post("http://localhost:3019/api/product", product).toPromise()
+    return this.http.post(Config.apiProductUrl, product).toPromise()
 
   }
   putProduct(product) {
     //console.log(product)
-    return this.http.put("http://localhost:3019/api/product/" + product.id, product).toPromise()
+    return this.http.put(Config.apiProductUrl + '/' + product.id, product).toPromise()
   }
 
   deleteProduct(ids) {
-    return this.http.delete("http://localhost:3019/api/product/delete/" + ids.join(',')).toPromise()
+    return this.http.delete(Config.apiProductUrl + "/delete/" + ids.join(',')).toPromise()
   }
+
+  orders: Array<Order> = null
+
+  loadOrderList(state?:number) {
+    if (this.orders == null) {
+      return this.http.get(Config.apiOrderUrl).toPromise<any>()
+      .then(data=>{
+        this.orders = new Array<Order>()
+        praseArray(Order,data)
+        for(let item of data){
+          this.orders.push(item)
+        }
+      }).catch(this.catch)
+      .finally(this.finally)
+    }
+    return new Promise((resolve, reject) => {
+      resolve(this.orders)
+    })
+  }
+
+
 }
 
 
@@ -194,16 +224,17 @@ export class ManagerDataService extends DataService {
       querying: false
     }
 
-    this.LoadProductList()
   }
   model: {
     orderList;
     querying: boolean;
   };
-  //querying: boolean;
 
 
-  loadOrderList(state) {
+
+
+
+  /*loadOrderList(state) {
     this.model.querying = true
     return this.http.get("assets/orderlist.json").toPromise()
       .then(data => {
@@ -211,7 +242,7 @@ export class ManagerDataService extends DataService {
         this.model.orderList = data
         /*if(comp&&comp[prop]){
           comp[prop] = data['orders']
-        }*/
+        } * /
         praseArray(Order, data['orders'], order => {
           praseArray(OrderItem, order['items'])
         })
@@ -221,7 +252,7 @@ export class ManagerDataService extends DataService {
         this.model.querying = false
       })
 
-  }
+  }*/
 
 
 }

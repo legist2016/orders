@@ -1,16 +1,15 @@
 @import "../../../../config.scss";
-div.container{
+div.container {
     background-color: white;
     width: 600px;
     border: 10px solid #eeeeee;
-    div{
-        text-align: center;        
-        margin:20px auto;
+    div {
+        text-align: center;
+        margin: 20px auto;
         width: 500px;
     }
-
-    table{
-        margin:20px auto;
+    table {
+        margin: 20px auto;
         width: 500px;
         td {
             height: 50px;
@@ -35,7 +34,12 @@ div.container{
             &:nth-child(4) {
                 width: 30%;
             }
+            select {
+                width: 100%;
+                height: 40px;
+                outline: none;
+                padding: 8px;
+            }
         }
     }
- 
 }
