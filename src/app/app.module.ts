@@ -34,6 +34,7 @@ import { ProductsComponent } from './manager/products/products.component';
 import { ProductEditComponent } from './manager/products/product-edit/product-edit.component';
 import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.component';
 import { OrdersComponent } from './manager/orders/orders.component';
+import { OrderEditComponent } from './manager/orders/order-edit/order-edit.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { OrdersComponent } from './manager/orders/orders.component';
     ProductsComponent,
     ProductEditComponent,
     ManagerMenuComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderEditComponent
   ],
   bootstrap: [AppComponent],
   providers: [

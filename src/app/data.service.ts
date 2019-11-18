@@ -4,83 +4,112 @@ import { Order, Student, Product, OrderItem } from "./wizards/order";
 import { Config } from 'src/config'
 import { resolve } from 'url';
 
+
+function Catch() {
+  return function (target, key, desc) {
+    var oMethod = desc.value;
+    desc.value = function (...args) {
+      return oMethod.apply(this, args)
+        .catch((err) => {
+          console.log('err:', err)
+          window.alert(err.error && err.error.Message || err.message || '发生错误')
+        })
+    }
+  }
+}
+
+function Finally(property, value1, value2) {
+  return function (target, key, desc) {
+    var oMethod = desc.value;
+    desc.value = function (...args) {
+      this[property] = value1
+      return oMethod.apply(this, args)
+        .finally(() => {
+          this[property] = value2
+        })
+    }
+  }
+}
+
+
 export class DataService {
   constructor(public http: HttpClient) {
 
   }
   products: Array<Product> = null;
   querying: boolean = false;
-  catch = ((err) => {
-    console.log(err)
-    if(err.error && err.error.Message){
-      window.alert(err.error.Message)
-    }else{
-      window.alert(err.message)
-    }
-    
-  }).bind(this)
+  /*
   finally = (() => {
     this.querying = false
   }).bind(this)
+*/
+  @Finally("querying", true, false)
+  @Catch()
   LoadProductList(state?: number) {
-    return new Promise<any>((resolve, reject) => {
-      if (!this.products) {
-        let url = Config.apiProductUrl
-        if (state != undefined) {
-          url = url + "/state/" + state
-        }
-        this.querying = true
-        this.http
-          .get(url)
-          .toPromise<any>()
-          .then(data => {
-            this.products = new Array<Product>()
-            for (let item of data) {
-              this.products.push(item)
-            }
-            resolve();
-          })
-          .catch(reject);
-      } else {
-        resolve()
+    if (!this.products) {
+      let url = Config.apiProductUrl
+      if (state != undefined) {
+        url = url + "/state/" + state
       }
-    })
-      .catch(this.catch)
-      .finally(this.finally)
+      this.querying = true
+      return this.http
+        .get(url)
+        .toPromise<any>()
+        .then(data => {
+          this.products = new Array<Product>()
+          for (let item of data) {
+            this.products.push(item)
+          }
+        })
+    } else {
+      return new Promise<any>((resolve, reject) => {
+        resolve(this.products)
+      })
+    }
   }
+  @Finally("querying", true, false)
   postProduct(product) {
-    //console.log(product)
     return this.http.post(Config.apiProductUrl, product).toPromise()
-
   }
+  @Finally("querying", true, false)
   putProduct(product) {
-    //console.log(product)
     return this.http.put(Config.apiProductUrl + '/' + product.id, product).toPromise()
   }
-
+  @Finally("querying", true, false)
   deleteProduct(ids) {
     return this.http.delete(Config.apiProductUrl + "/delete/" + ids.join(',')).toPromise()
   }
 
   orders: Array<Order> = null
 
-  loadOrderList(state?:number) {
+  @Finally('querying', true, false)
+  @Catch()
+  loadOrderList(state?: number) {
     if (this.orders == null) {
       return this.http.get(Config.apiOrderUrl).toPromise<any>()
-      .then(data=>{
-        this.orders = new Array<Order>()
-        praseArray(Order,data)
-        for(let item of data){
-          this.orders.push(item)
-        }
-      }).catch(this.catch)
-      .finally(this.finally)
+        .then(data => {
+          this.orders = new Array<Order>()
+          praseArray(Order, data)
+          for (let item of data) {
+            this.orders.push(item)
+          }
+        })//.catch(this.catch)
+      //.finally(this.finally)
     }
     return new Promise((resolve, reject) => {
       resolve(this.orders)
     })
   }
 
+  postOrder(order) {
+    return this.http.post(Config.apiOrderUrl, order).toPromise()
+  }
+  putOrder(order) {
+    return this.http.put(Config.apiOrderUrl + '/' + order.id, order).toPromise()
+  }
+  deleteOrder(ids) {
+    return this.http.delete(Config.apiOrderUrl + '/delete/' + ids.join(',')).toPromise()
+  }
 
 }
 
@@ -220,40 +249,11 @@ export class ManagerDataService extends DataService {
   ) {
     super(http)
     this.model = {
-      orderList: null,
-      querying: false
     }
 
   }
   model: {
-    orderList;
-    querying: boolean;
   };
-
-
-
-
-
-  /*loadOrderList(state) {
-    this.model.querying = true
-    return this.http.get("assets/orderlist.json").toPromise()
-      .then(data => {
-        this.model.querying = false
-        this.model.orderList = data
-        /*if(comp&&comp[prop]){
-          comp[prop] = data['orders']
-        } * /
-        praseArray(Order, data['orders'], order => {
-          praseArray(OrderItem, order['items'])
-        })
-      })
-      .catch(err => {
-        window.alert(err.message)
-        this.model.querying = false
-      })
-
-  }*/
-
 
 }
 
@@ -264,7 +264,7 @@ function praseArray<T>(type: (new () => T), array, callback?: any) {
     console.log(index)
     newItem = Object.assign(newItem, item)
     array[index] = newItem
-    callback || callback(newItem)
+    callback && callback(newItem)
   }
 }
 
