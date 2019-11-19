@@ -14,7 +14,7 @@ export class OrdersComponent implements OnInit {
   constructor(public ds: ManagerDataService) { }
 
   localeText = localeText
-  rowData = []
+  editOrder = null
 
   ngOnInit() {
     this.ds.loadOrderList()
@@ -35,7 +35,7 @@ export class OrdersComponent implements OnInit {
   ]
 
   onRowDbclick(event) {
-
+    this.editOrder = Object.assign({}, event.data)
   }
 
   refresh() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-order-edit',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderEditComponent implements OnInit {
 
+  @Input() order
+  @Input() items
+  @Input() products
+
   constructor() { }
 
   ngOnInit() {
+  }
+  do(){
+
   }
 
 }

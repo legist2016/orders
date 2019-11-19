@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
 import { Config } from 'src/config'
-import { resolve } from 'url';
-
 
 function Catch() {
   return function (target, key, desc) {
@@ -18,14 +16,14 @@ function Catch() {
   }
 }
 
-function Finally(property, value1, value2) {
+function Querying() {
   return function (target, key, desc) {
     var oMethod = desc.value;
     desc.value = function (...args) {
-      this[property] = value1
+      this.querying = true
       return oMethod.apply(this, args)
         .finally(() => {
-          this[property] = value2
+          this.querying = false
         })
     }
   }
@@ -43,8 +41,7 @@ export class DataService {
     this.querying = false
   }).bind(this)
 */
-  @Finally("querying", true, false)
-  @Catch()
+  @Querying() @Catch()
   LoadProductList(state?: number) {
     if (!this.products) {
       let url = Config.apiProductUrl
@@ -67,23 +64,22 @@ export class DataService {
       })
     }
   }
-  @Finally("querying", true, false)
+  @Querying() @Catch()
   postProduct(product) {
     return this.http.post(Config.apiProductUrl, product).toPromise()
   }
-  @Finally("querying", true, false)
+  @Querying() @Catch()
   putProduct(product) {
     return this.http.put(Config.apiProductUrl + '/' + product.id, product).toPromise()
   }
-  @Finally("querying", true, false)
+  @Querying() @Catch()
   deleteProduct(ids) {
     return this.http.delete(Config.apiProductUrl + "/delete/" + ids.join(',')).toPromise()
   }
 
   orders: Array<Order> = null
 
-  @Finally('querying', true, false)
-  @Catch()
+  @Querying() @Catch()
   loadOrderList(state?: number) {
     if (this.orders == null) {
       return this.http.get(Config.apiOrderUrl).toPromise<any>()
@@ -100,13 +96,15 @@ export class DataService {
       resolve(this.orders)
     })
   }
-
+  @Querying() @Catch()
   postOrder(order) {
     return this.http.post(Config.apiOrderUrl, order).toPromise()
   }
+  @Querying() @Catch()
   putOrder(order) {
     return this.http.put(Config.apiOrderUrl + '/' + order.id, order).toPromise()
   }
+  @Querying() @Catch()
   deleteOrder(ids) {
     return this.http.delete(Config.apiOrderUrl + '/delete/' + ids.join(',')).toPromise()
   }
