@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -35,11 +37,15 @@ import { ProductEditComponent } from './manager/products/product-edit/product-ed
 import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.component';
 import { OrdersComponent } from './manager/orders/orders.component';
 import { OrderEditComponent } from './manager/orders/order-edit/order-edit.component';
+import { OpenCloseComponent } from './manager/orders/order-input/order-input.component';
+
+
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -75,7 +81,8 @@ import { OrderEditComponent } from './manager/orders/order-edit/order-edit.compo
     ProductEditComponent,
     ManagerMenuComponent,
     OrdersComponent,
-    OrderEditComponent
+    OrderEditComponent,    
+    OpenCloseComponent
   ],
   bootstrap: [AppComponent],
   providers: [

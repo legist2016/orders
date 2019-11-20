@@ -49,5 +49,7 @@ export class OrdersComponent implements OnInit {
   del() {
 
   }
-
+  OnEditSave(){
+    this.editOrder = null
+  }
 }

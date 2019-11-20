@@ -2,7 +2,6 @@
 div.container {
     background-color: white;
     width: 600px;
-    border: 10px solid #eeeeee;
     div {
         text-align: center;
         margin: 20px auto;
@@ -39,6 +38,7 @@ div.container {
                 height: 40px;
                 outline: none;
                 padding: 8px;
+                border: $border;
             }
         }
     }

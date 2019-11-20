@@ -1,4 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-order-edit',
@@ -10,13 +11,20 @@ export class OrderEditComponent implements OnInit {
   @Input() order
   @Input() items
   @Input() products
+  @Output() save = new EventEmitter()
+  form = {form:{valid:true}}
 
   constructor() { }
 
   ngOnInit() {
   }
-  do(){
+  do() {
+    this.save.emit()
+  }
 
+  valid(value) {
+    this.form = value
+    console.log(value)
   }
 
 }

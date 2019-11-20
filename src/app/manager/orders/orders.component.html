@@ -4,6 +4,6 @@
 <div *ngIf="editOrder">
     <app-conver message=""></app-conver>
     <div class="popup">
-        <app-order-edit></app-order-edit>
+        <app-order-edit (save)="OnEditSave()" [order]="editOrder"></app-order-edit>
     </div>
 </div>
