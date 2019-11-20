@@ -130,7 +130,7 @@ export class ApplyDataService extends DataService {
   constructor(public http: HttpClient) {
     super(http)
     this.init();
-    this.LoadProductList(2);
+    //this.LoadProductList(2);
 
   }
 

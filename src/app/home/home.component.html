@@ -1,3 +1,7 @@
 <h1>档案服务业务管理</h1>
 <h3><a routerLink="/apply">申请</a></h3>
 <h3><a routerLink="/manager">管理</a></h3>
+<h3><a (click)="show=1">添加</a></h3>
+<div class="popup" *ngIf="show">
+    <app-product-list (ok)="show=0" productState='2' (close)="show=0"></app-product-list>
+</div>

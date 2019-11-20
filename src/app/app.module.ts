@@ -38,6 +38,7 @@ import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.compon
 import { OrdersComponent } from './manager/orders/orders.component';
 import { OrderEditComponent } from './manager/orders/order-edit/order-edit.component';
 import { OpenCloseComponent } from './manager/orders/order-input/order-input.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 
@@ -82,7 +83,7 @@ import { OpenCloseComponent } from './manager/orders/order-input/order-input.com
     ManagerMenuComponent,
     OrdersComponent,
     OrderEditComponent,    
-    OpenCloseComponent
+    OpenCloseComponent, ProductListComponent
   ],
   bootstrap: [AppComponent],
   providers: [
