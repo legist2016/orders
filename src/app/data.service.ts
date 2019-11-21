@@ -29,6 +29,12 @@ function Querying() {
   }
 }
 
+function ItemAction(){
+  return function(t,p){
+    console.log(t,p,t[p])
+  }
+}
+
 
 export class DataService {
   constructor(public http: HttpClient) {
@@ -36,6 +42,9 @@ export class DataService {
   }
   products: Array<Product> = null;
   querying: boolean = false;
+  //@ItemAction()
+  items:Array<OrderItem> = null;  
+  order:Order = null;
   /*
   finally = (() => {
     this.querying = false
@@ -160,7 +169,7 @@ export class ApplyDataService extends DataService {
     };
   }
 
-  order(neworder?: boolean) {
+  Order(neworder?: boolean) {
     if (neworder) {
       this.model.order = new Order();
     } else {

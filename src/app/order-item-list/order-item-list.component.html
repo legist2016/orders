@@ -1,12 +1,15 @@
 <div>
+    <p *ngIf="items.length==0">还未添加任何项目</p>
     <p *ngFor="let item of items">{{item.name}} x {{item.count}}
-        <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
-        <button number (click)="item.count=item.count+1;">+</button> 金额 {{item.cost}}
-        <button (click)="delete(item)">删除</button>
+        <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;" [hidden]="readonly">-</button>
+        <button number (click)="item.count=item.count+1;" [hidden]="readonly">+</button> 金额：{{item.cost}}元
+        <button (click)="items.api.delete(item)" [hidden]="readonly">删除</button>
     </p>
+    <p *ngIf="items.length>0">总金额：{{cost}}元</p>
+    <h3><a (click)="productSelector = 1" [hidden]="readonly">添加</a></h3>
 
-    <div class="popup" *ngIf="productSelector">
-        <app-product-selector (ok)="ok($event)" productState='2' (close)="close()" [products]="ds.products">
+    <div class="popup" *ngIf="productSelector" [hidden]="readonly">
+        <app-product-selector (ok)="ok($event)" productState='2' (close)="productSelector = 0" [products]="products">
         </app-product-selector>
     </div>
 </div>

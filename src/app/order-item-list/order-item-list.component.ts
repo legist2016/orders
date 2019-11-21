@@ -11,6 +11,7 @@ export class OrderItemListComponent implements OnInit {
   @Input() items
   @Input() products
   @Input() readonly = true
+  productSelector = 0
 
   constructor() { }
 
@@ -39,5 +40,16 @@ export class OrderItemListComponent implements OnInit {
   }
   delete(item) {
     this.items.api.delete(item)
+  }
+  ok(product) {
+    this.items.api && this.items.api.add(product)
+    this.productSelector = 0
+  }  
+  get cost(){
+    let sum = 0
+    for(let item of this.items){
+      sum += item.ammount
+    }
+    return sum
   }
 }

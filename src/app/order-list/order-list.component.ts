@@ -10,29 +10,30 @@ import { OrderItem } from '../wizards/order';
 export class OrderListComponent implements OnInit {
 
   constructor(public ds: ManagerDataService) { }
-  productSelector = 0
+  //productSelector = 0
   //product = null
   @Input() productState = 2
   items = []
+  readonly = 1
 
 
   ngOnInit() {
     this.ds.LoadProductList(this.productState).then(() => {
     })
   }
-
+  /*
   addProduct() {
     this.productSelector = 1
   }
 
-  ok(product) {
+  /*ok(product) {
     /*let item = this.items.find(item => item.productId == product.id)
     if (item) { 
       item.count ++;
     }
     else {
       this.items.push(new OrderItem(product.name, product.id, 1, product.price))
-    }*/
+    }
     this.items.api && this.items.api.add(product)
     this.productSelector = 0
   }
@@ -40,5 +41,5 @@ export class OrderListComponent implements OnInit {
   close() {
     this.productSelector = 0
   }
-
+*/
 }

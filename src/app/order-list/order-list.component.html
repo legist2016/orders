@@ -1,6 +1,3 @@
 <p>order-list works!</p>
-<h3><a (click)="addProduct()">添加</a></h3>
-<app-order-item-list [items]="items"></app-order-item-list>
-<div class="popup" *ngIf="productSelector">
-    <app-product-selector (ok)="ok($event)" productState='2' (close)="close()" [products]="ds.products"></app-product-selector>
-</div>
+<app-order-item-list [items]="items" [products]="ds.products" [readonly]="readonly"></app-order-item-list>
+<button (click)="readonly=!readonly">sss</button>

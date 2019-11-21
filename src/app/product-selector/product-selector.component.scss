@@ -28,11 +28,14 @@ ul {
         display: block;
         float: left;
         margin: 19px;
-        box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
         width: 240px;
         /* height: 80px; */
         padding: 10px 20px;
         border: $border;
+        &:hover{
+            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        }
         span {
             font-size: 1.2em;
             font-weight: bolder;
