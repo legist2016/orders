@@ -1,0 +1,12 @@
+<div>
+    <p *ngFor="let item of items">{{item.name}} x {{item.count}}
+        <button [disabled]="item.count<=1" number (click)="item.count=item.count-1;">-</button>
+        <button number (click)="item.count=item.count+1;">+</button> 金额 {{item.cost}}
+        <button (click)="delete(item)">删除</button>
+    </p>
+
+    <div class="popup" *ngIf="productSelector">
+        <app-product-selector (ok)="ok($event)" productState='2' (close)="close()" [products]="ds.products">
+        </app-product-selector>
+    </div>
+</div>

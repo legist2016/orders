@@ -2,8 +2,10 @@
     <a class="close" (click)="close.emit()"></a>
 </div>
 <ul>
-    <li *ngFor="let product of ds.products">
-        <span>{{product.name}}</span> {{product.description}}
+    <li *ngFor="let product of products">
+        <span>{{product.name}}</span>
+        <p>{{product.description}}</p>
+        <p>{{product.price}}元/份</p>
         <a (click)="ok.emit(product)">添加</a>
     </li>
     <div></div>

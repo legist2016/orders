@@ -7,7 +7,6 @@ import { ApplyDataService } from "../data.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  show = 1
   constructor(public ds:ApplyDataService) { }
 
   ngOnInit() {

@@ -38,9 +38,8 @@ import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.compon
 import { OrdersComponent } from './manager/orders/orders.component';
 import { OrderEditComponent } from './manager/orders/order-edit/order-edit.component';
 import { OpenCloseComponent } from './manager/orders/order-input/order-input.component';
-import { ProductListComponent } from './product-list/product-list.component';
-
-
+import { ProductSelectorComponent } from './product-selector/product-selector.component';
+import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 
 
 @NgModule({
@@ -56,6 +55,7 @@ import { ProductListComponent } from './product-list/product-list.component';
       { path: "apply", component: ApplyComponent },
       { path: "new", component: NewOrderComponent },
       { path: "edit", component: EditOrderComponent },
+      { path: "test", component: OrderListComponent },
     ]),
     QRCodeModule,
     AgGridModule.withComponents([])
@@ -83,7 +83,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     ManagerMenuComponent,
     OrdersComponent,
     OrderEditComponent,    
-    OpenCloseComponent, ProductListComponent
+    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent
   ],
   bootstrap: [AppComponent],
   providers: [

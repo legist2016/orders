@@ -45,9 +45,9 @@ export class Order {
       })
 
       if (item) {
-        item.product = product
+        //item.product = product
       } else {
-        item = new OrderItem(product)
+        item = new OrderItem(product.name, product.id, 1)//product)
         item.productId = product.id
         this.items.push(item)
       }
@@ -85,16 +85,21 @@ export class Product {
 
 export class OrderItem {
   public id:number
+  public ammount:number
+
   constructor(    
-    public product: Product = null,
+    //public product: Product = null,
+    //public selected: boolean = false
+    public name:string,
     public productId: number = 0,
     public count: number = 0,
-    //public selected: boolean = false
+    public price:number = 0
   ) {
-    this.productId = (this.product && this.product.id) || 0;
+    //this.productId = (this.product && this.product.id) || 0;
   }
   get cost() {
-    return this.count * this.product.price;
+    this.ammount = this.count * this.price;
+    return this.ammount;
   }
 }
 

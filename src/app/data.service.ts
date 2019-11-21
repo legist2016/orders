@@ -138,7 +138,7 @@ export class ApplyDataService extends DataService {
     let cost = 0;
 
     for (let item of this.model.order.items) {
-      cost += (item.count) * (item.product.price);
+      //cost += (item.count) * (item.product.price);
     }
     return cost
   }
