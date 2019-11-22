@@ -1,5 +1,5 @@
-<app-order-info [order]="ds.model.order" mode="select"></app-order-info>
+<app-order-info [order]="ds.order" mode="select" [products]="ds.products" [items]="ds.items"></app-order-info>
 <table></table>
 <div>
 	<button (click)="Do('prev')">返回上一步</button>
-	<button (click)="Do('next')" [disabled]="ds.model.order.cost==0">下一步</button></div>
+	<button (click)="Do('next')" [disabled]="ds.items.length==0">下一步</button></div>

@@ -16,26 +16,6 @@ export class OrderItemListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.items.api = {
-      add: function (product) {
-        let item = this.find(item => item.productId == product.id)
-        if (item) {
-          item.count++;
-        }
-        else {
-          this.push(new OrderItem(product.name, product.id, 1, product.price))
-        }
-      }.bind(this.items),
-      delete: function (item) {
-        if (window.confirm(`是否删除项目：${item.name}（${item.count}份）？`)) {
-          let index = this.findIndex(i => i == item)
-          console.log(item, index)
-          if (index >= 0) {
-            this.splice(index, 1)
-          }
-        }
-      }.bind(this.items)
-    }
 
   }
   delete(item) {

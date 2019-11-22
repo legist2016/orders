@@ -10,6 +10,7 @@ import { Order } from '../order';
 export class ControlOrderInfoComponent implements OnInit {
   @Input() order:Order
   @Input() items
+  @Input() products
   @Input() mode:string = "show"
   @Input() state:string = ''
 

@@ -1,7 +1,7 @@
-<app-order-info [order]="ds.model.order"></app-order-info>
+<app-order-info [order]="ds.order" [items]="ds.items" [products]="ds.products"></app-order-info>
 <table>
 </table>
 <div>
     <button (click)="Do('prev')">返回上一步</button>
-    <button [disabled]="ds.model.order.cost<=0||ds.model.querying" (click)="Do('submit')">提交申请</button>
+    <button [disabled]="ds.items.length==0||ds.querying" (click)="Do('submit')">提交申请</button>
 </div>

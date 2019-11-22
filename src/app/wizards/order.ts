@@ -84,8 +84,6 @@ export class Product {
 }
 
 export class OrderItem {
-  public id:number
-  public ammount:number
 
   constructor(    
     //public product: Product = null,
@@ -93,8 +91,11 @@ export class OrderItem {
     public name:string,
     public productId: number = 0,
     public count: number = 0,
-    public price:number = 0
-  ) {
+    public price:number = 0,
+    public id:number = 0,
+    public orderId:number = 0,
+    public ammount:number = 0,
+    ) {
     //this.productId = (this.product && this.product.id) || 0;
   }
   get cost() {

@@ -1,5 +1,5 @@
 <form (ngSubmit)="ds.queryStudent()" #form="ngForm">
-    <table>
+    <table class="noborder">
         <tr>
             <td colspan=4>
                 <h2>请输入以下信息</h2>
@@ -21,8 +21,8 @@
     </table>
     <div>
         <button type="submit" [disabled]="!form.form.valid||ds.model.querying">确定</button>
-        <button routerLink='/apply'>返回</button>
-        <a (click)="ds.order(true);do.emit('next')">忘记学号，直接填写信息</a></div>
+        <!--button routerLink='/apply'>返回</button-->
+        <a (click)="ds.newOrder();do.emit('next')">忘记学号，直接填写信息</a></div>
 </form>
 <div *ngIf="ds.model.message">{{ds.model.message}}</div>
 <div *ngIf="ds.model.student">
@@ -60,6 +60,6 @@
 
     </table>
     <div>
-        <button (click)="ds.order();Do('next');">下一步</button>
+        <button (click)="ds.newOrder(ds.model.student);Do('next');">下一步</button>
     </div>
 </div>

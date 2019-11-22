@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService } from "../data.service";
+import { ApplyDataService,catcherr } from "../data.service";
 
 
 @Component({
@@ -24,9 +24,9 @@ export class EditOrderComponent implements OnInit {
         if (this.ds.model.step > 1) this.ds.model.step -= 1
         break;
       case 'submit':
-        this.ds.updateOrder().then(() => {
+        this.ds.putOrder(this.ds.order, this.ds.items).then(() => {
           this.do('next')
-        })
+        }, catcherr)
         break;
       default:
         window.alert(event)

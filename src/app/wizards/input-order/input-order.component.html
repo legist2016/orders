@@ -1,5 +1,5 @@
 <form #form="ngForm">
-	<table>
+	<table apply class="noborder">
 		<tr>
 			<td colspan=4>
 				<h2>填写完成以下基本信息</h2>
@@ -7,58 +7,58 @@
 		</tr>
 		<tr>
 			<td>学号</td>
-			<td>{{ds.model.order.xh}}</td>
+			<td>{{ds.order.xh}}</td>
 		</tr>
 		<tr>
 			<td>姓名</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.xm" required name="xm"
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.xm" required name="xm"
 					placeholder="请输入姓名"></td>
 		</tr>
 		<tr>
 			<td>英文名</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.xm_e" name="xm_e"
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.xm_e" name="xm_e"
 					placeholder="请输入英文名，如空则默认使用姓名拼音作为英文名(如：张三丰 ZHANG Sanfeng)"></td>
 		</tr>
 		<tr>
 			<td>性别</td>
-			<td input><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb1" value="男" name="xb" required><label
-					for="xb1">男</label><input type="radio" [(ngModel)]="ds.model.order.xb" id="xb2" value="女" name="xb"
+			<td input><input type="radio" [(ngModel)]="ds.order.xb" id="xb1" value="男" name="xb" required><label
+					for="xb1">男</label><input type="radio" [(ngModel)]="ds.order.xb" id="xb2" value="女" name="xb"
 					required><label for="xb2">女</label>
 			</td>
 		</tr>
 		<tr>
 			<td>出生日期</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.csrq" name="csrq" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.csrq" name="csrq" required
 					placeholder="输入出生日期"></td>
 		</tr>
 		<tr>
 			<td>院系</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.yx" name="yx"
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.yx" name="yx"
 					placeholder="输入所在院系"></td>
 		</tr>
 		<tr>
 			<td>专业</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.zy" name="zy" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.zy" name="zy" required
 					placeholder="输入所学专业"></td>
 		</tr>
 		<tr>
 			<td>入学时间</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.rxsj" name="rxsj" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.rxsj" name="rxsj" required
 					placeholder="输入入学年月"></td>
 		</tr>
 		<tr>
 			<td>毕业时间</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.bysj" name="bysj" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.bysj" name="bysj" required
 					placeholder="输入毕业年月"></td>
 		</tr>
 		<tr>
 			<td>联系人</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.lxr" name="lxr" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.lxr" name="lxr" required
 					placeholder="输入联系人姓名"></td>
 		</tr>
 		<tr>
 			<td>联系电话</td>
-			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.model.order.lxdh" name="lxdh" required
+			<td input><input type="text" autocomplete="off" [(ngModel)]="ds.order.lxdh" name="lxdh" required
 					placeholder="输入联系人电话"></td>
 		</tr>
 	</table>

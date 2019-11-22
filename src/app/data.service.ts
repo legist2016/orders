@@ -3,19 +3,19 @@ import { HttpClient } from "@angular/common/http";
 import { Order, Student, Product, OrderItem } from "./wizards/order";
 import { Config } from 'src/config'
 
+
+/**装饰器-捕获Promise对象异常*/
 function Catch() {
   return function (target, key, desc) {
     var oMethod = desc.value;
     desc.value = function (...args) {
       return oMethod.apply(this, args)
-        .catch((err) => {
-          console.log('err:', err)
-          window.alert(err.error && err.error.Message || err.message || '发生错误')
-        })
+        .catch(catcherr)
     }
   }
 }
 
+/**装饰器-更新查询状态*/
 function Querying() {
   return function (target, key, desc) {
     var oMethod = desc.value;
@@ -29,27 +29,75 @@ function Querying() {
   }
 }
 
-function ItemAction(){
-  return function(t,p){
-    console.log(t,p,t[p])
-  }
+export function catcherr(err) {
+  console.log('err:', err)
+  window.alert(err.error && err.error.Message || err.message || '发生错误')
 }
 
-
+/**数据服务*/
 export class DataService {
   constructor(public http: HttpClient) {
 
   }
+  /**产品数组*/
   products: Array<Product> = null;
+
+  /**查询状态*/
   querying: boolean = false;
-  //@ItemAction()
-  items:Array<OrderItem> = null;  
-  order:Order = null;
-  /*
-  finally = (() => {
-    this.querying = false
-  }).bind(this)
-*/
+
+  /**当前订单选取项目数组*/
+  items: Array<OrderItem> = null;
+
+  /**当前订单*/
+  order: Order = null;
+
+  newOrder(student?) {
+    this.order = Object.assign(new Order(), student)
+    this.items = this.initItems(new Array<OrderItem>())
+  }
+
+  setOrder(order, items?) {
+    this.order = Object.assign(new Order(), order)
+    if (items) {
+      this.items = this.initItems(items)
+      praseArray(OrderItem, items)
+    }
+  }
+
+  initItems(items) {
+    items.api = {
+      add: function (product) {
+        let item = this.find(item => item.productId == product.id)
+        if (item) {
+          item.count++;
+        }
+        else {
+          this.push(new OrderItem(product.name, product.id, 1, product.price))
+        }
+      }.bind(items),
+      delete: function (item) {
+        if (window.confirm(`是否删除项目：${item.name}（${item.count}份）？`)) {
+          let index = this.findIndex(i => i == item)
+          //console.log(item, index)
+          if (index >= 0) {
+            this.splice(index, 1)
+            if (item.id != 0) {
+              this.api.deleted.push(item)
+              console.log(this.api.deleted)
+            }
+          }
+        }
+
+      }.bind(items),
+      deleted: []
+    }
+    return items
+  }
+
+
+  /**载入产品列表
+   * @param state 产品状态筛选
+   */
   @Querying() @Catch()
   LoadProductList(state?: number) {
     if (!this.products) {
@@ -73,27 +121,42 @@ export class DataService {
       })
     }
   }
+  /**保存新产品项目 */
   @Querying() @Catch()
   postProduct(product) {
     return this.http.post(Config.apiProductUrl, product).toPromise()
   }
+  /**
+   * 修改产品项目
+   * @param product 
+   */
   @Querying() @Catch()
   putProduct(product) {
     return this.http.put(Config.apiProductUrl + '/' + product.id, product).toPromise()
   }
+  /**
+   * 删除一组产品
+   * @param ids 
+   */
   @Querying() @Catch()
   deleteProduct(ids) {
     return this.http.delete(Config.apiProductUrl + "/delete/" + ids.join(',')).toPromise()
   }
 
+  /**
+   * 当前订单列表
+   */
   orders: Array<Order> = null
-
+  /**
+   * 载入订单列表
+   * @param state 
+   */
   @Querying() @Catch()
   loadOrderList(state?: number) {
     if (this.orders == null) {
       return this.http.get(Config.apiOrderUrl).toPromise<any>()
         .then(data => {
-          this.orders = new Array<Order>()
+          this.orders = this.initItems(new Array<Order>())
           praseArray(Order, data)
           for (let item of data) {
             this.orders.push(item)
@@ -105,14 +168,18 @@ export class DataService {
       resolve(this.orders)
     })
   }
-  @Querying() @Catch()
-  postOrder(order) {
-    return this.http.post(Config.apiOrderUrl, order).toPromise()
+  /**保存新订单 */
+  @Querying() //@Catch()
+  postOrder(order, items) {
+    return this.http.post(Config.apiOrderUrl, { order: order, items: items }).toPromise()
   }
-  @Querying() @Catch()
-  putOrder(order) {
-    return this.http.put(Config.apiOrderUrl + '/' + order.id, order).toPromise()
+  /**修改订单 */
+  @Querying()
+  putOrder(order, items) {
+    console.log(items)
+    return this.http.put(Config.apiOrderUrl + '/' + order.id, { order: order, items: items, deleted: items.api.deleted }).toPromise()
   }
+  /**删除一组订单 */
   @Querying() @Catch()
   deleteOrder(ids) {
     return this.http.delete(Config.apiOrderUrl + '/delete/' + ids.join(',')).toPromise()
@@ -138,8 +205,8 @@ export class ApplyDataService extends DataService {
   products: Array<Product> = null;
   constructor(public http: HttpClient) {
     super(http)
-    this.init();
-    //this.LoadProductList(2);
+    //this.init();
+    this.LoadProductList(2);
 
   }
 
@@ -167,6 +234,11 @@ export class ApplyDataService extends DataService {
       step: 1
 
     };
+    this.order = null;
+    this.items = null;
+    this.querying = false;
+    //this.LoadProductList(2);
+
   }
 
   Order(neworder?: boolean) {
@@ -217,32 +289,28 @@ export class ApplyDataService extends DataService {
       })
   }
 
-  updateOrder() {
-    this.model.querying = true;
+  /*@Querying()
+  updateOrder(order, items) {
     return this.http.get("assets/addorder.json").toPromise<any>()
       .then(data => {
-        this.model.order.key = data.key
-        this.model.querying = false;
-      }).catch(err => {
-        window.alert(err.message)
-        this.model.querying = false;
-      })
-  }
+      },catcherr)
+  }*/
 
-  findOrder(key) {
-    this.model.querying = true;
-    this.http.get("assets/order.json").toPromise<any>()
+  @Querying()
+  findOrder(id, key) {
+    //this.http.get("assets/order.json").toPromise<any>()
+    return this.http.get(`${Config.apiOrderUrl}/key/${key}/${id}`).toPromise<any>()
       .then(
         (data) => {
-          this.model.order = Object.assign(new Order(), data.order)
+          /*this.model.order = Object.assign(new Order(), data.order)
           this.model.order.init(this.products)
           console.log(this.model.order)
-          this.model.querying = false;
+          this.model.querying = false;*/
+          this.setOrder(data.order, data.items)
+
+          console.log(data)
         },
-        (err) => {
-          window.alert(err.message)
-          this.model.querying = false;
-        });
+        catcherr);
 
   }
 }
@@ -255,24 +323,23 @@ export class ManagerDataService extends DataService {
     http: HttpClient
   ) {
     super(http)
-    this.model = {
-    }
 
   }
-  model: {
-  };
 
 }
 
-function praseArray<T>(type: (new () => T), array, callback?: any) {
+function praseArray<T>(type: (new (...args) => T), array, callback?: any){
+  //let ret = new Array<T>()
   for (let index in array) {
     let item = array[index]
     let newItem = new type()
     console.log(index)
     newItem = Object.assign(newItem, item)
     array[index] = newItem
+    //ret.push(newItem)
     callback && callback(newItem)
   }
+  //return ret
 }
 
 

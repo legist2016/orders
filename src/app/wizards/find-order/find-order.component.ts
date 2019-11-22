@@ -17,10 +17,10 @@ export class FindOrderComponent extends Wizard implements OnInit {
   ngOnInit() { }
 
   onScan(event) {
-    let res = /order:\/\/([a-f0-9]+)$/.exec(event)
+    let res = /order:\/\/([0-9]+)-([a-f0-9]+)$/.exec(event)
     if (res) {
-      console.log('findOrder("' + res[1] + '")')
-      this.ds.findOrder(res[1])
+      console.log(`'findOrder(${res[1]},${res[2]})`)
+      this.ds.findOrder(res[1],res[2])
     }
   }
 

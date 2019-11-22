@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService } from "../data.service";
+import { ApplyDataService,catcherr } from "../data.service";
 
 @Component({
   selector: 'app-new-order',
@@ -12,6 +12,7 @@ export class NewOrderComponent implements OnInit {
 
   ngOnInit() {
     this.ds.init()
+    this.ds.LoadProductList(2)
   }
   do(event) {
     switch (event) {
@@ -22,9 +23,11 @@ export class NewOrderComponent implements OnInit {
         if(this.ds.model.step>1)this.ds.model.step -= 1
         break;
       case 'submit':
-        this.ds.insertOrder().then(()=>{
+        this.ds.postOrder(this.ds.order, this.ds.items)
+        .then((data)=>{
+          this.ds.setOrder(data)
           this.do('next')
-        })
+        }, catcherr)
         break;
       default:
         window.alert(event)

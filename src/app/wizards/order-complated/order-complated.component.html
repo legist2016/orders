@@ -1,16 +1,16 @@
 <table>
     <tr>
         <td>学号</td>
-        <td>{{ds.model.order.xh}}</td>
+        <td>{{ds.order.xh}}</td>
     </tr>
     <tr>
         <td>姓名</td>
-        <td>{{ds.model.order.xm}}</td>
+        <td>{{ds.order.xm}}</td>
     </tr>
     <tr>
         <td colspan="2">
             <h2>申请表提交成功。请拍照保留下方二维码图片，提供此二维码可查询或修改申请表。</h2>
-            <qr-code [value]="'order://'+ds.model.order.key" [size]="250"></qr-code>
+            <qr-code [value]="'order://'+ds.order.id+'-'+ds.order.key" [size]="250"></qr-code>
             <h2>提示：不要扫描此二维码，直接拍照留存。</h2>
 
         </td>
@@ -19,4 +19,3 @@
 <div>
     <button routerLink='/apply'>完成</button>
 </div>
-{{diagnostic}}

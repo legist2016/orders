@@ -1,16 +1,14 @@
-<div *ngIf="!ds.model.order">
+<div *ngIf="!ds.order">
     <app-scan-code (scan)="onScan($event)" *ngIf="!ds.model.querying" message="请使用扫码器扫描申请表二维码"></app-scan-code>
     <div>
         <button routerLink='/apply'>返回</button>
     </div>
 </div>
-<div *ngIf="ds.model.order">
-    <app-order-info [order]="ds.model.order" state='show'></app-order-info>
+<div *ngIf="ds.order">
+    <app-order-info [order]="ds.order" state='show' [items]="ds.items" [products]="ds.products"></app-order-info>
     <table></table>
     <div>
-        <button (click)="ds.model.order=null">查找其他</button>
-        <button [disabled]="ds.model.order.state>3" (click)="Do('next')">修改</button>
-        <button routerLink='/apply'>返回</button>
-
+        <button (click)="ds.order=null">查找其他</button>
+        <button [disabled]="ds.order.state>3" (click)="Do('next')">修改</button>
     </div>
 </div>
