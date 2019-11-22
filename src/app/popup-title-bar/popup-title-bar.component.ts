@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./popup-title-bar.component.scss']
 })
 export class PopupTitleBarComponent implements OnInit {
-  @Input() routerLink
+  @Input() closeRouterLink
   constructor() { }
   @Output() close = new EventEmitter()
   ngOnInit() {

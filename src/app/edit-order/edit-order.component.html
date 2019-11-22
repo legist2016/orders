@@ -1,7 +1,7 @@
 <app-apply-top></app-apply-top>
 <div class="popup">
     <div apply>
-        <app-popup-title-bar routerLink="/apply"></app-popup-title-bar>
+        <app-popup-title-bar closeRouterLink="/apply"></app-popup-title-bar>
         <app-find-order (do)="do($event)" *ngIf="ds.model.step==1" [ds]="ds"></app-find-order>
         <app-input-order (do)="do($event)" *ngIf="ds.model.step==2" [ds]="ds"></app-input-order>
         <app-select-item (do)="do($event)" *ngIf="ds.model.step==3" [ds]="ds"></app-select-item>

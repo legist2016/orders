@@ -1,5 +1,6 @@
 <div *ngIf="!ds.order">
     <app-scan-code (scan)="onScan($event)" *ngIf="!ds.model.querying" message="请使用扫码器扫描申请表二维码"></app-scan-code>
+    <table></table>
     <div>
         <button routerLink='/apply'>返回</button>
     </div>

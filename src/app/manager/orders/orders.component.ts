@@ -26,12 +26,16 @@ export class OrdersComponent implements OnInit {
 
   columnDefs = [
     {
-      headerName: '申请状态', field: 'state', valueFormatter: this.stateText, sortable: false, filter: StateFilter,
-      width:100,checkboxSelection: true
+      headerName: '编号', field: 'id',
+      width: 150, checkboxSelection: true
     },
-    { headerName: '姓名', field: 'xm' },
-    { headerName: '学号', field: 'xh' },
-    { headerName: '出生日期', field: 'csrq' },
+    {
+      headerName: '申请状态', field: 'state',
+      width: 100, valueFormatter: this.stateText, sortable: false, filter: StateFilter
+    },
+    { headerName: '姓名', field: 'xm',width: 100, },
+    { headerName: '学号', field: 'xh',width: 100 },
+    { headerName: '出生日期', field: 'csrq',width: 100 },
   ]
 
   onRowDbclick(event) {
@@ -49,7 +53,7 @@ export class OrdersComponent implements OnInit {
   del() {
 
   }
-  OnEditSave(){
+  OnEditSave() {
     this.editOrder = null
   }
 }
