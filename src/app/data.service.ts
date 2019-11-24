@@ -72,8 +72,7 @@ export class DataService {
         (data) => {
           this.setOrder(data.order, data.items)
           console.log(data)
-        },
-        catcherr);
+        },       catcherr);
 
   }
 

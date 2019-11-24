@@ -52,9 +52,15 @@ export class OrdersComponent implements OnInit {
     //this.editOrder = Object.assign({}, event.data)
     let order = event.data
     console.log(order)
+    this.ds.init()
     this.ds.findOrder(order.id, order.key)
-      .then(data => {
-        this.editOrder = this.ds.order
+      .then((data) => {
+        this.editOrder = true
+        //this.ds.model.step = 1
+        //console.log(data)
+        //this.editOrder = this.ds.order
+        //let d:any = data
+        //this.ds.setOrder(d.order, d.items)
       })
   }
 
