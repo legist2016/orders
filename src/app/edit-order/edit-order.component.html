@@ -1,13 +1,12 @@
 <app-apply-top></app-apply-top>
-<div class="popup">
+<app-popup closeRouterLink="/apply">
     <div apply>
-        <app-popup-title-bar closeRouterLink="/apply"></app-popup-title-bar>
         <app-find-order (do)="do($event)" *ngIf="ds.model.step==1" [ds]="ds"></app-find-order>
         <app-input-order (do)="do($event)" *ngIf="ds.model.step==2" [ds]="ds"></app-input-order>
         <app-select-item (do)="do($event)" *ngIf="ds.model.step==3" [ds]="ds"></app-select-item>
         <app-confirm-order (do)="do($event)" *ngIf="ds.model.step==4" [ds]="ds"></app-confirm-order>
         <app-order-complated (do)="do($event)" *ngIf="ds.model.step==5" [ds]="ds"></app-order-complated>
     </div>
-</div>
+</app-popup>
 
 <app-conver *ngIf="ds.querying"></app-conver>

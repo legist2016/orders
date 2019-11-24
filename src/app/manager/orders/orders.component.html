@@ -1,9 +1,25 @@
-<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.orders" [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="onRowDbclick($event)">
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.orders" (gridReady)="gridReady($event)" [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="onRowDbclick($event)">
 </ag-grid-angular>
-<button (click)="refresh()">刷新</button><button (click)="new()">新建</button><button (click)="del()">删除</button>
-<div *ngIf="editOrder">
-    <app-conver message=""></app-conver>
-    <div class="popup">
-        <app-order-edit (save)="OnEditSave()" [order]="editOrder"></app-order-edit>
+<button (click)="refresh()">刷新</button><button (click)="new()">新建</button>
+<app-popup *ngIf="editOrder" apply (close)="editOrder=null">
+    <app-order-info [order]="editOrder" [items]="ds.items" mode="show"></app-order-info>
+    <table></table>
+    <div>
+        <button title="修改此申请表" *ngIf="editOrder.state<4">修改</button>
+        <button title="此申请表符合制作要求，通过审核，可以缴费" *ngIf="editOrder.state<4">通过</button>
+        <button title="此申请表不符合制作要求" *ngIf="editOrder.state<4">不通过</button>
+        <button title="取消审核状态，退回未审核状态" *ngIf="editOrder.state==4">取消</button>
+        <button title="将此申请表设置为已缴费成功状态" *ngIf="editOrder.state==4">缴费</button>
+        <button title="此申请表全部处理流程已经完成" *ngIf="editOrder.state==5">完成</button>
+        <button title="作废此申请表，以后将无法再进行操作" *ngIf="editOrder.state<5">作废</button>
+        <button title="查看全部处理流程">流程</button>
+        <button title="查看全部处理流程">二维码</button>
     </div>
-</div>
+</app-popup>
+<app-popup *ngIf="newOrder" apply (close)="newOrder=null">
+    <!--app-input-xh (do)="do($event)" *ngIf="ds.model.step==1" [ds]="ds" [xmRequired]="false"></app-input-xh-->
+    <app-input-order (do)="do($event)" *ngIf="ds.model.step==1" [ds]="ds" [inputxh]="true"></app-input-order>
+    <app-select-item (do)="do($event)" *ngIf="ds.model.step==2" [ds]="ds"></app-select-item>
+    <app-confirm-order (do)="do($event)" *ngIf="ds.model.step==3" [ds]="ds"></app-confirm-order>
+</app-popup>
+<app-conver *ngIf="ds.querying"></app-conver>

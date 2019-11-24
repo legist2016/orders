@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,Input } from "@angular/core";
 //import { Router } from "@angular/router";
 //import { ApplyDataService } from "../../data.service";
 import { Wizard } from "../wizard";
+
 
 @Component({
   selector: "app-input-order",
@@ -10,6 +11,7 @@ import { Wizard } from "../wizard";
 })
 export class InputOrderComponent extends Wizard implements OnInit {
   order;
+  @Input()inputxh = false;
   constructor(
     //public ds: ApplyDataService
   ) {

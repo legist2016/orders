@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Wizard } from "../wizard";
 
 @Component({
@@ -7,7 +7,7 @@ import { Wizard } from "../wizard";
   styleUrls: ['./order-complated.component.css'],
 })
 export class OrderComplatedComponent extends Wizard implements OnInit {
-
+  @Input() complatedRouterLink
   constructor() { super()}
 
   ngOnInit() {

@@ -64,6 +64,20 @@ export class DataService {
     }
   }
 
+  @Querying()
+  findOrder(id, key) {
+    //this.http.get("assets/order.json").toPromise<any>()
+    return this.http.get(`${Config.apiOrderUrl}/key/${key}/${id}`).toPromise<any>()
+      .then(
+        (data) => {
+          this.setOrder(data.order, data.items)
+          console.log(data)
+        },
+        catcherr);
+
+  }
+
+
   initItems(items) {
     items.api = {
       add: function (product) {
@@ -296,23 +310,6 @@ export class ApplyDataService extends DataService {
       },catcherr)
   }*/
 
-  @Querying()
-  findOrder(id, key) {
-    //this.http.get("assets/order.json").toPromise<any>()
-    return this.http.get(`${Config.apiOrderUrl}/key/${key}/${id}`).toPromise<any>()
-      .then(
-        (data) => {
-          /*this.model.order = Object.assign(new Order(), data.order)
-          this.model.order.init(this.products)
-          console.log(this.model.order)
-          this.model.querying = false;*/
-          this.setOrder(data.order, data.items)
-
-          console.log(data)
-        },
-        catcherr);
-
-  }
 }
 
 @Injectable({

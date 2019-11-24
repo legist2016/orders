@@ -17,5 +17,5 @@
     </tr>
 </table>
 <div>
-    <button routerLink='/apply'>完成</button>
+    <button [routerLink]='complatedRouterLink' (click)="do.emit('complated')">完成</button>
 </div>

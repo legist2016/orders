@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ManagerDataService } from '../data.service';
+import { ManagerDataService, ApplyDataService } from '../data.service';
 import { OrderItem } from '../wizards/order';
 
 @Component({
@@ -9,7 +9,7 @@ import { OrderItem } from '../wizards/order';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor(public ds: ManagerDataService) { }
+  constructor(public ds: ApplyDataService) { }
   //productSelector = 0
   //product = null
   @Input() productState = 2
@@ -18,8 +18,9 @@ export class OrderListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.ds.LoadProductList(this.productState).then(() => {
-    })
+    /*this.ds.LoadProductList(this.productState).then(() => {
+    })*/
+    this.ds.newOrder()
   }
   /*
   addProduct() {

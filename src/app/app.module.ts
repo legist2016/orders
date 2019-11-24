@@ -40,7 +40,7 @@ import { OrderEditComponent } from './manager/orders/order-edit/order-edit.compo
 import { OpenCloseComponent } from './manager/orders/order-input/order-input.component';
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
-import { PopupTitleBarComponent } from './popup-title-bar/popup-title-bar.component';
+import { PopupComponent } from './popup/popup.component';
 
 
 @NgModule({
@@ -83,15 +83,15 @@ import { PopupTitleBarComponent } from './popup-title-bar/popup-title-bar.compon
     ProductEditComponent,
     ManagerMenuComponent,
     OrdersComponent,
-    OrderEditComponent,    
-    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent, PopupTitleBarComponent
+    OrderEditComponent,
+    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent, PopupComponent
   ],
   bootstrap: [AppComponent],
   providers: [
     ApplyDataService,
-    { 
+    {
       provide: APP_BASE_HREF,
-      useValue: '/' 
+      useValue: '/'
       //useValue: environment.publicBase //'/ap'       
       //useFactory: () => getBaseUrl()
     }

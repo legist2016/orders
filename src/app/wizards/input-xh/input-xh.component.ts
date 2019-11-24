@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,Input } from "@angular/core";
 //import { ApplyDataService } from "../../data.service";
 import { Wizard } from "../wizard";
 
@@ -8,6 +8,9 @@ import { Wizard } from "../wizard";
   styleUrls: ["./input-xh.component.css"]
 })
 export class InputXhComponent extends Wizard {
+
+  @Input() xmRequired = true
+
   constructor(
     //public ds: ApplyDataService
     ) {
