@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ManagerDataService } from 'src/app/data.service';
+import { ApplyDataService } from 'src/app/data.service';
 import { Product } from 'src/app/wizards/order';
 import { localeText } from 'src/app/aggrid.localtext';
 
@@ -10,7 +10,7 @@ import { localeText } from 'src/app/aggrid.localtext';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(public ds: ManagerDataService) { }
+  constructor(public ds: ApplyDataService) { }
 
   columnDefs = [
     { headerName: 'ID', field: 'id', checkboxSelection: true, width: 80 },

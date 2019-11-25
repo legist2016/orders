@@ -41,6 +41,7 @@ import { OrderItemListComponent } from './order-item-list/order-item-list.compon
 import { PopupComponent } from './popup/popup.component';
 import { OrderFlowComponent } from './order-flow/order-flow.component';
 
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -89,8 +90,8 @@ import { OrderFlowComponent } from './order-flow/order-flow.component';
     ApplyDataService,
     {
       provide: APP_BASE_HREF,
-      useValue: '/'
-      //useValue: environment.publicBase //'/ap'       
+      //useValue: '/'
+      useValue: environment.publicBase //'/ap'       
       //useFactory: () => getBaseUrl()
     }
   ]

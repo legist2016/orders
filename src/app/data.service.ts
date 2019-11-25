@@ -5,7 +5,7 @@ import { Config } from 'src/config'
 
 
 /**装饰器-捕获Promise对象异常*/
-function Catch() {
+export function CatchErr() {
   return function (target, key, desc) {
     var oMethod = desc.value;
     desc.value = function (...args) {
@@ -16,7 +16,7 @@ function Catch() {
 }
 
 /**装饰器-更新查询状态*/
-function Querying() {
+export function Querying() {
   return function (target, key, desc) {
     var oMethod = desc.value;
     desc.value = function (...args) {
@@ -70,7 +70,7 @@ export class DataService {
 
 
 
-  @Querying()
+  //@Querying()
   findOrder(id, key) {
     //this.http.get("assets/order.json").toPromise<any>()
     return this.http.get(`${Config.apiOrderUrl}/key/${key}/${id}`).toPromise<any>()
@@ -117,14 +117,14 @@ export class DataService {
   /**载入产品列表
    * @param state 产品状态筛选
    */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   LoadProductList(state?: number) {
-    if (!this.products) {
+    //if (!this.products) {
       let url = Config.apiProductUrl
       if (state != undefined) {
         url = url + "/state/" + state
       }
-      this.querying = true
+      //this.querying = true
       return this.http
         .get(url)
         .toPromise<any>()
@@ -134,14 +134,14 @@ export class DataService {
             this.products.push(item)
           }
         })
-    } else {
+    /*} else {
       return new Promise<any>((resolve, reject) => {
         resolve(this.products)
       })
-    }
+    }*/
   }
   /**保存新产品项目 */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   postProduct(product) {
     return this.http.post(Config.apiProductUrl, product).toPromise()
   }
@@ -149,7 +149,7 @@ export class DataService {
    * 修改产品项目
    * @param product 
    */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   putProduct(product) {
     return this.http.put(Config.apiProductUrl + '/' + product.id, product).toPromise()
   }
@@ -157,7 +157,7 @@ export class DataService {
    * 删除一组产品
    * @param ids 
    */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   deleteProduct(ids) {
     return this.http.delete(Config.apiProductUrl + "/delete/" + ids.join(',')).toPromise()
   }
@@ -170,7 +170,7 @@ export class DataService {
    * 载入订单列表
    * @param state 
    */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   loadOrderList(states?: string) {
     //if (this.orders == null) {
     let url = Config.apiOrderUrl
@@ -192,27 +192,49 @@ export class DataService {
     })*/
   }
   /**保存新订单 */
-  @Querying() //@Catch()
+  //@Querying() //@CatchErr()
   postOrder(order, items) {
     return this.http.post(Config.apiOrderUrl, { order: order, items: items }).toPromise()
   }
   /**修改订单 */
-  @Querying()
+  //@Querying()
   putOrder(order, items) {
-    console.log(items)
+    //console.log(items)
     return this.http.put(Config.apiOrderUrl + '/' + order.id, { order: order, items: items, deleted: items.api.deleted }).toPromise()
   }
 
-  @Querying()
+  //@Querying()
   putOrderState(order, newState) {
     return this.http.put(`${Config.apiOrderUrl}/state/${order.id}/${newState}`, null).toPromise()
   }
 
   /**删除一组订单 */
-  @Querying() @Catch()
+  //@Querying() @CatchErr()
   deleteOrder(ids) {
     return this.http.delete(Config.apiOrderUrl + '/delete/' + ids.join(',')).toPromise()
   }
+
+  
+
+  test(){
+    this.http.get('').toPromise()
+    
+  }
+  /*
+  
+get(
+  url: string, 
+  options: 
+  { 
+    headers?: HttpHeaders | { [header: string]: string | string[]; }; 
+    observe?: "body"; 
+    params?: HttpParams | { [param: string]: string | string[]; }; 
+    reportProgress?: boolean; 
+    responseType: "arraybuffer"; 
+    withCredentials?: boolean; }
+    ): Observable<ArrayBuffer>  
+  
+  */
 
 }
 
@@ -223,15 +245,13 @@ export class DataService {
 })
 export class ApplyDataService extends DataService {
   model: {
-    order: Order;
     student: Order;
     query: Student;
-    querying: boolean;
-    message: string;
-    //items: Array<OrderItem>
     step: number
   };
-  products: Array<Product> = null;
+
+  //products: Array<Product> = null;
+  
   constructor(public http: HttpClient) {
     super(http)
     //this.init();
@@ -239,14 +259,14 @@ export class ApplyDataService extends DataService {
 
   }
 
-  get cost() {
+  /*get cost() {
     let cost = 0;
 
     for (let item of this.model.order.items) {
       //cost += (item.count) * (item.product.price);
     }
     return cost
-  }
+  }*/
 
   getStudentInfo(xh, xm) {
     return this.http.get(`${Config.apiStudentUrl}/${xh}`).toPromise<any>();
@@ -254,11 +274,11 @@ export class ApplyDataService extends DataService {
 
   init() {
     this.model = {
-      order: null,
+      //order: null,
       student: null,
       query: new Student(),
-      querying: false,
-      message: null,
+      //querying: false,
+      //message: null,
       //items: new Array<OrderItem>(),
       step: 1
 
@@ -270,7 +290,7 @@ export class ApplyDataService extends DataService {
 
   }
 
-  Order(neworder?: boolean) {
+  /*Order(neworder?: boolean) {
     if (neworder) {
       this.model.order = new Order();
     } else {
@@ -278,26 +298,26 @@ export class ApplyDataService extends DataService {
     }
     //console.log(this.model)
     this.model.order.init(this.products)
-  }
+  }*/
 
-  @Querying()
+  /*@Querying()
   queryStudent1() {
     var xh = this.model.query.xh;
     var xm = this.model.query.xm;
 
-  }
+  }*/
 
   queryStudent() {
     var xh = this.model.query.xh;
     var xm = this.model.query.xm;
-    this.model.querying = true;
+    //this.model.querying = true;
     this.model.student = null;
-    this.model.message = null;
+    //this.model.message = null;
     return this.getStudentInfo(xh, xm)
       //.toPromise<any>()
       .then(data => {
-        console.log(data)
-        this.model.querying = false;
+        //console.log(data)
+        //this.model.querying = false;
         data = {
           xh: data.XH,
           xm: data.XM,
@@ -311,14 +331,14 @@ export class ApplyDataService extends DataService {
           this.model.student = data;
           //this.ds.setStudent(this.student);
         } else {
-          this.model.message = "填写的信息无效。";
+          //this.model.message = "填写的信息无效。";
         }
       })
-      .catch(err => {
+      /*.catch(err => {
         this.model.querying = false;
         window.alert(err.message)
         console.log(err);
-      });
+      });*/
   }
 
   /*insertOrder() {
@@ -342,7 +362,7 @@ export class ApplyDataService extends DataService {
 
 }
 
-@Injectable({
+/*@Injectable({
   providedIn: "root"
 })
 export class ManagerDataService extends DataService {
@@ -353,7 +373,7 @@ export class ManagerDataService extends DataService {
 
   }
 
-}
+}*/
 
 function praseArray<T>(type: (new (...args) => T), array, callback?: any) {
   //let ret = new Array<T>()

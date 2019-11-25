@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { ManagerDataService, ApplyDataService, catcherr } from 'src/app/data.service';
+import { ApplyDataService, catcherr } from 'src/app/data.service';
 import { localeText } from 'src/app/aggrid.localtext';
 import { StateFilter } from './state-fliter';
 import { OrderState } from 'src/app/wizards/order';
@@ -26,9 +26,9 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.ds.orders = null;
     if(this.states){
-      this.ds.loadOrderList(this.states).catch(catcherr)
+      this.ds.loadOrderList(this.states)//.catch(catcherr)
     }else{
-      this.ds.loadOrderList().catch(catcherr)
+      this.ds.loadOrderList()//.catch(catcherr)
     }
     this.ds.LoadProductList(2);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ManagerDataService, ApplyDataService } from '../data.service';
+import { ApplyDataService } from '../data.service';
 import { OrderItem } from '../wizards/order';
 
 @Component({
@@ -14,7 +14,7 @@ export class OrderListComponent implements OnInit {
   //product = null
   @Input() productState = 2
   items = []
-  readonly = 1
+  readonly = true
 
 
   ngOnInit() {
