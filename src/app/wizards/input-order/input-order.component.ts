@@ -19,4 +19,14 @@ export class InputOrderComponent extends Wizard implements OnInit {
   }
 
   ngOnInit() { }
+
+
+  queryStudent(){
+    this.ds.model.query.xh = this.ds.order.xh
+    this.ds.model.query.xm = this.ds.order.xm
+    this.ds.queryStudent()
+    .then(()=>{
+      this.ds.setOrder(this.ds.model.student)
+    })
+  }
 }

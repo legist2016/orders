@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ManagerDataService, ApplyDataService, catcherr } from 'src/app/data.service';
 import { localeText } from 'src/app/aggrid.localtext';
 import { StateFilter } from './state-fliter';
@@ -14,6 +14,8 @@ export class OrdersComponent implements OnInit {
 
   constructor(public ds: ApplyDataService) { }
 
+  @Input() states
+
   localeText = localeText
   editOrder = null
   newOrder = null
@@ -23,7 +25,11 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.ds.orders = null;
-    this.ds.loadOrderList('2,3,4,5').catch(catcherr)
+    if(this.states){
+      this.ds.loadOrderList(this.states).catch(catcherr)
+    }else{
+      this.ds.loadOrderList().catch(catcherr)
+    }
     this.ds.LoadProductList(2);
   }
 
@@ -81,7 +87,11 @@ export class OrdersComponent implements OnInit {
   refresh() {
     this.ds.orders = null;
     this.gridApi.refreshCells()
-    this.ds.loadOrderList('2,3,4,5').catch(catcherr)
+    if(this.states){
+      this.ds.loadOrderList(this.states).catch(catcherr)
+    }else{
+      this.ds.loadOrderList().catch(catcherr)
+    }
   }
 
   new() {
@@ -115,7 +125,9 @@ export class OrdersComponent implements OnInit {
         } else if (mode == 'edit') {
           this.ds.putOrder(this.ds.order, this.ds.items)
             .then((data) => {
+              //console.log(data)
               //this.ds.setOrder(data)
+              this.ds.order.state = 2
               this.resolve(this.ds.order)
             }, catcherr)
         }

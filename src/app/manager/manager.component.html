@@ -3,7 +3,8 @@
         <app-manager-menu (menu)="content=$event" [actived]='content'></app-manager-menu>
     </div>
     <div class="right-side">
-        <app-products *ngIf="content=='products'" all='false'></app-products>
-        <app-orders *ngIf="content=='pending orders'"></app-orders>
+        <app-products *ngIf="content=='products'" ></app-products>
+        <app-orders *ngIf="content=='all orders'"></app-orders>
+        <app-orders *ngIf="content=='pending orders'" states='2,3,4,5'></app-orders>
     </div>
 </div>

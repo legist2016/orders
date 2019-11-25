@@ -36,8 +36,6 @@ import { ProductsComponent } from './manager/products/products.component';
 import { ProductEditComponent } from './manager/products/product-edit/product-edit.component';
 import { ManagerMenuComponent } from './manager/manager-menu/manager-menu.component';
 import { OrdersComponent } from './manager/orders/orders.component';
-import { OrderEditComponent } from './manager/orders/order-edit/order-edit.component';
-import { OpenCloseComponent } from './manager/orders/order-input/order-input.component';
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 import { PopupComponent } from './popup/popup.component';
@@ -84,8 +82,7 @@ import { OrderFlowComponent } from './order-flow/order-flow.component';
     ProductEditComponent,
     ManagerMenuComponent,
     OrdersComponent,
-    OrderEditComponent,
-    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent, PopupComponent, OrderFlowComponent
+    ProductSelectorComponent, OrderItemListComponent, PopupComponent, OrderFlowComponent
   ],
   bootstrap: [AppComponent],
   providers: [

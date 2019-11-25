@@ -174,7 +174,7 @@ export class DataService {
   loadOrderList(states?: string) {
     //if (this.orders == null) {
     let url = Config.apiOrderUrl
-    if(states){
+    if (states) {
       url += `/state/${states}`
     }
     return this.http.get(url).toPromise<any>()
@@ -249,7 +249,7 @@ export class ApplyDataService extends DataService {
   }
 
   getStudentInfo(xh, xm) {
-    return this.http.get("assets/student.json");
+    return this.http.get(`${Config.apiStudentUrl}/${xh}`).toPromise<any>();
   }
 
   init() {
@@ -280,17 +280,32 @@ export class ApplyDataService extends DataService {
     this.model.order.init(this.products)
   }
 
+  @Querying()
+  queryStudent1() {
+    var xh = this.model.query.xh;
+    var xm = this.model.query.xm;
+
+  }
+
   queryStudent() {
     var xh = this.model.query.xh;
     var xm = this.model.query.xm;
     this.model.querying = true;
     this.model.student = null;
     this.model.message = null;
-    this.getStudentInfo(xh, xm)
-      .toPromise<any>()
+    return this.getStudentInfo(xh, xm)
+      //.toPromise<any>()
       .then(data => {
+        console.log(data)
         this.model.querying = false;
-        this.model.student = data;
+        data = {
+          xh: data.XH,
+          xm: data.XM,
+          xb: data.XB,
+          csrq: data.CSRQ,
+          yx: data.YX, zy: data.ZY, rxsj: data.RXRQ, bysj: data.BYRQ
+        };
+        this.model.student = data
         return;
         if (data.xm && data.xm == xm) {
           this.model.student = data;
@@ -306,7 +321,7 @@ export class ApplyDataService extends DataService {
       });
   }
 
-  insertOrder() {
+  /*insertOrder() {
     this.model.querying = true;
     return this.http.get("assets/addorder.json").toPromise<any>()
       .then(data => {
@@ -316,7 +331,7 @@ export class ApplyDataService extends DataService {
         window.alert(err.message)
         this.model.querying = false;
       })
-  }
+  }*/
 
   /*@Querying()
   updateOrder(order, items) {
