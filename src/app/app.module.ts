@@ -41,6 +41,7 @@ import { OpenCloseComponent } from './manager/orders/order-input/order-input.com
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 import { PopupComponent } from './popup/popup.component';
+import { OrderFlowComponent } from './order-flow/order-flow.component';
 
 
 @NgModule({
@@ -84,7 +85,7 @@ import { PopupComponent } from './popup/popup.component';
     ManagerMenuComponent,
     OrdersComponent,
     OrderEditComponent,
-    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent, PopupComponent
+    OpenCloseComponent, ProductSelectorComponent, OrderItemListComponent, PopupComponent, OrderFlowComponent
   ],
   bootstrap: [AppComponent],
   providers: [

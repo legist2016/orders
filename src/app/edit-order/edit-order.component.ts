@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService,catcherr } from "../data.service";
+import { ApplyDataService, catcherr } from "../data.service";
 
 
 @Component({
@@ -27,6 +27,8 @@ export class EditOrderComponent implements OnInit {
         this.ds.putOrder(this.ds.order, this.ds.items).then(() => {
           this.do('next')
         }, catcherr)
+        break;
+      case 'complated':
         break;
       default:
         window.alert(event)

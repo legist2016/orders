@@ -1,16 +1,9 @@
 <div class="outer">
     <div class="left-side">
-        <app-manager-menu (menu)="content=$event"></app-manager-menu>
+        <app-manager-menu (menu)="content=$event" [actived]='content'></app-manager-menu>
     </div>
     <div class="right-side">
-        <app-products *ngIf="content=='products'"></app-products>
-
-        <!--div *ngIf="content=='pending orders'">
-            <button (click)="loadData()">查询</button>
-            <ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="rowData"
-                [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="openrow($event)">
-            </ag-grid-angular>
-        </div-->
+        <app-products *ngIf="content=='products'" all='false'></app-products>
         <app-orders *ngIf="content=='pending orders'"></app-orders>
     </div>
 </div>

@@ -1,0 +1,4 @@
+<ul *ngIf="flows">
+    <li *ngFor="let flow of flows">状态：{{flowTo(flow.from)}} -> {{flowTo(flow.to)}}，信息：{{flow.message}}，时间：{{flow.time}}。</li>
+    <li *ngIf="flows.length==0">没有任何流程信息。</li>
+</ul>

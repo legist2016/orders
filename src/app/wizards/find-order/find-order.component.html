@@ -11,5 +11,9 @@
     <div>
         <button (click)="ds.order=null">查找其他</button>
         <button [disabled]="ds.order.state>3" (click)="Do('next')">修改</button>
+        <button (click)="flows=1">流程信息</button>
     </div>
 </div>
+<app-popup *ngIf="flows" (close)="flows=null">
+    <app-order-flow [flows]="ds.flows"></app-order-flow>
+</app-popup>

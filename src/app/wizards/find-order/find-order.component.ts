@@ -13,7 +13,7 @@ export class FindOrderComponent extends Wizard implements OnInit {
     super();
 
   }
-
+  flows
   ngOnInit() { }
 
   onScan(event) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManagerDataService, ApplyDataService, catcherr } from 'src/app/data.service';
 import { localeText } from 'src/app/aggrid.localtext';
 import { StateFilter } from './state-fliter';
+import { OrderState } from 'src/app/wizards/order';
 
 
 @Component({
@@ -17,15 +18,20 @@ export class OrdersComponent implements OnInit {
   editOrder = null
   newOrder = null
   gridApi
+  qrcode
+  flows
 
   ngOnInit() {
-    this.ds.loadOrderList()
+    this.ds.orders = null;
+    this.ds.loadOrderList('2,3,4,5').catch(catcherr)
     this.ds.LoadProductList(2);
   }
 
   stateText(params) {
     return params.data.stateText()
   }
+
+
 
   columnDefs = [
     {
@@ -38,7 +44,7 @@ export class OrdersComponent implements OnInit {
     },
     { headerName: '学号', field: 'xh', width: 100 },
     { headerName: '姓名', field: 'xm', width: 100, },
-    { headerName: '性别', field: 'xb', width: 100, },
+    { headerName: '性别', field: 'xb', width: 60, },
     { headerName: '出生日期', field: 'csrq', width: 100 },
     { headerName: '院系', field: 'yx' },
     { headerName: '专业', field: 'zy' },
@@ -48,6 +54,8 @@ export class OrdersComponent implements OnInit {
     { headerName: '联系电话', field: 'lxdh', width: 100 },
   ]
 
+  resolve
+
   onRowDbclick(event) {
     //this.editOrder = Object.assign({}, event.data)
     let order = event.data
@@ -56,12 +64,14 @@ export class OrdersComponent implements OnInit {
     this.ds.findOrder(order.id, order.key)
       .then((data) => {
         this.editOrder = true
-        //this.ds.model.step = 1
-        //console.log(data)
-        //this.editOrder = this.ds.order
-        //let d:any = data
-        //this.ds.setOrder(d.order, d.items)
-      })
+      }, catcherr)
+    this.resolve = order => {
+      if (order) {
+        event.node.setData(order)
+        this.editOrder = null
+        this.resolve = null
+      }
+    }
   }
 
   gridReady(param) {
@@ -69,7 +79,9 @@ export class OrdersComponent implements OnInit {
   }
 
   refresh() {
-
+    this.ds.orders = null;
+    this.gridApi.refreshCells()
+    this.ds.loadOrderList('2,3,4,5').catch(catcherr)
   }
 
   new() {
@@ -84,7 +96,7 @@ export class OrdersComponent implements OnInit {
   OnEditSave() {
     this.editOrder = null
   }
-  do(event) {
+  do(event, mode = 'new') {
     switch (event) {
       case 'next':
         this.ds.model.step += 1
@@ -93,18 +105,36 @@ export class OrdersComponent implements OnInit {
         if (this.ds.model.step > 1) this.ds.model.step -= 1
         break;
       case 'submit':
-        this.ds.postOrder(this.ds.order, this.ds.items)
-          .then((data) => {
-            this.ds.setOrder(data)
-            this.gridApi.updateRowData({ add: [this.ds.order] });
-            this.newOrder = false;
-          }, catcherr)
+        if (mode == 'new') {
+          this.ds.postOrder(this.ds.order, this.ds.items)
+            .then((data) => {
+              this.ds.setOrder(data)
+              this.gridApi.updateRowData({ add: [this.ds.order] });
+              this.newOrder = false;
+            }, catcherr)
+        } else if (mode == 'edit') {
+          this.ds.putOrder(this.ds.order, this.ds.items)
+            .then((data) => {
+              //this.ds.setOrder(data)
+              this.resolve(this.ds.order)
+            }, catcherr)
+        }
         break;
       default:
         window.alert(event)
     }
     console.log(event)
 
+  }
+
+  setState(state:number){
+    if(window.confirm(`是否将此申请设置为【${OrderState[state]}】状态？`)){
+      this.ds.putOrderState(this.ds.order, state)
+      .then(()=>{
+        this.ds.order.state = state
+        this.resolve(this.ds.order)                
+      },catcherr)
+    }
   }
 
 }

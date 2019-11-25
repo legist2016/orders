@@ -48,6 +48,9 @@ export class DataService {
   /**当前订单选取项目数组*/
   items: Array<OrderItem> = null;
 
+  /**订单流程信息 */
+  flows
+
   /**当前订单*/
   order: Order = null;
 
@@ -56,13 +59,16 @@ export class DataService {
     this.items = this.initItems(new Array<OrderItem>())
   }
 
-  setOrder(order, items?) {
+  setOrder(order, items?, flows?) {
     this.order = Object.assign(new Order(), order)
     if (items) {
       this.items = this.initItems(items)
+      this.flows = flows
       praseArray(OrderItem, items)
     }
   }
+
+
 
   @Querying()
   findOrder(id, key) {
@@ -70,9 +76,9 @@ export class DataService {
     return this.http.get(`${Config.apiOrderUrl}/key/${key}/${id}`).toPromise<any>()
       .then(
         (data) => {
-          this.setOrder(data.order, data.items)
+          this.setOrder(data.order, data.items, data.flows)
           console.log(data)
-        },       catcherr);
+        });
 
   }
 
@@ -165,21 +171,25 @@ export class DataService {
    * @param state 
    */
   @Querying() @Catch()
-  loadOrderList(state?: number) {
-    if (this.orders == null) {
-      return this.http.get(Config.apiOrderUrl).toPromise<any>()
-        .then(data => {
-          this.orders = this.initItems(new Array<Order>())
-          praseArray(Order, data)
-          for (let item of data) {
-            this.orders.push(item)
-          }
-        })//.catch(this.catch)
-      //.finally(this.finally)
+  loadOrderList(states?: string) {
+    //if (this.orders == null) {
+    let url = Config.apiOrderUrl
+    if(states){
+      url += `/state/${states}`
     }
-    return new Promise((resolve, reject) => {
+    return this.http.get(url).toPromise<any>()
+      .then(data => {
+        this.orders = this.initItems(new Array<Order>())
+        praseArray(Order, data)
+        for (let item of data) {
+          this.orders.push(item)
+        }
+      })//.catch(this.catch)
+    //.finally(this.finally)
+    //}
+    /*return new Promise((resolve, reject) => {
       resolve(this.orders)
-    })
+    })*/
   }
   /**保存新订单 */
   @Querying() //@Catch()
@@ -192,6 +202,12 @@ export class DataService {
     console.log(items)
     return this.http.put(Config.apiOrderUrl + '/' + order.id, { order: order, items: items, deleted: items.api.deleted }).toPromise()
   }
+
+  @Querying()
+  putOrderState(order, newState) {
+    return this.http.put(`${Config.apiOrderUrl}/state/${order.id}/${newState}`, null).toPromise()
+  }
+
   /**删除一组订单 */
   @Querying() @Catch()
   deleteOrder(ids) {
@@ -324,12 +340,12 @@ export class ManagerDataService extends DataService {
 
 }
 
-function praseArray<T>(type: (new (...args) => T), array, callback?: any){
+function praseArray<T>(type: (new (...args) => T), array, callback?: any) {
   //let ret = new Array<T>()
   for (let index in array) {
     let item = array[index]
     let newItem = new type()
-    console.log(index)
+    //console.log(index)
     newItem = Object.assign(newItem, item)
     array[index] = newItem
     //ret.push(newItem)

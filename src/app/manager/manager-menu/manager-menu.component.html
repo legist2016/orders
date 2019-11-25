@@ -1,3 +1,6 @@
-<button (click)="do('pending orders')">待处理申请</button>
-<button (click)="do('all orders')">全部申请</button>
-<button (click)="do('products')">产品管理</button>
+<div>
+    <li (click)="do('pending orders')" [ngClass]="{'actived':actived=='pending orders'}">待处理申请</li>
+    <li (click)="do('all orders')" [ngClass]="{'actived':actived=='all orders'}">全部申请</li>
+    <li (click)="do('products')" [ngClass]="{'actived':actived=='products'}">产品管理</li>
+    <div></div>
+</div>
