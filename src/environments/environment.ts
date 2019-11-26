@@ -4,8 +4,13 @@
 
 export const environment = {
     production: false,
-    publicBase:"/"
-  };
+    publicBase:"/",
+    config: {
+      apiProductUrl: "http://192.168.202.213/cm/api/product",
+      apiOrderUrl: "http://192.168.202.213/cm/api/order",
+      apiStudentUrl: "http://192.168.202.213/cm/api/student",
+    }
+    };
   
   /*
    * For easier debugging in development mode, you can import the following file
@@ -22,3 +27,4 @@ export const environment = {
   Use of this source code is governed by an MIT-style license that
   can be found in the LICENSE file at http://angular.io/license
   */
+

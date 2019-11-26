@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService } from "../data.service";
 import { localeText } from "../aggrid.localtext"
 
 @Component({
@@ -14,7 +13,7 @@ export class ManagerComponent implements OnInit {
 
   localeText = localeText
 
-  constructor(public ds: ApplyDataService) { }
+  constructor() { }
 
   ngOnInit() {
   }

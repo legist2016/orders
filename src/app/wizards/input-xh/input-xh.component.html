@@ -22,7 +22,7 @@
     <div>
         <button type="submit" [disabled]="!form.form.valid||ds.querying">查找</button>
         <!--button routerLink='/apply'>返回</button-->
-        <a (click)="ds.newOrder();do.emit('next')">忘记学号，直接填写信息</a></div>
+        <a (click)="ds.newOrder();do.emit('next')">直接填写信息</a></div>
 </form>
 <!--div *ngIf="ds.model.message">{{ds.model.message}}</div-->
 <div *ngIf="ds.model.student">

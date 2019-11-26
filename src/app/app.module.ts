@@ -42,6 +42,7 @@ import { PopupComponent } from './popup/popup.component';
 import { OrderFlowComponent } from './order-flow/order-flow.component';
 
 import { environment } from '../environments/environment';
+import {PathLocationStrategy, LocationStrategy,HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { environment } from '../environments/environment';
       //useValue: '/'
       useValue: environment.publicBase //'/ap'       
       //useFactory: () => getBaseUrl()
-    }
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ]
 })
 export class AppModule { }

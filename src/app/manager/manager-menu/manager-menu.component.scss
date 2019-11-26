@@ -26,8 +26,11 @@ div{
         
     
         }
+        &:last-of-type{
+            width: 1px;
+        }
 
-        &:not(.actived):hover{
+        &:not(.actived):not(:last-of-type):hover{
             background-color: rgba(255, 255, 255, 0.5);
         }
         &.actived{
@@ -40,10 +43,10 @@ div{
         &:not(.actived)+li:not(.actived)::after{
             background-color: rgba(0, 0, 0, 0.3);
         }
-        &:not(.actived)+li:hover:not(.actived)::after{
+        &:not(.actived)+li:hover:not(.actived):not(:last-of-type)::after{
             background-color: rgba(255, 255, 255, 0);
         }
-        &:hover:not(.actived)+li:not(.actived)::after{
+        &:hover:not(.actived):not(:last-of-type)+li:not(.actived)::after{
             background-color: rgba(255, 255, 255, 0);
         }
     }

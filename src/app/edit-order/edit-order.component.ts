@@ -13,6 +13,7 @@ export class EditOrderComponent implements OnInit {
 
   ngOnInit() {
     this.ds.init()
+    this.ds.LoadProductList(2)
   }
 
   do(event) {
@@ -24,9 +25,11 @@ export class EditOrderComponent implements OnInit {
         if (this.ds.model.step > 1) this.ds.model.step -= 1
         break;
       case 'submit':
-        this.ds.putOrder(this.ds.order, this.ds.items).then(() => {
-          this.do('next')
-        }, catcherr)
+        this.ds.putOrder(this.ds.order, this.ds.items,
+          () => {
+            this.do('next')
+          })
+        
         break;
       case 'complated':
         break;

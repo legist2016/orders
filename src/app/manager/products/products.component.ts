@@ -27,7 +27,8 @@ export class ProductsComponent implements OnInit {
   reject
   localeText = localeText
   ngOnInit() {
-    this.ds.products = null
+    //this.ds.products = null
+    this.ds.init()
     this.ds.LoadProductList()
   }
 
@@ -42,14 +43,10 @@ export class ProductsComponent implements OnInit {
   onNewProductSave(product) {
     console.log(product)
     if (product) {
-      this.ds.postProduct(product)
-        .then(data => {
-          this.newProduct = null
-          this.gridApi.updateRowData({ add: [data] })
-        })
-        .catch(err => {
-          window.alert(err.message)
-        })
+      this.ds.postProduct(product, data => {
+        this.newProduct = null
+        this.gridApi.updateRowData({ add: [data] })
+      })
     } else {
       this.newProduct = null
     }
@@ -61,16 +58,12 @@ export class ProductsComponent implements OnInit {
     this.editProduct = Object.assign({}, event.data)
     this.resolve = product => {
       if (product) {
-        this.ds.putProduct(product)
-          .then(data => {
-            event.node.setData(product)
-            this.editProduct = null
-            this.resolve = null
-            console.log(this.gridApi.getModel())
-          })
-          .catch(err => {
-            window.alert(err.message)
-          })
+        this.ds.putProduct(product,data => {
+          event.node.setData(product)
+          this.editProduct = null
+          this.resolve = null
+          console.log(this.gridApi.getModel())
+        })
       } else {
         this.editProduct = null
       }
@@ -88,9 +81,10 @@ export class ProductsComponent implements OnInit {
       for (let row of rows) {
         ids.push(row.id)
       }
-      this.ds.deleteProduct(ids).then(data => {
+      this.ds.deleteProduct(ids, data => {
+        //window.alert(data)
         this.gridApi.updateRowData({ remove: rows })
-      })
+      })//.then()
     }
   }
 }

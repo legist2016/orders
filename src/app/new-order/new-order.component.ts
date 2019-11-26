@@ -23,11 +23,14 @@ export class NewOrderComponent implements OnInit {
         if (this.ds.model.step > 1) this.ds.model.step -= 1
         break;
       case 'submit':
-        this.ds.postOrder(this.ds.order, this.ds.items)
-          .then((data) => {
+        this.ds.postOrder(this.ds.order, this.ds.items, 
+          //(
+          (data) => {
             this.ds.setOrder(data)
             this.do('next')
-          }, catcherr)
+          }//).bind(this)
+        )
+          //.then(, catcherr)
         break;
       case 'complated':
         break;

@@ -9,17 +9,17 @@ StateFilter.prototype.addOption = function (value, name?) {
         ' <input type="radio" name="stateFilter" id="' + id + '" value="' + value + '"' +
         ' filter-checkbox="true"/> <label for="' + id + '">' + name +
         '</label></div>'*/
-    if(!this.options)this.options = []
-    this.options.push({value:value,name:name})
-    
+    if (!this.options) this.options = []
+    this.options.push({ value: value, name: name })
+
 }
 
-StateFilter.prototype.generateHTML = function (id){
+StateFilter.prototype.generateHTML = function (id) {
     let html = `<div style="margin: 10px;" >
     <select name='${id}' id="${id}" size='${this.options.length}' style='    border: none;    overflow: auto;}'>    
     `
-    for(let option of this.options){
-        html += `<option value='${option['value']}'>${option['name']}</option>`;
+    for (let option of this.options) {
+        html += `<option class='state' value='${option['value']}'>${option['name']}</option>`;
     }
 
     html += `</select></div>`;
@@ -67,7 +67,7 @@ StateFilter.prototype.init = function (params) {
 StateFilter.prototype.onRbChanged = function () {
 
     //console.log(this, this.fliter)
-    this.fliter.filterActive = this.fliter.stateFilter.value!=0;
+    this.fliter.filterActive = this.fliter.stateFilter.value != 0;
     //console.log(this)
     this.fliter.filterChangedCallback();
 };
@@ -99,3 +99,21 @@ StateFilter.prototype.setModel = function (model) {
 // so safe to just leave these empty. don't do this in your code!!!
 StateFilter.prototype.getModel = function () { };
 StateFilter.prototype.setModel = function () { };
+
+
+
+
+export function StateCellRenderer() {
+}
+
+StateCellRenderer.prototype.init = function (params) {
+    this.eGui = document.createElement('span');
+    this.eGui.setAttribute("value", params.value);
+    this.eGui.className = "state"
+    this.eGui.innerHTML = params.valueFormatted;
+    //console.log(params)
+};
+
+StateCellRenderer.prototype.getGui = function () {
+    return this.eGui;
+};
