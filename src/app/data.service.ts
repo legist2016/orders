@@ -133,6 +133,8 @@ export class DataService {
         let item = this.find(item => item.productId == product.id)
         if (item) {
           item.count++;
+          item.name = product.name
+          item.price = product.price
         }
         else {
           this.push(new OrderItem(product.name, product.id, 1, product.price))
