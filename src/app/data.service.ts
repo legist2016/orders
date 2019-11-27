@@ -17,10 +17,12 @@ export function CatchErr(msg?) {
         r = r.then(after)
       }
       return r.catch((err) => {
-        //console.log(err)
+        //console.log(window.alert)
         if (msg && err && err.status && msg[err.status]) {
+
           window.alert(msg[err.status])
-        } else {        
+          //msg[err.status]
+        } else {
           window.alert(err.error && err.error.Message || err.message || '发生错误')
         }
       })
@@ -48,19 +50,37 @@ export function catcherr(err) {
   window.alert(err.error && err.error.Message || err.message || '发生错误')
 }
 
+
+
 /**数据服务*/
 export class DataService {
   constructor(public http: HttpClient) {
-    console.log(environment)
+    /*console.log(environment)
+    if (window.alert !== this.alert) {
+      console.log('hack window alert')
+      window['_alert'] = window.alert
+      window.alert['message'] = "ddddddddddddddd"
+      window['ds'] = this
+      //alert = this.alert
+      window.alert = this.alert
+    }*/
   }
 
   init() {
     this.querying = false;
+    //this.message = null;
     this.order = null;
     this.items = null;
     this.flows = null
-
   }
+
+  /*alert = function (msg) {
+    let ds = window['ds']
+    console.log(ds)
+    ds.message = (ds.message && `${ds.message}\n${msg}`) || msg
+  }*/
+
+  //message
   /**产品数组*/
   products: Array<Product> = null;
 
@@ -119,17 +139,28 @@ export class DataService {
         }
       }.bind(items),
       delete: function (item) {
-        if (window.confirm(`是否删除项目：${item.name}（${item.count}份）？`)) {
-          let index = this.findIndex(i => i == item)
-          //console.log(item, index)
-          if (index >= 0) {
-            this.splice(index, 1)
-            if (item.id != 0) {
-              this.api.deleted.push(item)
-              console.log(this.api.deleted)
-            }
+        //if (window.confirm(`是否删除项目：${item.name}（${item.count}份）？`)) 
+        window.alert(
+          {
+            msg: `是否删除项目：${item.name}（${item.count}份）？`,
+            buttons: [{
+              text: "是",
+              action: () => {
+                let index = this.findIndex(i => i == item)
+                //console.log(item, index)
+                if (index >= 0) {
+                  this.splice(index, 1)
+                  if (item.id != 0) {
+                    this.api.deleted.push(item)
+                    //console.log(this.api.deleted)
+                  }
+                }
+              }
+            },
+            { text: "否" }
+            ]
           }
-        }
+        )
 
       }.bind(items),
       deleted: []
@@ -141,7 +172,7 @@ export class DataService {
   /**载入产品列表
    * @param state 产品状态筛选
    */
-  @Querying() @CatchErr('载入数据时发生错误！')
+  @Querying() @CatchErr({'404':'载入数据时发生错误！'})
   LoadProductList(state?: number, after?) {
     //if (!this.products) {    
     let url = environment.config.apiProductUrl
@@ -194,7 +225,7 @@ export class DataService {
    * 载入订单列表
    * @param state 
    */
-  @Querying() @CatchErr('载入数据时发生错误！')
+  @Querying() @CatchErr({'404':'载入数据时发生错误！'})
   loadOrderList(states?: string, after?) {
     //if (this.orders == null) {
     let url = environment.config.apiOrderUrl
@@ -279,7 +310,7 @@ export class ApplyDataService extends DataService {
   }
 
   @Querying()
-  @CatchErr({ "404": "没有找到可用的学生信息，请直接填写信息","123":"学号姓名不匹配" })
+  @CatchErr({ "404": "没有找到可用的学生信息，请直接填写信息", "123": "学号姓名不匹配" })
   queryStudent(after?) {
 
     var xh = this.model.query.xh;
@@ -295,7 +326,7 @@ export class ApplyDataService extends DataService {
           yx: data.YX, zy: data.ZY, rxsj: data.RXRQ, bysj: data.BYRQ
         };
         if (xm && xm != data.xm) {
-          throw {status:123};
+          throw { status: 123 };
         }
         this.model.student = data
         return;

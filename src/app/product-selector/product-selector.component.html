@@ -1,9 +1,9 @@
 <ul>
     <li *ngFor="let product of products">
-        <span>{{product.name}}</span>
-        <p>{{product.description}}</p>
-        <p>{{product.price}}元/份</p>
+        <span product_name>{{product.name}}</span>
+        <span product_description>{{product.description}}</span>
+        <span product_price>{{product.price}}元/份</span>
         <a (click)="ok.emit(product)">添加</a>
+        <div></div>
     </li>
-    <div></div>
 </ul>

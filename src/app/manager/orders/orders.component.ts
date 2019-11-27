@@ -15,6 +15,7 @@ export class OrdersComponent implements OnInit {
   constructor(public ds: ApplyDataService) { }
 
   @Input() states
+  @Input() readonly = false
 
   localeText = localeText
   editOrder = null
@@ -46,10 +47,10 @@ export class OrdersComponent implements OnInit {
     },
     {
       headerName: '申请状态', field: 'state',
-      width: 120, 
-      valueFormatter: this.stateText, 
+      width: 120,
+      valueFormatter: this.stateText,
       sortable: false, filter: StateFilter,
-      cellRenderer:StateCellRenderer
+      cellRenderer: StateCellRenderer
     },
     { headerName: '学号', field: 'xh', width: 100 },
     { headerName: '姓名', field: 'xm', width: 100, },
@@ -97,6 +98,7 @@ export class OrdersComponent implements OnInit {
 
   new() {
     this.ds.newOrder()
+    this.ds.model.step = 1
     this.newOrder = true
   }
 
@@ -138,13 +140,26 @@ export class OrdersComponent implements OnInit {
   }
 
   setState(state: number) {
-    if (window.confirm(`是否将此申请设置为【${OrderState[state]}】状态？`)) {
+    /*if (window.confirm(`是否将此申请设置为【${OrderState[state]}】状态？`)) {
       this.ds.putOrderState(this.ds.order, state,
         () => {
           this.ds.order.state = state
           this.resolve(this.ds.order)
         })
-    }
+    }*/
+    window.alert({
+      msg: `是否将此申请设置为【${OrderState[state]}】状态？`,
+      buttons: [
+        {text:"是",action: () => { 
+          this.ds.putOrderState(this.ds.order, state,
+            () => {
+              this.ds.order.state = state
+              this.resolve(this.ds.order)
+            })          
+        }},
+        {text:"否",action: () => { }},
+      ]
+    })
   }
 
 }

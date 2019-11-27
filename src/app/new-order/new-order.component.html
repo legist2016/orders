@@ -7,3 +7,9 @@
     <app-order-complated (do)="do($event)" *ngIf="ds.model.step==5" [ds]="ds" complatedRouterLink="/apply"></app-order-complated>
 </app-popup>
 <app-conver *ngIf="ds.querying"></app-conver>
+<!--app-popup *ngIf="ds.message" (close)="ds.message=null"><div class="alert">
+    <pre>{{ds.message}}</pre>
+    <button (click)="ds.message=null">关闭</button>
+    </div>
+</app-popup-->
+<app-window-confirm></app-window-confirm>

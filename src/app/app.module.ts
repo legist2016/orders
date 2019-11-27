@@ -43,6 +43,7 @@ import { OrderFlowComponent } from './order-flow/order-flow.component';
 
 import { environment } from '../environments/environment';
 import {PathLocationStrategy, LocationStrategy,HashLocationStrategy } from '@angular/common';
+import { WindowConfirmComponent } from './window-confirm/window-confirm.component';
 
 @NgModule({
   imports: [
@@ -84,7 +85,7 @@ import {PathLocationStrategy, LocationStrategy,HashLocationStrategy } from '@ang
     ProductEditComponent,
     ManagerMenuComponent,
     OrdersComponent,
-    ProductSelectorComponent, OrderItemListComponent, PopupComponent, OrderFlowComponent
+    ProductSelectorComponent, OrderItemListComponent, PopupComponent, OrderFlowComponent, WindowConfirmComponent
   ],
   bootstrap: [AppComponent],
   providers: [

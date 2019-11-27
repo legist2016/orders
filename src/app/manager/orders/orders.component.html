@@ -1,18 +1,19 @@
-<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.orders" (gridReady)="gridReady($event)" [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="onRowDbclick($event)">
+<ag-grid-angular style="height: 500px;" class="ag-theme-balham" [rowData]="ds.orders" (gridReady)="gridReady($event)"
+    [columnDefs]="columnDefs" [localeText]="localeText" (rowDoubleClicked)="onRowDbclick($event)">
 </ag-grid-angular>
-<button (click)="refresh()">刷新</button><button (click)="new()">新建</button>
+<button (click)="refresh()">刷新</button><button [hidden]="readonly" (click)="new()">新建</button>
 <app-popup *ngIf="editOrder" apply (close)="editOrder=null">
     <div *ngIf="ds.model.step==1">
         <app-order-info [order]="ds.order" [items]="ds.items" mode="show" state='show'></app-order-info>
         <table></table>
         <div>
-            <button title="修改此申请表" *ngIf="ds.order.state<=3" (click)="do('next')">修改</button>
-            <button title="此申请表符合制作要求，通过审核，可以缴费" *ngIf="ds.order.state==2" (click)="setState(4)">通过</button>
-            <button title="此申请表不符合制作要求" *ngIf="ds.order.state==2" (click)="setState(3)">不通过</button>
-            <button title="取消审核状态，退回未审核状态" *ngIf="ds.order.state==4" (click)="setState(2)">退回审核</button>
-            <button title="将此申请表设置为已缴费成功状态" *ngIf="ds.order.state==4" (click)="setState(5)">缴费</button>
-            <button title="此申请表全部处理流程已经完成" *ngIf="ds.order.state==5" (click)="setState(6)">完成</button>
-            <button title="作废此申请表，以后将无法再进行操作" *ngIf="ds.order.state<5" (click)="setState(7)">作废</button>
+            <button title="修改此申请表" *ngIf="ds.order.state<=3" (click)="do('next')" [hidden]="readonly" >修改</button>
+            <button title="此申请表符合制作要求，通过审核，可以缴费" *ngIf="ds.order.state==2" (click)="setState(4)" [hidden]="readonly" >通过</button>
+            <button title="此申请表不符合制作要求" *ngIf="ds.order.state==2" (click)="setState(3)" [hidden]="readonly" >不通过</button>
+            <button title="取消审核状态，退回未审核状态" *ngIf="ds.order.state==4" (click)="setState(2)" [hidden]="readonly">退回审核</button>
+            <button title="将此申请表设置为已缴费成功状态" *ngIf="ds.order.state==4" (click)="setState(5)" [hidden]="readonly">缴费</button>
+            <button title="此申请表全部处理流程已经完成" *ngIf="ds.order.state==5" (click)="setState(6)" [hidden]="readonly">完成</button>
+            <button title="作废此申请表，以后将无法再进行操作" *ngIf="ds.order.state<5" (click)="setState(7)" [hidden]="readonly">作废</button>
             <button title="查看全部处理流程" (click)="flows=1">流程</button>
             <button title="查看全部处理流程" (click)="qrcode=1">二维码</button>
         </div>

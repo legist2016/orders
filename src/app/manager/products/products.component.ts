@@ -58,7 +58,7 @@ export class ProductsComponent implements OnInit {
     this.editProduct = Object.assign({}, event.data)
     this.resolve = product => {
       if (product) {
-        this.ds.putProduct(product,data => {
+        this.ds.putProduct(product, data => {
           event.node.setData(product)
           this.editProduct = null
           this.resolve = null
@@ -75,16 +75,23 @@ export class ProductsComponent implements OnInit {
   }
 
   del() {
-    if (window.confirm("是否删除选中的项目？")) {
-      let rows = this.gridApi.getSelectedRows()
-      let ids = []
-      for (let row of rows) {
-        ids.push(row.id)
-      }
-      this.ds.deleteProduct(ids, data => {
-        //window.alert(data)
-        this.gridApi.updateRowData({ remove: rows })
-      })//.then()
-    }
+    //if (window.confirm("是否删除选中的项目？")) 
+    window.alert({
+      msg: "是否删除选中的项目？",
+      buttons: [{
+        text:"是",
+        action: () => {
+          let rows = this.gridApi.getSelectedRows()
+          let ids = []
+          for (let row of rows) {
+            ids.push(row.id)
+          }
+          this.ds.deleteProduct(ids, data => {
+            //window.alert(data)
+            this.gridApi.updateRowData({ remove: rows })
+          })//.then()
+        }
+      },{text:"否"}]
+    })
   }
 }
