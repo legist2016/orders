@@ -78,9 +78,9 @@ export class ProductsComponent implements OnInit {
     //if (window.confirm("是否删除选中的项目？")) 
     window.alert({
       msg: "是否删除选中的项目？",
-      buttons: [{
-        text:"是",
-        action: () => {
+      buttons: "是,否",
+      action: (button) => {
+        if (button == "是") {
           let rows = this.gridApi.getSelectedRows()
           let ids = []
           for (let row of rows) {
@@ -91,7 +91,7 @@ export class ProductsComponent implements OnInit {
             this.gridApi.updateRowData({ remove: rows })
           })//.then()
         }
-      },{text:"否"}]
+      }
     })
   }
 }

@@ -149,17 +149,16 @@ export class OrdersComponent implements OnInit {
     }*/
     window.alert({
       msg: `是否将此申请设置为【${OrderState[state]}】状态？`,
-      buttons: [
-        {text:"是",action: () => { 
+      buttons: "是,否",
+      action: (button) => {
+        if (button == "是") {
           this.ds.putOrderState(this.ds.order, state,
             () => {
               this.ds.order.state = state
               this.resolve(this.ds.order)
-            })          
-        }},
-        {text:"否",action: () => { }},
-      ]
+            })
+        }
+      }
     })
   }
-
 }

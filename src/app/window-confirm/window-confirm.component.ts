@@ -1,16 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-window-confirm',
   templateUrl: './window-confirm.component.html',
   styleUrls: ['./window-confirm.component.scss']
 })
-export class WindowConfirmComponent implements OnInit {
+export class WindowConfirmComponent implements OnInit, OnDestroy {
+  _alert
+  _confirm
+  ngOnDestroy(): void {
+    window.alert = this._alert
+    window.confirm = this._confirm
+  }
   messages = []
   buttons
+  action
+
   constructor() {
+    this._alert = window.alert
+    this._confirm = window.confirm
     window.alert = (msg) => this.alert(msg)
-    window.confirm = (msg) => this.alert(msg)
+    window.confirm = (msg) => this.alert(msg)    
   }
 
   alert(msg) {
@@ -18,20 +28,15 @@ export class WindowConfirmComponent implements OnInit {
     console.log(msg)
     if (!msg) return false
     if (msg.constructor === String) {
-      this.buttons = [
-        { text: "确定", action: () => { this.close() } }
-      ]
+      this.buttons = ["确定"]
     } else {
-      this.buttons = msg.buttons.map(b => {
-        return {
-          text: b.text,
-          action: () => { 
-            if(b.action)b.action()
-            this.close()
-          }
-        }
+      if(msg.buttons.constructor === String){
+        this.buttons = msg.buttons.split(',')
       }
-      )
+      else {
+        this.buttons = msg.buttons
+      }
+      this.action = msg.action
       msg = msg.msg
     }
     if (!this.messages.includes(msg))
@@ -47,6 +52,11 @@ export class WindowConfirmComponent implements OnInit {
   }
   message() {
     return this.messages.join('\n')
+  }
+
+  onClick(button){
+    this.action && this.action(button)
+    this.close()
   }
 
 }
