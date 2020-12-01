@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApplyDataService, catcherr } from 'src/app/data.service';
+import { ApplyDataService } from 'src/app/data.service';
 import { localeText } from 'src/app/aggrid.localtext';
 import { StateFilter, StateCellRenderer } from './state-fliter';
 import { OrderState } from 'src/app/wizards/order';
@@ -135,7 +135,7 @@ export class OrdersComponent implements OnInit {
       default:
         window.alert(event)
     }
-    console.log(event)
+    //console.log(event)
 
   }
 

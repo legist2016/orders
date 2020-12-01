@@ -45,10 +45,10 @@ export function Querying() {
   }
 }
 
-export function catcherr(err) {
-  console.log('err:', err)
+/*export function catcherr(err) {
+  //console.log('err:', err)
   window.alert(err.error && err.error.Message || err.message || '发生错误')
-}
+}*/
 
 
 
@@ -57,7 +57,7 @@ export class DataService {
   constructor(public http: HttpClient) {
     /*console.log(environment)
     if (window.alert !== this.alert) {
-      console.log('hack window alert')
+      //console.log('hack window alert')
       window['_alert'] = window.alert
       window.alert['message'] = "ddddddddddddddd"
       window['ds'] = this
@@ -76,7 +76,7 @@ export class DataService {
 
   /*alert = function (msg) {
     let ds = window['ds']
-    console.log(ds)
+    //console.log(ds)
     ds.message = (ds.message && `${ds.message}\n${msg}`) || msg
   }*/
 
@@ -121,7 +121,7 @@ export class DataService {
         (data) => {
           //throw ""
           this.setOrder(data.order, data.items, data.flows)
-          console.log(data)
+          //console.log(data)
         });
 
   }
@@ -312,7 +312,7 @@ export class ApplyDataService extends DataService {
   }
 
   @Querying()
-  @CatchErr({ "404": "没有找到可用的学生信息，请直接填写信息", "123": "学号姓名不匹配" })
+  @CatchErr({ "404": "没有找到可用的学生信息，请直接填写信息", "123": "学号姓名不匹配，请填入正确的姓名，或直接填写信息。" })
   queryStudent(after?) {
 
     var xh = this.model.query.xh;

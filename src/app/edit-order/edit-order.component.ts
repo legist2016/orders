@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService, catcherr } from "../data.service";
+import { ApplyDataService } from "../data.service";
 
 
 @Component({
@@ -36,7 +36,7 @@ export class EditOrderComponent implements OnInit {
       default:
         window.alert(event)
     }
-    console.log(event)
+    //console.log(event)
 
   }
 }

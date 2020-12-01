@@ -52,11 +52,11 @@ export class Order {
         this.items.push(item)
       }
     })
-    console.log(this.items)
+    //console.log(this.items)
     this.items = this.items.sort((a, b) => {
       return a.productId - b.productId
     })
-    console.log(this.items)
+    //console.log(this.items)
   }
 
 }

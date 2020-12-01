@@ -11,7 +11,7 @@ export class Wizard {
     }
     Do(event) {
         this.do.emit(event)
-        console.log(event)
+        //console.log(event)
     }
 
     get doemit(){

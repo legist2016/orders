@@ -25,7 +25,7 @@ export class WindowConfirmComponent implements OnInit, OnDestroy {
 
   alert(msg) {
     //this.message = this.message && this.message!=msg && this.message+'\n'+msg || msg
-    console.log(msg)
+    //console.log(msg)
     if (!msg) return false
     if (msg.constructor === String) {
       this.buttons = ["确定"]

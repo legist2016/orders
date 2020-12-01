@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onNewProductSave(product) {
-    console.log(product)
+    //console.log(product)
     if (product) {
       this.ds.postProduct(product, data => {
         this.newProduct = null
@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
           event.node.setData(product)
           this.editProduct = null
           this.resolve = null
-          console.log(this.gridApi.getModel())
+          //console.log(this.gridApi.getModel())
         })
       } else {
         this.editProduct = null

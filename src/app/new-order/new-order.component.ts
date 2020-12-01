@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplyDataService, catcherr } from "../data.service";
+import { ApplyDataService } from "../data.service";
 
 @Component({
   selector: 'app-new-order',
@@ -37,7 +37,7 @@ export class NewOrderComponent implements OnInit {
       default:
         window.alert(event)
     }
-    console.log(event)
+    //console.log(event)
 
   }
 }
